@@ -11,6 +11,7 @@ import Nav from './components/nav'
 import Home from './components/home'
 import Wallet from './components/wallet'
 import Market from './components/market'
+import Landing from './components/landing'
 
 const muiTheme = getMuiTheme({
 	palette: {
@@ -20,20 +21,29 @@ const muiTheme = getMuiTheme({
 	},
 });
 
-export default () => (
-	<MuiThemeProvider muiTheme={muiTheme}>
-		<Router>
-			<div>
-				<Route path='*' component={Nav}/>
-				<div style={{
-					marginLeft: '266px',
-					marginRight: '20px'
-				}}>
-					<Route exact path="/" component={Home} />
-					<Route path="/wallet" component={Wallet} />
-					<Route path="/market" component={Market} />
+export default () => {
+
+	return (
+		<MuiThemeProvider muiTheme={muiTheme}>
+			<Router>
+				<div>
+					<Route path='/' component={Landing} />
+					<div style={{
+						marginLeft: '266px',
+						marginRight: '20px'
+					}}>
+						{
+							['/home', '/wallet', '/market'].map((route, index) => (
+								<Route key={index} path={route} component={Nav} />
+							))
+						}
+						<Route exact path='/home' component={Home} />
+						<Route path='/wallet' component={Wallet} />
+						<Route path='/market' component={Market} />
+						
+					</div>
 				</div>
-			</div>
-		</Router>
-	</MuiThemeProvider>
-)
+			</Router>
+		</MuiThemeProvider>
+	)
+}
