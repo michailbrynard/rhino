@@ -27,19 +27,19 @@ export default () => {
 		<MuiThemeProvider muiTheme={muiTheme}>
 			<Router>
 				<div>
-					<Route path='/' component={Landing} />
+					<Route exact path='/' component={Landing} />
 					<div style={{
 						marginLeft: '266px',
 						marginRight: '20px'
 					}}>
 						{
 							['/home', '/wallet', '/market'].map((route, index) => (
-								<Route key={index} path={route} component={Nav} />
+								<Route key={index} exact path={route} component={Nav} />
 							))
 						}
 						<Route exact path='/home' component={Home} />
-						<Route path='/wallet' component={Wallet} />
-						<Route path='/market' component={Market} />
+						<Route exact path='/wallet' component={Wallet} />
+						<Route exact path='/market' component={Market} />
 						
 					</div>
 				</div>

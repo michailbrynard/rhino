@@ -10,8 +10,23 @@ header, main, footer {
 	padding-left: 300px;
 }
 
+.spacer {
+	height: 15vh;
+}
+
+.title {
+	font-size: 60px;
+}
+
+.subtitle {
+	font-size: 28px;
+}
+
 @media only screen and (max-width : 992px) {
 	header, main, footer {
 		padding-left: 0;
+	}
+	.spacer {
+		height: 2vh;
 	}
 }
