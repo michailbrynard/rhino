@@ -7,11 +7,11 @@ import {
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
-import Nav from './components/nav'
-import Home from './components/home'
-import Wallet from './components/wallet'
-import Market from './components/market'
-import Landing from './components/landing'
+import Nav from './containers/nav'
+import Home from './containers/home'
+import Wallet from './containers/wallet'
+import Market from './containers/market'
+import Landing from './containers/landing'
 
 const muiTheme = getMuiTheme({
 	palette: {
