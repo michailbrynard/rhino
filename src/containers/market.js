@@ -11,26 +11,26 @@ export default () => (
 				<Paper style={style} zDepth={3}>
 					<div className='container'>
 						<p>Perk 1</p>
-						<h3>GUT 11</h3>
+						<h3>11 BITS</h3>
 					</div>
 				</Paper>
 				<Paper style={style} zDepth={3}>
 					<div className='container'>
 						<p>Perk 2</p>
-						<h3>GUT 10</h3>
+						<h3>10 BITS</h3>
 					</div>
 				</Paper>
 				<Paper style={style} zDepth={3}>
 					<div className='container'>
 						<p>Perk 3</p>
-						<h3>GUT 33</h3>
+						<h3>33 BITS</h3>
 					</div>
 				</Paper>
 			</div>
 			<div className='col-4'>
 				<div className='container center'>
 					<p>Balance</p>
-					<h2>GUT 123.456</h2>
+					<h2>11.11 BITS</h2>
 				</div>
 			</div>
 		</div>

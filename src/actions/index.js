@@ -1,11 +1,11 @@
-export const GET_DATA = "GET_DATA"
-export const GET_DATA_SUCCESS = "GET_DATA_SUCCESS"
-export const GET_DATA_ERROR = "GET_DATA_ERROR"
+export const GET_HOME_DATA = "GET_HOME_DATA"
+export const GET_HOME_DATA_SUCCESS = "GET_HOME_DATA_SUCCESS"
+export const GET_HOME_DATA_ERROR = "GET_HOME_DATA_ERROR"
 
-export const getData = () => {
+export const getHomeData = () => {
   return dispatch => {
 		// token = localStorage.getItem('token')
-    // dispatch({ type: GET_DATA })
+    dispatch({ type: GET_HOME_DATA })
     // fetch(`http://localhost:8001/`, {
     //   credentials: 'include',
     //   mode: 'cors',
@@ -19,10 +19,26 @@ export const getData = () => {
     // })
     // .then(response => response.json())
     // .then(json => {
-    //   dispatch({ type: GET_DATA_SUCCESS, data: json })
+			// NOTE: Simulating server latency and getting data
+			setTimeout(() => {
+				dispatch({
+					type: GET_HOME_DATA_SUCCESS, data: {
+						company: {
+							name: "Super Test Co",
+							product: "Pro(duct) Test",
+							description: "This is a test product for a test company"
+						},
+						wallet: {
+							balance: 11.11,
+							currency_code: "BITS"
+						}
+					}
+				})
+			}, 3000)
+      
 		// })
 		// .catch(err => {
-		// 	dispatch({ type: GET_DATA_ERROR, err })
+		// 	dispatch({ type: GET_HOME_DATA_ERROR, err })
 		// })
   }
 }

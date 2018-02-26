@@ -11,7 +11,7 @@ export default () => (
 				<Paper style={style.balance_card} zDepth={3}>
 					<div className='container'>
 						<p>Balance</p>
-						<h1>GUT 2300.3459</h1>
+						<h1>11.11 BITS</h1>
 					</div>
 				</Paper>
 			</div>
