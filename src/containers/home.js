@@ -8,9 +8,17 @@ export default () => (
 			<div className='col-6'>
 				<Paper style={style.card} zDepth={3}>
 					<div className='container'>
-						<h3>Company Name</h3>
-						<p>Product Name</p>
-						<span>Product Description</span>
+						<div className='row'>
+						<div className='col-4'>
+							<br/>
+							<img className='container' src='logo.png'/>
+						</div>
+							<div className='col-8 left'>
+								<h3>Company Name</h3>
+								<p>Product Name</p>
+								<span>Product Description</span>
+							</div>
+						</div>
 					</div>
 				</Paper>
 				<br/>
@@ -18,8 +26,19 @@ export default () => (
 			<div className='col-6'>
 				<Paper style={style.card} zDepth={3}>
 					<div className='container'>
-						<p>Balance</p>
-						<h1>CNS 2300.3459</h1>
+						<div className='row'>
+							<div className='col-6'>
+								<h1>
+									233.6
+									<br/>
+									BITS
+								</h1>
+							</div>
+							<div className='col-6'>
+								<br/>
+								<p>Balance</p>
+							</div>
+						</div>
 					</div>
 				</Paper>
 				<br/>
@@ -27,7 +46,15 @@ export default () => (
 			<div className='col-6'>
 				<Paper style={style.card} zDepth={3}>
 					<div className='container'>
-						<h3>Get Tokens</h3>
+						<div className='row'>
+							<div className='col-4'>
+								<br />
+								<img className='container' src='logo.png' />
+							</div>
+							<div className='col-8 left'>
+								<h3>Earn Tokens</h3>
+							</div>
+						</div>
 					</div>
 				</Paper>
 				<br/>
@@ -35,7 +62,15 @@ export default () => (
 			<div className='col-6'>
 				<Paper style={style.card} zDepth={3}>
 					<div className='container'>
-						<h3>Spend Tokens</h3>
+						<div className='row'>
+							<div className='col-4'>
+								<br />
+								<img className='container' src='logo.png' />
+							</div>
+							<div className='col-8 left'>
+								<h3>Redeem Tokens</h3>
+							</div>
+						</div>
 					</div>
 				</Paper>
 				<br/>
@@ -46,8 +81,7 @@ export default () => (
 
 const style = {
 	card: {
-		height: 200,
-		textAlign: 'center',
+		height: 220,
 		display: 'flex',
 		alignItems: 'center'
 	}
