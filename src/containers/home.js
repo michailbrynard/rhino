@@ -64,7 +64,7 @@ const Home = ({ home_data, history }) => (
 								<div className='row'>
 									<div className='col-4'>
 										<br />
-										<img className='container' src='logo.png' />
+										<img className='container' src='coins.svg' />
 									</div>
 									<div className='col-8 left'>
 										<h3>Earn Tokens</h3>
@@ -83,7 +83,7 @@ const Home = ({ home_data, history }) => (
 								<div className='row'>
 									<div className='col-4'>
 										<br />
-										<img className='container' src='logo.png' />
+										<img className='container' src='trading.svg' />
 									</div>
 									<div className='col-8 left'>
 										<h3>Redeem Tokens</h3>
