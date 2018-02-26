@@ -22,6 +22,11 @@ header, main, footer {
 	font-size: 28px;
 }
 
+.landing-img {
+	height: 280px;
+	margin-top: 2.5vh;
+}
+
 @media only screen and (max-width : 992px) {
 	header, main, footer {
 		padding-left: 0;
