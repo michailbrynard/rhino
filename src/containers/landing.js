@@ -4,10 +4,6 @@ import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 
 export default class extends Component {
-	constructor(props) {
-		super(props)
-	}
-
 	render() {
 		const { history } = this.props
 		return (
@@ -17,7 +13,7 @@ export default class extends Component {
 				<div className='row'>
 					<div className='col-6 center'>
 						<br/>
-						<img className='container' src='./logo.jpg' />
+						<img alt='logo' className='container' src='./logo.jpg' />
 					</div>
 					<div className='col-6 center'>
 						<h1 className='title'>Product Name</h1>
