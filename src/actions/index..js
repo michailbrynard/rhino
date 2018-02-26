@@ -22,7 +22,7 @@ export const getData = () => {
     //   dispatch({ type: GET_DATA_SUCCESS, data: json })
 		// })
 		// .catch(err => {
-		// 	dispatch({ err: GET_DATA_ERROR})
+		// 	dispatch({ type: GET_DATA_ERROR, err })
 		// })
   }
 }
