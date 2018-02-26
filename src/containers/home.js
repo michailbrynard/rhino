@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Paper from 'material-ui/Paper';
+import RaisedButton from 'material-ui/RaisedButton';
 
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -7,7 +8,7 @@ import { bindActionCreators } from 'redux'
 import Loader from '../components/loader'
 import { getHomeData } from '../actions'
 
-const Home = ({ home_data }) => (
+const Home = ({ home_data, history }) => (
 	<div>
 		{
 			home_data ?
@@ -26,6 +27,9 @@ const Home = ({ home_data }) => (
 										<p>{home_data.company.product}</p>
 										<span>{home_data.company.description}</span>
 									</div>
+								</div>
+								<div className='right'>
+									<RaisedButton label="Visit Site" secondary={true} />
 								</div>
 							</div>
 						</Paper>
@@ -47,6 +51,9 @@ const Home = ({ home_data }) => (
 										<p>Balance</p>
 									</div>
 								</div>
+								<div className='right'>
+									<RaisedButton onClick={() => history.push('/wallet')} label="Wallet" secondary={true} />
+								</div>
 							</div>
 						</Paper>
 						<br />
@@ -63,6 +70,9 @@ const Home = ({ home_data }) => (
 										<h3>Earn Tokens</h3>
 									</div>
 								</div>
+								<div className='right'>
+									<RaisedButton label="Rewards" secondary={true} />
+								</div>
 							</div>
 						</Paper>
 						<br />
@@ -78,6 +88,9 @@ const Home = ({ home_data }) => (
 									<div className='col-8 left'>
 										<h3>Redeem Tokens</h3>
 									</div>
+								</div>
+								<div className='right'>
+									<RaisedButton onClick={() => history.push('/market')} label="Perks" secondary={true} />
 								</div>
 							</div>
 						</Paper>
@@ -96,14 +109,14 @@ class HomeContainer extends Component {
 	}
 
 	render() {
-		const { loading, home_data } = this.props
+		const { loading, home_data, history } = this.props
 
 		return (
 			<div>
 				{
 					loading && !home_data ?
 						<Loader /> :
-						<Home home_data={home_data} />
+						<Home history={history} home_data={home_data} />
 				}
 			</div>
 		)
@@ -112,7 +125,7 @@ class HomeContainer extends Component {
 
 const style = {
 	card: {
-		height: 220,
+		height: 250,
 		display: 'flex',
 		alignItems: 'center'
 	},
