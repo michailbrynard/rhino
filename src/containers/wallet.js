@@ -18,11 +18,9 @@ export default class extends Component {
 
 	render() {
 		return (
-			<div>
+			<div className='container'>
 				<div className='row'>
-					<div className='col-12'>
-						<h2>Wallet</h2>
-					</div>
+				<br/>
 					<div className='col-12'>
 						<Paper style={style.balance_card} zDepth={3}>
 							<div className='container'>
