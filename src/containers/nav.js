@@ -1,11 +1,12 @@
 import React from 'react'
+import { FlatButton } from 'material-ui'
 import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import Avatar from 'material-ui/Avatar';
 import { List, ListItem } from 'material-ui/List'
 import FontIcon from 'material-ui/FontIcon'
-import { grey400 } from 'material-ui/styles/colors';
+import { blue300, blue800 } from 'material-ui/styles/colors';
 
 export default ({ history, match }) => {
 
@@ -13,34 +14,38 @@ export default ({ history, match }) => {
 
 	return (
 		<div>
+			<br/>
+			<FlatButton onClick={() => history.push('/')} style={{
+				float: 'right'
+			}} label="Logout"/>
 			<Drawer>
 				<AppBar showMenuIconButton={false} title="Launcher" />
 				<MenuItem
 					style={{
-						backgroundColor: path === '/home' ? grey400 : null
+						backgroundColor: path === '/home' ? blue300 : null
 					}}
-					leftIcon={<FontIcon className="material-icons">home</FontIcon>}
+					leftIcon={<FontIcon style={{ color: blue800 }} className="material-icons">home</FontIcon>}
 					onClick={() => history.push('/home')}>Home
 			</MenuItem>
 				<MenuItem
 					style={{
-						backgroundColor: path === '/wallet' ? grey400 : null
+						backgroundColor: path === '/wallet' ? blue300 : null
 					}}
-					leftIcon={<FontIcon className="material-icons">account_balance_wallet</FontIcon>}
+					leftIcon={<FontIcon style={{ color: blue800 }} className="material-icons">account_balance_wallet</FontIcon>}
 					onClick={() => history.push('/wallet')}>Wallet
 			</MenuItem>
 				<MenuItem
 					style={{
-						backgroundColor: path === '/market' ? grey400 : null
+						backgroundColor: path === '/market' ? blue300 : null
 					}}
-					leftIcon={<FontIcon className="material-icons">shopping_basket</FontIcon>}
+					leftIcon={<FontIcon style={{ color: blue800 }} className="material-icons">shopping_basket</FontIcon>}
 					onClick={() => history.push('/market')}>Market
 			</MenuItem>
 				<MenuItem
 					style={{
-						backgroundColor: path === '/settings' ? grey400 : null
+						backgroundColor: path === '/settings' ? blue300 : null
 					}}
-					leftIcon={<FontIcon className="material-icons">settings</FontIcon>}
+					leftIcon={<FontIcon style={{ color: blue800 }} className="material-icons">settings</FontIcon>}
 					onClick={() => history.push('/settings')}>Settings
 			</MenuItem>
 				<List style={{
