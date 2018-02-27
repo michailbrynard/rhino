@@ -1,3 +1,32 @@
+export const SIGNUP = "SIGNUP"
+export const SIGNUP_SUCCESS = "SIGNUP_SUCCESS"
+export const SIGNUP_ERROR = "SIGNUP_ERROR"
+
+export const signup = (email) => (
+	dispatch => {
+		dispatch({ type: SIGNUP })
+
+		fetch(process.env.REACT_APP_API_URL + '/user/join', {
+			method: 'POST',
+			mode: 'cors',
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({ email })
+		})
+		.then(response => {
+			return response.json()
+		})
+		.then(json => {
+			dispatch({ type: SIGNUP_SUCCESS })
+		})
+		.catch(err => {
+			dispatch({ type: SIGNUP_ERROR })
+		})
+	}
+)
+
 export const GET_HOME_DATA = "GET_HOME_DATA"
 export const GET_HOME_DATA_SUCCESS = "GET_HOME_DATA_SUCCESS"
 export const GET_HOME_DATA_ERROR = "GET_HOME_DATA_ERROR"

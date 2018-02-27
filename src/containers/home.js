@@ -36,6 +36,7 @@ class Home extends Component {
 	render() {
 
 		const { home_data, loading, history} = this.props
+		console.log("PRINT ENV URL", process.env);
 		return (
 			<div className='container'>
 				{

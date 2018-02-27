@@ -35,7 +35,6 @@ const muiTheme = getMuiTheme({
 const store = configureStore()
 
 export default () => {
-
 	return (
 		<Provider store={store}>
 			<MuiThemeProvider muiTheme={muiTheme}>
