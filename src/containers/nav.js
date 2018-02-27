@@ -43,9 +43,9 @@ export default ({ history, match }) => {
 				</MenuItem>
 				<MenuItem
 					style={{
-						backgroundColor: path === '/earn' ? blue300 : null
+						backgroundColor: path === '/earn' ? grey200 : null
 					}}
-					leftIcon={<FontIcon style={{ color: blue800 }} className="material-icons">monetization_on</FontIcon>}
+					leftIcon={<FontIcon style={{ color: grey600 }} className="material-icons">monetization_on</FontIcon>}
 					onClick={() => history.push('/earn')}>Earn
 				</MenuItem>
 				<MenuItem
