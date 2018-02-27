@@ -26,28 +26,35 @@ export default ({ history, match }) => {
 					}}
 					leftIcon={<FontIcon style={{ color: blue800 }} className="material-icons">home</FontIcon>}
 					onClick={() => history.push('/home')}>Home
-			</MenuItem>
+				</MenuItem>
 				<MenuItem
 					style={{
 						backgroundColor: path === '/wallet' ? blue300 : null
 					}}
 					leftIcon={<FontIcon style={{ color: blue800 }} className="material-icons">account_balance_wallet</FontIcon>}
 					onClick={() => history.push('/wallet')}>Wallet
-			</MenuItem>
+				</MenuItem>
 				<MenuItem
 					style={{
 						backgroundColor: path === '/market' ? blue300 : null
 					}}
 					leftIcon={<FontIcon style={{ color: blue800 }} className="material-icons">shopping_basket</FontIcon>}
 					onClick={() => history.push('/market')}>Market
-			</MenuItem>
+				</MenuItem>
+				<MenuItem
+					style={{
+						backgroundColor: path === '/earn' ? blue300 : null
+					}}
+					leftIcon={<FontIcon style={{ color: blue800 }} className="material-icons">monetization_on</FontIcon>}
+					onClick={() => history.push('/earn')}>Earn
+				</MenuItem>
 				<MenuItem
 					style={{
 						backgroundColor: path === '/settings' ? blue300 : null
 					}}
 					leftIcon={<FontIcon style={{ color: blue800 }} className="material-icons">settings</FontIcon>}
 					onClick={() => history.push('/settings')}>Settings
-			</MenuItem>
+				</MenuItem>
 				<List style={{
 					position: 'absolute',
 					bottom: 0,

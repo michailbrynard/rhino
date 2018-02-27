@@ -14,9 +14,9 @@ export default () => (
 								<img className='container' src='logo.png' />
 							</div>
 							<div className='col-8 right'>
-								<h3>Item Name</h3>
-								<p>Item Description</p>
-								<h1>11 HIVE</h1>
+								<h3>Refer a Friend</h3>
+								<p>Refer a friend to get 5 HIVE tokens</p>
+								<h1>5 HIVE</h1>
 							</div>
 						</div>
 					</div>
@@ -32,9 +32,9 @@ export default () => (
 								<img className='container' src='logo.png' />
 							</div>
 							<div className='col-8 right'>
-								<h3>Item 2 Name</h3>
-								<p>Item 2 Description</p>
-								<h1>22 HIVE</h1>
+								<h3>Share</h3>
+								<p>Share to get 3 HIVE tokens</p>
+								<h1>3 HIVE</h1>
 							</div>
 						</div>
 					</div>

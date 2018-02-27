@@ -11,19 +11,20 @@ import Nav from './containers/nav'
 import Home from './containers/home'
 import Wallet from './containers/wallet'
 import Market from './containers/market'
+import Earn from './containers/earn'
 import Landing from './containers/landing'
 import Settings from './containers/settings'
 
 
 import { configureStore } from './store'
-import { blue800, blue700, blue500, blue400, blue100, blue200 } from 'material-ui/styles/colors';
+import { blue800, blue700, blue500, blue400, blue50, blue200 } from 'material-ui/styles/colors';
 
 const muiTheme = getMuiTheme({
 	palette: {
 		primary1Color: blue800,
 		primary2Color: blue700,
 		primary3Color: blue500,
-		canvasColor: blue100,
+		canvasColor: blue50,
 		accent1Color: blue800,
 		accent2Color: blue700,
 		accent3Color: blue500,
@@ -46,13 +47,14 @@ export default () => {
 							marginRight: '20px'
 						}}>
 							{
-								['/home', '/wallet', '/market', '/settings'].map((route, index) => (
+								['/home', '/wallet', '/market', '/earn', '/settings'].map((route, index) => (
 									<Route key={index} exact path={route} component={Nav} />
 								))
 							}
 							<Route exact path='/home' component={Home} />
 							<Route exact path='/wallet' component={Wallet} />
 							<Route exact path='/market' component={Market} />
+							<Route exact path='/earn' component={Earn} />
 							<Route exact path='/settings' component={Settings} />
 
 						</div>
