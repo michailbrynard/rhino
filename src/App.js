@@ -16,17 +16,17 @@ import Settings from './containers/settings'
 
 
 import { configureStore } from './store'
-import { blue800, blue700, blue500, blue400, blue100, blue200 } from 'material-ui/styles/colors';
+import {  yellow700, grey200, grey600, blue800, blue700, blue500, blue400, blue100, blue200 } from 'material-ui/styles/colors';
 
 const muiTheme = getMuiTheme({
 	palette: {
-		primary1Color: blue800,
-		primary2Color: blue700,
-		primary3Color: blue500,
-		canvasColor: blue100,
-		accent1Color: blue800,
-		accent2Color: blue700,
-		accent3Color: blue500,
+		primary1Color: yellow700,
+		primary2Color: grey600,
+		primary3Color: yellow700,
+		canvasColor: grey200,
+		accent1Color: yellow700,
+		accent2Color: grey600,
+		accent3Color: yellow700,
 	},
 	appBar: {
 	},
