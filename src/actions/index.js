@@ -122,9 +122,9 @@ export const GET_CAMPAIGN_DATA_ERROR = "GET_CAMPAIGN_DATA_ERROR"
 
 export const getCampaignData = (company) => {
 	return dispatch => {
-		token = localStorage.getItem('token')
+		const token = localStorage.getItem('token')
 		dispatch({ type: GET_CAMPAIGN_DATA })
-		fetch(REACT_APP_API_URL + '/api/user/campaign/' + company, {
+		fetch(process.env.REACT_APP_API_URL + '/api/user/campaign/' + company, {
 		  credentials: 'include',
 		  mode: 'cors',
 		  headers: {
