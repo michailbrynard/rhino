@@ -1,5 +1,7 @@
 import React from 'react';
 import RefreshIndicator from 'material-ui/RefreshIndicator';
+import CircularProgress from 'material-ui/CircularProgress';
+
 
 const style = {
 	refresh: {
@@ -29,3 +31,7 @@ const RefreshLoader = () => (
 );
 
 export default RefreshLoader;
+
+export const SmallLoader = () => (
+	<CircularProgress />
+)
