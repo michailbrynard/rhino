@@ -16,9 +16,9 @@ export default (state = { loading: false }, action) => {
 		case LOGIN_SUCCESS:
 			// NOTE: Storing token in localStorage for now
 			localStorage.setItem('token', action.data.token)
+			localStorage.setItem('user', JSON.stringify(action.data.user))
 			window.location.reload()
 			return merge({}, {
-				data: action.data,
 				loading: false
 			})
 		case LOGIN_ERROR:
@@ -28,6 +28,7 @@ export default (state = { loading: false }, action) => {
 			})
 		case LOGOUT:
 			localStorage.removeItem('token')
+			localStorage.removeItem('user')
 			window.location = '/'
 			return merge({}, {
 				loading: false

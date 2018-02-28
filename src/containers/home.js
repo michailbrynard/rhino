@@ -35,7 +35,9 @@ class Home extends Component {
 	render() {
 
 		const { home_data, loading, history} = this.props
-		console.log("PRINT ENV URL", process.env);
+
+		const user_data = JSON.parse(localStorage.getItem('user'))
+
 		return (
 			<div className='container'>
 				{
@@ -84,7 +86,7 @@ class Home extends Component {
 												<img className='container' src='logo.png' />
 											</div>
 											<div className='col-6 right'>
-												<h3>{home_data.company.name}</h3>
+												<h3>{user_data.company}</h3>
 												<p>{home_data.company.product}</p>
 												<span>{home_data.company.description}</span>
 												<br /><br />

@@ -6,16 +6,16 @@ import MenuItem from 'material-ui/MenuItem';
 import Avatar from 'material-ui/Avatar';
 import { List, ListItem } from 'material-ui/List'
 import FontIcon from 'material-ui/FontIcon'
-import { grey200, blue300, blue800 } from 'material-ui/styles/colors';
+import { blue300, blue800 } from 'material-ui/styles/colors';
 
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { logout } from '../actions'
 
 const Nav = ({ history, match, logout }) => {
+	const user_data = JSON.parse(localStorage.getItem('user'))
 
 	const { path } = match
-
 	return (
 		<div>
 			<br/>
@@ -23,13 +23,13 @@ const Nav = ({ history, match, logout }) => {
 				float: 'right'
 			}} label="Logout"/>
 			<Drawer>
-				<AppBar showMenuIconButton={false} title="Launcher" />
+				<AppBar showMenuIconButton={false} title={user_data.company} />
 				<MenuItem
 					style={{
-						backgroundColor: path === '/home' ? blue300 : null
+						backgroundColor: path === '/' ? blue300 : null
 					}}
 					leftIcon={<FontIcon style={{ color: blue800 }} className="material-icons">home</FontIcon>}
-					onClick={() => history.push('/home')}>Home
+					onClick={() => history.push('/')}>Home
 			</MenuItem>
 				<MenuItem
 					style={{
@@ -71,7 +71,10 @@ const Nav = ({ history, match, logout }) => {
 }
 
 function mapStateToProps(state) {
-	return {}
+
+	return {
+		data: state.login
+	}
 }
 
 function mapDispatchToProps(dispatch) {
