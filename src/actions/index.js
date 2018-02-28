@@ -2,23 +2,23 @@ export const SIGNUP = "SIGNUP"
 export const SIGNUP_SUCCESS = "SIGNUP_SUCCESS"
 export const SIGNUP_ERROR = "SIGNUP_ERROR"
 
-export const signup = (email) => (
+export const signup = (signup_email) => (
 	dispatch => {
 		dispatch({ type: SIGNUP })
 
-		fetch(process.env.REACT_APP_API_URL + '/user/join', {
+		fetch(process.env.REACT_APP_API_URL + '/api/user/join/', {
 			method: 'POST',
-			mode: 'cors',
 			headers: {
 				'Accept': 'application/json',
 				'Content-Type': 'application/json',
 			},
-			body: JSON.stringify({ email })
+			body: JSON.stringify({ signup_email, company:'dragon', referal_id: "" })
 		})
 		.then(response => {
 			return response.json()
 		})
 		.then(json => {
+			console.log("JOIN RESPONSE JSON", json);
 			dispatch({ type: SIGNUP_SUCCESS })
 		})
 		.catch(err => {

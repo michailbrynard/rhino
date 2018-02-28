@@ -5,8 +5,12 @@ import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
 import Dialog from 'material-ui/Dialog';
 
+import { signup } from '../actions'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 
-export default class extends Component {
+
+class Landing extends Component {
 
 	state = {
 		open: false,
@@ -21,7 +25,7 @@ export default class extends Component {
 	};
 
 	render() {
-		const { history } = this.props
+		const { history, signup } = this.props
 
 		const actions = [
 			<FlatButton
@@ -33,7 +37,9 @@ export default class extends Component {
 				label="Login"
 				primary={true}
 				keyboardFocused={true}
-				onClick={this.handleClose}
+				onClick={() => {
+					console.log("LOGIN");
+				}}
 			/>,
 		];
 
@@ -72,7 +78,9 @@ export default class extends Component {
 							<TextField
 								hintText="Email"
 							/><br />
-						<RaisedButton onClick={() => history.push('/home')} label="Join" secondary={true} />
+						<RaisedButton onClick={() => {
+							signup()
+						}} label="Join" secondary={true} />
 						<br/><br/>
 					</div>
 				</div>
@@ -80,3 +88,17 @@ export default class extends Component {
 		)
 	}
 }
+
+function mapStateToProps(state) {
+	return {
+
+	}
+}
+
+function mapDispatchToProps(dispatch) {
+	return {
+		signup: bindActionCreators(signup, dispatch)
+	}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Landing)
