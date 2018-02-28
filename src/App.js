@@ -11,6 +11,7 @@ import Nav from './containers/nav'
 import Home from './containers/home'
 import Wallet from './containers/wallet'
 import Market from './containers/market'
+import Earn from './containers/earn'
 import Landing from './containers/landing'
 import Settings from './containers/settings'
 
@@ -49,12 +50,13 @@ export default () => {
 									marginRight: '20px'
 								}}>
 									{
-										['/', '/wallet', '/market', '/settings'].map((route, index) => (
+										['/', '/wallet', '/earn', '/market', '/settings'].map((route, index) => (
 											<Route key={index} exact path={route} component={Nav} />
 										))
 									}
 									<Route exact path='/' component={Home} />
 									<Route exact path='/wallet' component={Wallet} />
+									<Route exact path='/earn' component={Earn} />
 									<Route exact path='/market' component={Market} />
 									<Route exact path='/settings' component={Settings} />
 

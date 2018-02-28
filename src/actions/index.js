@@ -125,7 +125,7 @@ export const getCampaignData = (company) => {
 		const token = localStorage.getItem('token')
 		dispatch({ type: GET_CAMPAIGN_DATA })
 		fetch(process.env.REACT_APP_API_URL + '/api/user/campaign/' + company, {
-		  credentials: 'include',
+		  // credentials: 'include',
 		  mode: 'cors',
 		  headers: {
 		    'Accept': 'application/json',
@@ -136,7 +136,7 @@ export const getCampaignData = (company) => {
 		.then(response => response.json())
 		.then(json => {
 			if (json.status === 'success') {
-				dispatch({ type: GET_CAMPAIGN_DATA_SUCCESS, data: json.data })
+				dispatch({ type: GET_CAMPAIGN_DATA_SUCCESS, data: json.data.results })
 			} else {
 				dispatch({ type: GET_CAMPAIGN_DATA_ERROR, err: json.message })
 			}

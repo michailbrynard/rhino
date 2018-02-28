@@ -30,14 +30,21 @@ const Nav = ({ history, match, logout }) => {
 					}}
 					leftIcon={<FontIcon style={{ color: path === '/' ? white : grey600 }} className="material-icons">home</FontIcon>}
 					onClick={() => history.push('/')}>Home
-			</MenuItem>
+				</MenuItem>
 				<MenuItem
 					style={{
 						backgroundColor: path === '/wallet' ? blue700 : null
 					}}
 					leftIcon={<FontIcon style={{ color: path === '/wallet' ? white : grey600 }} className="material-icons">account_balance_wallet</FontIcon>}
 					onClick={() => history.push('/wallet')}>Wallet
-			</MenuItem>
+				</MenuItem>
+				<MenuItem
+					style={{
+						backgroundColor: path === '/earn' ? blue700 : null
+					}}
+					leftIcon={<FontIcon style={{ color: path === '/earn' ? white : grey600 }} className="material-icons">monetization_on</FontIcon>}
+					onClick={() => history.push('/earn')}>Rewards
+				</MenuItem>
 				<MenuItem
 					style={{
 						backgroundColor: path === '/market' ? blue700 : null

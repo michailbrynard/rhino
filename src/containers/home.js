@@ -129,7 +129,7 @@ class Home extends Component {
 											<div className='col-6 right'>
 												<h3>Earn Tokens</h3>
 												<br /><br />
-												<RaisedButton label="Rewards" secondary={true} />
+												<RaisedButton onClick={() => history.push('/earn')} label="Rewards" secondary={true} />
 											</div>
 										</div>
 									</div>
