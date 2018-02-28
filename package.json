@@ -13,7 +13,7 @@
     "redux-thunk": "^2.2.0"
   },
   "scripts": {
-    "start": "REACT_APP_API_URL=http://localhost:8000 react-scripts start",
+    "start": "REACT_APP_API_URL=http://localhost:8000 REACT_APP_REHIVE_API_URL=https://staging.rehive.com/api/3/ react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"

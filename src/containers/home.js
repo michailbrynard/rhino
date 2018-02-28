@@ -32,7 +32,6 @@ class Home extends Component {
 		});
 	};
 	
-
 	render() {
 
 		const { home_data, loading, history} = this.props
@@ -193,7 +192,7 @@ const style = {
 };
 
 function mapStateToProps(state) {
-	const { home_data, loading } = state
+	const { home_data, loading } = state.home
 
 	return {
 		loading,

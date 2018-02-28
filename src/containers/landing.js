@@ -5,11 +5,18 @@ import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
 import Dialog from 'material-ui/Dialog';
 
+import { SmallLoader } from '../components/loader'
 
-export default class extends Component {
+import { signup } from '../actions'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+
+
+class Landing extends Component {
 
 	state = {
 		open: false,
+		email: ""
 	};
 
 	handleOpen = () => {
@@ -21,7 +28,7 @@ export default class extends Component {
 	};
 
 	render() {
-		const { history } = this.props
+		const { history, signup, err, data, loading } = this.props
 
 		const actions = [
 			<FlatButton
@@ -33,7 +40,9 @@ export default class extends Component {
 				label="Login"
 				primary={true}
 				keyboardFocused={true}
-				onClick={this.handleClose}
+				onClick={() => {
+					console.log("LOGIN");
+				}}
 			/>,
 		];
 
@@ -66,17 +75,54 @@ export default class extends Component {
 						<br/>
 						<img alt='logo' className='landing-img' src='./logo.png' />
 					</div>
-					<div className='col-6 center landing-row'>
-						<h1 className='title'>Product Name</h1>
-						<p className='subtitle'>This is a short description of the product</p>
-							<TextField
-								hintText="Email"
-							/><br />
-						<RaisedButton onClick={() => history.push('/home')} label="Join" secondary={true} />
-						<br/><br/>
-					</div>
+					{
+						data ?
+							<div className='col-6 center landing-row'>
+								<h1 className='title'>Thank you for signing up to { data.company }</h1>
+								<p className='subtitle'>Check your email for the link to create your password and login</p>
+							
+							</div> :
+							<div className='col-6 center landing-row'>
+								<h1 className='title'>Product Name</h1>
+								<p className='subtitle'>This is a short description of the product</p>
+								{
+									err ?
+										<p>Error: {err}</p> : null
+								}
+								<TextField
+									value={this.state.email}
+									onChange={e => this.setState({ email: e.target.value })}
+									hintText="Email"
+								/><br />
+								{
+									loading ?
+									<SmallLoader/> :
+										<RaisedButton onClick={() => {
+											signup(this.state.email)
+										}} label="Join" secondary={true} />
+								}
+								<br /><br />
+							</div>
+					}
 				</div>
 			</div>
 		)
 	}
 }
+
+function mapStateToProps(state) {
+	const { err, data, loading } = state.signup
+	return {
+		err,
+		data,
+		loading
+	}
+}
+
+function mapDispatchToProps(dispatch) {
+	return {
+		signup: bindActionCreators(signup, dispatch)
+	}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Landing)
