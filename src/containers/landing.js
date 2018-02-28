@@ -52,6 +52,8 @@ class Landing extends Component {
 				<AppBar title="Launcher" showMenuIconButton={false} iconElementRight={<FlatButton onClick={this.handleOpen} label="Login" />} />
 
 				<Dialog
+					contentStyle={{ maxWidth: "360px" }}
+					autoDetectWindowHeight={true}
 					actions={
 						loginLoading ?
 						[<SmallLoader/>] :
@@ -106,7 +108,7 @@ class Landing extends Component {
 									value={this.state.email}
 									onChange={e => this.setState({ email: e.target.value })}
 									hintText="Email"
-								/><br />
+								/>
 								{
 									signupLoading ?
 									<SmallLoader/> :
