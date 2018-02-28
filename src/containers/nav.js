@@ -60,8 +60,8 @@ const Nav = ({ history, match, logout }) => {
 				}}>
 					<ListItem
 						onClick={() => history.push('/')}
-						primaryText="Test Co"
-						secondaryText="test@co.co"
+						primaryText={user_data.username}
+						secondaryText={user_data.email}
 						leftAvatar={<Avatar src="https://img00.deviantart.net/c9b6/i/2012/264/2/e/avatar_angelina_by_edit_express-d34muar.jpg" />}
 					/>
 				</List>
