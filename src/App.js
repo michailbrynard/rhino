@@ -35,27 +35,32 @@ const muiTheme = getMuiTheme({
 const store = configureStore()
 // Protect routes after login works
 export default () => {
+
+	const token = localStorage.getItem('token')
 	return (
 		<Provider store={store}>
 			<MuiThemeProvider muiTheme={muiTheme}>
 				<Router>
 					<div>
-						<Route exact path='/' component={Landing} />
-						<div style={{
-							marginLeft: '266px',
-							marginRight: '20px'
-						}}>
-							{
-								['/home', '/wallet', '/market', '/settings'].map((route, index) => (
-									<Route key={index} exact path={route} component={Nav} />
-								))
-							}
-							<Route exact path='/home' component={Home} />
-							<Route exact path='/wallet' component={Wallet} />
-							<Route exact path='/market' component={Market} />
-							<Route exact path='/settings' component={Settings} />
+						{
+							token ?
+								<div style={{
+									marginLeft: '266px',
+									marginRight: '20px'
+								}}>
+									{
+										['/', '/wallet', '/market', '/settings'].map((route, index) => (
+											<Route key={index} exact path={route} component={Nav} />
+										))
+									}
+									<Route exact path='/' component={Home} />
+									<Route exact path='/wallet' component={Wallet} />
+									<Route exact path='/market' component={Market} />
+									<Route exact path='/settings' component={Settings} />
 
-						</div>
+								</div> :
+								<Route exact path='/' component={Landing} />
+						}
 					</div>
 				</Router>
 			</MuiThemeProvider>

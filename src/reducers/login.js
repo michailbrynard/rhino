@@ -13,7 +13,8 @@ export default (state = { loading: false }, action) => {
 				loading: true
 			})
 		case LOGIN_SUCCESS:
-			// TODO: store data from login success and redirect to dashboard. Also, protect routes in App.js
+			// NOTE: Storing token in localStorage for now
+			localStorage.setItem('token', action.data.token)
 			return merge({}, {
 				data: action.data,
 				loading: false
