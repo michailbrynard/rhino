@@ -45,7 +45,7 @@ export const login = (user, password) => (
 				'Accept': 'application/json',
 				'Content-Type': 'application/json',
 			},
-			body: JSON.stringify({ user, password, company: 'dragon' })
+			body: JSON.stringify({ user, password, company: 'stephantest' })
 		})
 			.then(response => {
 				return response.json()
