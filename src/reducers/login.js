@@ -28,7 +28,7 @@ export default (state = { loading: false }, action) => {
 			})
 		case LOGOUT:
 			localStorage.removeItem('token')
-			window.location.reload()
+			window.location = '/'
 			return merge({}, {
 				loading: false
 			})

@@ -8,14 +8,18 @@ import { List, ListItem } from 'material-ui/List'
 import FontIcon from 'material-ui/FontIcon'
 import { grey200, blue300, blue800 } from 'material-ui/styles/colors';
 
-export default ({ history, match }) => {
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { logout } from '../actions'
+
+const Nav = ({ history, match, logout }) => {
 
 	const { path } = match
 
 	return (
 		<div>
 			<br/>
-			<FlatButton onClick={() => history.push('/')} style={{
+			<FlatButton onClick={() => logout()} style={{
 				float: 'right'
 			}} label="Logout"/>
 			<Drawer>
@@ -65,3 +69,15 @@ export default ({ history, match }) => {
 		</div>
 	)
 }
+
+function mapStateToProps(state) {
+	return {}
+}
+
+function mapDispatchToProps(dispatch) {
+	return {
+		logout: bindActionCreators(logout, dispatch)
+	}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Nav)
