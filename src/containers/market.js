@@ -52,6 +52,8 @@ const style = {
 		display: 'flex',
 		alignItems: 'center',
 		position: 'relative',
-		borderRadius: '10px'
+		borderRadius: '10px',
+		maxWidth: '500px',
+		margin: 'auto'
 	},
 };
