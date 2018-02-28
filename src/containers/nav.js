@@ -6,7 +6,7 @@ import MenuItem from 'material-ui/MenuItem';
 import Avatar from 'material-ui/Avatar';
 import { List, ListItem } from 'material-ui/List'
 import FontIcon from 'material-ui/FontIcon'
-import { yellow700, grey600, blue300, blue700 } from 'material-ui/styles/colors';
+import { yellow700, grey600, blue300, blue700, white } from 'material-ui/styles/colors';
 
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -28,28 +28,28 @@ const Nav = ({ history, match, logout }) => {
 					style={{
 						backgroundColor: path === '/' ? blue700 : null
 					}}
-					leftIcon={<FontIcon style={{ color: grey600 }} className="material-icons">home</FontIcon>}
+					leftIcon={<FontIcon style={{ color: path === '/' ? white : grey600 }} className="material-icons">home</FontIcon>}
 					onClick={() => history.push('/')}>Home
 			</MenuItem>
 				<MenuItem
 					style={{
 						backgroundColor: path === '/wallet' ? blue700 : null
 					}}
-					leftIcon={<FontIcon style={{ color: grey600 }} className="material-icons">account_balance_wallet</FontIcon>}
+					leftIcon={<FontIcon style={{ color: path === '/wallet' ? white : grey600 }} className="material-icons">account_balance_wallet</FontIcon>}
 					onClick={() => history.push('/wallet')}>Wallet
 			</MenuItem>
 				<MenuItem
 					style={{
 						backgroundColor: path === '/market' ? blue700 : null
 					}}
-					leftIcon={<FontIcon style={{ color: grey600 }} className="material-icons">shopping_basket</FontIcon>}
+					leftIcon={<FontIcon style={{ color: path === '/market' ? white : grey600 }} className="material-icons">shopping_basket</FontIcon>}
 					onClick={() => history.push('/market')}>Market
 			</MenuItem>
 				<MenuItem
 					style={{
 						backgroundColor: path === '/settings' ? blue700 : null
 					}}
-					leftIcon={<FontIcon style={{ color: grey600 }} className="material-icons">settings</FontIcon>}
+					leftIcon={<FontIcon style={{ color: path === '/settings' ? white : grey600 }} className="material-icons">settings</FontIcon>}
 					onClick={() => history.push('/settings')}>Settings
 			</MenuItem>
 				<List style={{

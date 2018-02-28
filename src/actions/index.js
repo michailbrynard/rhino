@@ -45,7 +45,7 @@ export const login = (user, password) => (
 				'Accept': 'application/json',
 				'Content-Type': 'application/json',
 			},
-			body: JSON.stringify({ user, password, company: 'stephantest' })
+			body: JSON.stringify({ user, password, company: 'dragon' })
 		})
 			.then(response => {
 				return response.json()
@@ -114,4 +114,35 @@ export const getHomeData = () => {
 		// 	dispatch({ type: GET_HOME_DATA_ERROR, err })
 		// })
   }
+}
+
+export const GET_CAMPAIGN_DATA = "GET_CAMPAIGN_DATA"
+export const GET_CAMPAIGN_DATA_SUCCESS = "GET_CAMPAIGN_DATA_SUCCESS"
+export const GET_CAMPAIGN_DATA_ERROR = "GET_CAMPAIGN_DATA_ERROR"
+
+export const getCampaignData = (company) => {
+	return dispatch => {
+		token = localStorage.getItem('token')
+		dispatch({ type: GET_CAMPAIGN_DATA })
+		fetch(REACT_APP_API_URL + '/api/user/campaign/' + company, {
+		  credentials: 'include',
+		  mode: 'cors',
+		  headers: {
+		    'Accept': 'application/json',
+				'Content-Type': 'application/json',
+				'authorization': `Bearer ${token}`
+		  }
+		})
+		.then(response => response.json())
+		.then(json => {
+			if (json.status === 'success') {
+				dispatch({ type: GET_CAMPAIGN_DATA_SUCCESS, data: json.data })
+			} else {
+				dispatch({ type: GET_CAMPAIGN_DATA_ERROR, err: json.message })
+			}
+		})
+		.catch(err => {
+			dispatch({ type: GET_CAMPAIGN_DATA_ERROR, err })
+		})
+	}
 }
