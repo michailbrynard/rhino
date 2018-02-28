@@ -123,7 +123,7 @@ class Home extends Component {
 										<div className='row'>
 											<div className='col-4'>
 												<br />
-												<img className='container' src='coins.svg' />
+												<img className='container' src='coins.png' />
 											</div>
 											<div className='col-8 right'>
 												<h3>Earn Tokens</h3>
@@ -141,7 +141,7 @@ class Home extends Component {
 										<div className='row'>
 											<div className='col-4'>
 												<br />
-												<img className='container' src='trading.svg' />
+												<img className='container' src='trading.png' />
 											</div>
 											<div className='col-8 right'>
 												<h3>Redeem Tokens</h3>
