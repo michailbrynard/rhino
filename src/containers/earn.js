@@ -51,6 +51,7 @@ const style = {
 		height: 250,
 		display: 'flex',
 		alignItems: 'center',
-		position: 'relative'
+		position: 'relative',
+		borderRadius: '10px'
 	},
 };

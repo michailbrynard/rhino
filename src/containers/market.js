@@ -9,11 +9,11 @@ export default () => (
 				<Paper style={style.card} zDepth={3}>
 					<div className='container'>
 						<div className='row'>
-							<div className='col-4'>
-								<br />
+							<div className='col-6'>
+								<br /><br/>
 								<img className='container' src='logo.png' />
 							</div>
-							<div className='col-8 right'>
+							<div className='col-6 right'>
 								<h3>Item Name</h3>
 								<p>Item Description</p>
 								<h1>11 HIVE</h1>
@@ -27,11 +27,11 @@ export default () => (
 				<Paper style={style.card} zDepth={3}>
 					<div className='container'>
 						<div className='row'>
-							<div className='col-4'>
-								<br />
+							<div className='col-6'>
+								<br /><br/>
 								<img className='container' src='logo.png' />
 							</div>
-							<div className='col-8 right'>
+							<div className='col-6 right'>
 								<h3>Item 2 Name</h3>
 								<p>Item 2 Description</p>
 								<h1>22 HIVE</h1>
@@ -51,6 +51,7 @@ const style = {
 		height: 250,
 		display: 'flex',
 		alignItems: 'center',
-		position: 'relative'
+		position: 'relative',
+		borderRadius: '10px'
 	},
 };

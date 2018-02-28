@@ -79,11 +79,11 @@ class Home extends Component {
 								<Paper style={style.card} zDepth={3}>
 									<div className='container'>
 										<div className='row'>
-											<div className='col-4'>
-												<br />
+											<div className='col-6'>
+												<br /><br/>
 												<img className='container' src='logo.png' />
 											</div>
-											<div className='col-8 right'>
+											<div className='col-6 right'>
 												<h3>{home_data.company.name}</h3>
 												<p>{home_data.company.product}</p>
 												<span>{home_data.company.description}</span>
@@ -120,11 +120,11 @@ class Home extends Component {
 								<Paper style={style.card} zDepth={3}>
 									<div className='container'>
 										<div className='row'>
-											<div className='col-4'>
-												<br />
+											<div className='col-6'>
+												<br /><br/>
 												<img className='container' src='coins.png' />
 											</div>
-											<div className='col-8 right'>
+											<div className='col-6 right'>
 												<h3>Earn Tokens</h3>
 												<br /><br />
 												<RaisedButton label="Rewards" secondary={true} />
@@ -138,11 +138,11 @@ class Home extends Component {
 								<Paper style={style.card} zDepth={3}>
 									<div className='container'>
 										<div className='row'>
-											<div className='col-4'>
-												<br />
+											<div className='col-6'>
+												<br /><br/>
 												<img className='container' src='trading.png' />
 											</div>
-											<div className='col-8 right'>
+											<div className='col-6 right'>
 												<h3>Redeem Tokens</h3>
 												<br /><br />
 												<RaisedButton onClick={() => history.push('/market')} label="Perks" secondary={true} />
@@ -186,7 +186,8 @@ const style = {
 		height: 250,
 		display: 'flex',
 		alignItems: 'center',
-		position: 'relative'
+		position: 'relative',
+		borderRadius: '10px'
 	},
 	
 };

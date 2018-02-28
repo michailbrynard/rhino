@@ -39,7 +39,7 @@ export default class extends Component {
 						</Paper>
 					</div>
 					<div className='col-12'>
-						<Paper zDepth={3}>
+						<Paper style={style.transaction_card} zDepth={3}>
 							<div className='container'>
 								<div className='row'>
 									<br />
@@ -93,9 +93,14 @@ const style = {
 		width: '100%',
 		textAlign: 'center',
 		display: 'inline-block',
+		borderRadius: '10px'
 	},
 	card: {
 		height: 80,
-		width: '100%'
+		width: '100%',
+		borderRadius: '10px'
+	},
+	transaction_card: {
+		borderRadius: '10px'
 	}
 };
