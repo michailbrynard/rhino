@@ -63,6 +63,14 @@ export const login = (user, password) => (
 	}
 )
 
+export const LOGOUT = "LOGOUT"
+
+export const logout = () => (
+	dispatch => {
+		dispatch({ type: LOGOUT })
+	}
+)
+
 export const GET_HOME_DATA = "GET_HOME_DATA"
 export const GET_HOME_DATA_SUCCESS = "GET_HOME_DATA_SUCCESS"
 export const GET_HOME_DATA_ERROR = "GET_HOME_DATA_ERROR"
