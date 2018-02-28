@@ -7,7 +7,7 @@ import Dialog from 'material-ui/Dialog';
 
 import { SmallLoader } from '../components/loader'
 
-import { signup } from '../actions'
+import { signup, login } from '../actions'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
@@ -16,7 +16,8 @@ class Landing extends Component {
 
 	state = {
 		open: false,
-		email: ""
+		email: "",
+		password: ""
 	};
 
 	handleOpen = () => {
@@ -28,7 +29,7 @@ class Landing extends Component {
 	};
 
 	render() {
-		const { history, signup, err, data, loading } = this.props
+		const { history, signup, login, signupErr, signupData, signupLoading, loginErr, loginData, loginLoading } = this.props
 
 		const actions = [
 			<FlatButton
@@ -41,7 +42,7 @@ class Landing extends Component {
 				primary={true}
 				keyboardFocused={true}
 				onClick={() => {
-					console.log("LOGIN");
+					login(this.state.email, this.state.password)
 				}}
 			/>,
 		];
@@ -51,18 +52,30 @@ class Landing extends Component {
 				<AppBar title="Launcher" showMenuIconButton={false} iconElementRight={<FlatButton onClick={this.handleOpen} label="Login" />} />
 
 				<Dialog
-					actions={actions}
+					actions={
+						loginLoading ?
+						[<SmallLoader/>] :
+							actions
+					}
 					modal={false}
 					open={this.state.open}
 					onRequestClose={this.handleClose}
 				>
 					<div className='container center'>
 						<h3>Login</h3>
+						{
+							loginErr ?
+								<p>Error: {loginErr}</p> : null
+						}
 						<TextField
+							value={this.state.email}
+							onChange={e => this.setState({ email: e.target.value })}
 							hintText="Email"
 							type='email'
 						/><br />
 						<TextField
+							value={this.state.password}
+							onChange={e => this.setState({ password: e.target.value })}
 							hintText="Password"
 							type='password'
 						/><br />
@@ -76,9 +89,9 @@ class Landing extends Component {
 						<img alt='logo' className='landing-img' src='./logo.png' />
 					</div>
 					{
-						data ?
+						signupData ?
 							<div className='col-6 center landing-row'>
-								<h1 className='title'>Thank you for signing up to { data.company }</h1>
+								<h1 className='title'>Thank you for signing up to { signupData.company }</h1>
 								<p className='subtitle'>Check your email for the link to create your password and login</p>
 							
 							</div> :
@@ -86,8 +99,8 @@ class Landing extends Component {
 								<h1 className='title'>Product Name</h1>
 								<p className='subtitle'>This is a short description of the product</p>
 								{
-									err ?
-										<p>Error: {err}</p> : null
+									signupErr ?
+										<p>Error: {signupErr}</p> : null
 								}
 								<TextField
 									value={this.state.email}
@@ -95,7 +108,7 @@ class Landing extends Component {
 									hintText="Email"
 								/><br />
 								{
-									loading ?
+									signupLoading ?
 									<SmallLoader/> :
 										<RaisedButton onClick={() => {
 											signup(this.state.email)
@@ -113,15 +126,19 @@ class Landing extends Component {
 function mapStateToProps(state) {
 	const { err, data, loading } = state.signup
 	return {
-		err,
-		data,
-		loading
+		signupErr: err,
+		signupData: data,
+		signupLoading: loading,
+		loginErr: state.login.err,
+		loginData: state.login.data,
+		loginLoading: state.login.loading
 	}
 }
 
 function mapDispatchToProps(dispatch) {
 	return {
-		signup: bindActionCreators(signup, dispatch)
+		signup: bindActionCreators(signup, dispatch),
+		login: bindActionCreators(login, dispatch)
 	}
 }
 

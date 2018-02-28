@@ -34,24 +34,28 @@ export const LOGIN = "LOGIN"
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS"
 export const LOGIN_ERROR = "LOGIN_ERROR"
 
-export const login = (email, password) => (
+export const login = (user, password) => (
 	dispatch => {
 		dispatch({ type: LOGIN })
 
-		fetch(process.env.REACT_APP_API_URL + '/user/join', {
+		fetch(process.env.REACT_APP_REHIVE_API_URL + '/auth/login/', {
 			method: 'POST',
 			mode: 'cors',
 			headers: {
 				'Accept': 'application/json',
 				'Content-Type': 'application/json',
 			},
-			body: JSON.stringify({ email, password })
+			body: JSON.stringify({ user, password, company: 'dragon' })
 		})
 			.then(response => {
 				return response.json()
 			})
 			.then(json => {
-				dispatch({ type: LOGIN_SUCCESS })
+				if (json.status === 'success') {
+					dispatch({ type: LOGIN_SUCCESS, data: json.data })
+				} else {
+					dispatch({ type: LOGIN_ERROR, err: json.message })
+				}
 			})
 			.catch(err => {
 				dispatch({ type: LOGIN_ERROR })

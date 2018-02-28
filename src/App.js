@@ -33,7 +33,7 @@ const muiTheme = getMuiTheme({
 });
 
 const store = configureStore()
-
+// Protect routes after login works
 export default () => {
 	return (
 		<Provider store={store}>
