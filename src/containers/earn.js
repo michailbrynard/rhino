@@ -14,7 +14,7 @@ const Earn = ({ data }) => (
 			{
 				data && data.length > 0 ?
 				data.map((item, index) => (
-						<div className='col-12'>
+						<div key={index} className='col-12'>
 							<Paper style={style.card} zDepth={3}>
 								<div className='container'>
 									<div className='row'>
