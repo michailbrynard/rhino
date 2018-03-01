@@ -18,11 +18,11 @@ const Earn = ({ data }) => (
 							<Paper style={style.card} zDepth={3}>
 								<div className='container'>
 									<div className='row'>
-										<div className='col-4'>
-											<br />
+										<div className='col-6'>
+											<br /><br/>
 											<img className='container' src='logo.png' />
 										</div>
-										<div className='col-8 right'>
+										<div className='col-6 right'>
 											<h3>{ item.reward_type.toUpperCase() }</h3>
 											<h1>{ item.reward_amount } HIVE</h1>
 										</div>
