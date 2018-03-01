@@ -31,22 +31,6 @@ class Landing extends Component {
 	render() {
 		const { history, signup, login, signupErr, signupData, signupLoading, loginErr, loginData, loginLoading } = this.props
 
-		const actions = [
-			<FlatButton
-				label="Cancel"
-				primary={true}
-				onClick={this.handleClose}
-			/>,
-			<FlatButton
-				label="Login"
-				primary={true}
-				keyboardFocused={true}
-				onClick={() => {
-					login(this.state.email, this.state.password)
-				}}
-			/>,
-		];
-
 		return (
 			<div>
 				<AppBar title="Launcher" showMenuIconButton={false} iconElementRight={<FlatButton onClick={this.handleOpen} label="Login" />} />
@@ -54,11 +38,6 @@ class Landing extends Component {
 				<Dialog
 					contentStyle={{ maxWidth: "360px" }}
 					autoDetectWindowHeight={true}
-					actions={
-						loginLoading ?
-						[<SmallLoader/>] :
-							actions
-					}
 					modal={false}
 					open={this.state.open}
 					onRequestClose={this.handleClose}
@@ -69,18 +48,37 @@ class Landing extends Component {
 							loginErr ?
 								<p>Error: {loginErr}</p> : null
 						}
-						<TextField
-							value={this.state.email}
-							onChange={e => this.setState({ email: e.target.value })}
-							hintText="Email"
-							type='email'
-						/><br />
-						<TextField
-							value={this.state.password}
-							onChange={e => this.setState({ password: e.target.value })}
-							hintText="Password"
-							type='password'
-						/><br />
+						{
+							loginLoading ?
+							 <SmallLoader/> :
+								<form onSubmit={() => {
+									login(this.state.email, this.state.password)
+								}}>
+									<TextField
+										value={this.state.email}
+										onChange={e => this.setState({ email: e.target.value })}
+										hintText="Email"
+										type='email'
+									/><br />
+									<TextField
+										value={this.state.password}
+										onChange={e => this.setState({ password: e.target.value })}
+										hintText="Password"
+										type='password'
+									/><br />
+									<FlatButton
+										label="Cancel"
+										primary={true}
+										onClick={this.handleClose}
+									/>
+									<FlatButton
+										label="Login"
+										primary={true}
+										keyboardFocused={true}
+										type='submit'
+									/>
+								</form>
+						}
 					</div>
 				</Dialog>
 				
@@ -104,18 +102,20 @@ class Landing extends Component {
 									signupErr ?
 										<p>Error: {signupErr}</p> : null
 								}
-								<TextField
-									value={this.state.email}
-									onChange={e => this.setState({ email: e.target.value })}
-									hintText="Email"
-								/>
-								{
-									signupLoading ?
-									<SmallLoader/> :
-										<RaisedButton onClick={() => {
-											signup(this.state.email)
-										}} label="Join" secondary={true} />
-								}
+								<form onSubmit={() => {
+									signup(this.state.email)
+								}}>
+									<TextField
+										value={this.state.email}
+										onChange={e => this.setState({ email: e.target.value })}
+										hintText="Email"
+									/>
+									{
+										signupLoading ?
+											<SmallLoader /> :
+											<RaisedButton type='submit' label="Join" secondary={true} />
+									}
+								</form>
 								<br /><br />
 							</div>
 					}
