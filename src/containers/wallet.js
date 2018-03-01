@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Paper from 'material-ui/Paper';
 import { RaisedButton, Dialog, FlatButton } from 'material-ui';
-
+import { style } from '../style'
 
 export default class extends Component {
 	state = {
@@ -87,20 +87,3 @@ export default class extends Component {
 		)
 	}
 }
-
-const style = {
-	balance_card: {
-		width: '100%',
-		textAlign: 'center',
-		display: 'inline-block',
-		borderRadius: '10px'
-	},
-	card: {
-		height: 80,
-		width: '100%',
-		borderRadius: '10px'
-	},
-	transaction_card: {
-		borderRadius: '10px'
-	}
-};

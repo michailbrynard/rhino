@@ -9,6 +9,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 import Loader from '../components/loader'
+import { style } from '../style'
 
 class Home extends Component {
 	constructor(props) {
@@ -168,19 +169,6 @@ class HomeContainer extends Component {
 		)
 	}
 }
-
-const style = {
-	card: {
-		height: 250,
-		display: 'flex',
-		alignItems: 'center',
-		position: 'relative',
-		borderRadius: '10px',
-		maxWidth: '500px',
-		margin: 'auto'
-	},
-	
-};
 
 function mapStateToProps(state) {
 	return {}

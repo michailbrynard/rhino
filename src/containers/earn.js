@@ -6,6 +6,7 @@ import { bindActionCreators } from 'redux'
 
 import { getCampaignData } from '../actions'
 import Loader from '../components/loader'
+import { style } from '../style'
 
 const Earn = ({ data }) => (
 	<div className='container'>
@@ -61,15 +62,6 @@ class EarnContainer extends Component {
 }
 
 
-const style = {
-	card: {
-		height: 250,
-		display: 'flex',
-		alignItems: 'center',
-		position: 'relative',
-		borderRadius: '10px'
-	},
-};
 
 function mapStateToProps(state) {
 	const { data, loading } = state.campaign

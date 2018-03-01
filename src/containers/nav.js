@@ -11,6 +11,7 @@ import { yellow700, grey600, blue300, blue700, white } from 'material-ui/styles/
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { logout } from '../actions'
+import { style } from '../style'
 
 const Nav = ({ history, match, logout }) => {
 	const user_data = JSON.parse(localStorage.getItem('user'))
@@ -22,7 +23,7 @@ const Nav = ({ history, match, logout }) => {
 			<FlatButton onClick={() => logout()} style={{
 				float: 'right'
 			}} label="Logout"/>
-			<Drawer>
+			<Drawer className="right">
 				<AppBar showMenuIconButton={false} title={user_data.company} />
 				<MenuItem
 					style={{
@@ -59,17 +60,19 @@ const Nav = ({ history, match, logout }) => {
 					leftIcon={<FontIcon style={{ color: path === '/settings' ? white : grey600 }} className="material-icons">settings</FontIcon>}
 					onClick={() => history.push('/settings')}>Settings
 			</MenuItem>
-				<List style={{
-					position: 'absolute',
-					bottom: 0,
-					left: 0,
-					right: 0
-				}}>
+				<List style={style.user_nav_view}>
+					<ListItem disabled style={{
+						justifyContent: 'center',
+						display: 'flex'
+					}}>
+						<Avatar src="https://img00.deviantart.net/c9b6/i/2012/264/2/e/avatar_angelina_by_edit_express-d34muar.jpg" />
+					</ListItem>
 					<ListItem
+						disabled
+						className='center'
 						onClick={() => history.push('/')}
 						primaryText={user_data.username}
 						secondaryText={user_data.email}
-						leftAvatar={<Avatar src="https://img00.deviantart.net/c9b6/i/2012/264/2/e/avatar_angelina_by_edit_express-d34muar.jpg" />}
 					/>
 				</List>
 			</Drawer>

@@ -5,6 +5,7 @@ import Loader from '../components/loader'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { getPerkData } from '../actions'
+import { style } from '../style'
 
 const Market = ({ data }) => (
 	<div className='container'>
@@ -56,19 +57,6 @@ class MarketContainer extends Component {
 		)
 	}
 }
-
-
-const style = {
-	card: {
-		height: 250,
-		display: 'flex',
-		alignItems: 'center',
-		position: 'relative',
-		borderRadius: '10px',
-		maxWidth: '500px',
-		margin: 'auto'
-	},
-};
 
 function mapStateToProps(state) {
 	const { data, loading } = state.perk
