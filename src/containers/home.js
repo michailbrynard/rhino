@@ -9,7 +9,6 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 import Loader from '../components/loader'
-import { getHomeData } from '../actions'
 
 class Home extends Component {
 	constructor(props) {
@@ -17,10 +16,10 @@ class Home extends Component {
 
 		this.state = {
 			notifications: [
-				{
-					title: "TEST NOTIFICATION 1",
-					text: "This is a test notification"
-				}
+				// {
+				// 	title: "TEST NOTIFICATION 1",
+				// 	text: "This is a test notification"
+				// }
 			],
 			snackbar_open: false
 		}
@@ -34,150 +33,137 @@ class Home extends Component {
 	
 	render() {
 
-		const { home_data, loading, history} = this.props
+		const {history} = this.props
 
 		const user_data = JSON.parse(localStorage.getItem('user'))
 
 		return (
 			<div className='container'>
-				{
-					home_data ?
-						<div className='row'>
-							<Snackbar
-								open={this.state.snackbar_open}
-								message="Notification Dismissed"
-								autoHideDuration={3000}
-								onRequestClose={this.handleSnackbarClose}
-							/>
-							<br />
-							{
-								this.state.notifications.map((item, index) => (
-									<div key={index} className='col-12'>
-										<Paper style={style.card} zDepth={3}>
-											<FontIcon onClick={() => {
-												this.state.notifications.splice(index, 1)
-												this.state.snackbar_open = true
-												this.setState(this.state)
-											}} style={{
-												fontSize: 40,
-												position: 'absolute',
-												top: 10,
-												right: 10
-											}} className="material-icons">close</FontIcon>
-											<div className='container'>
-												<div className='row'>
-													<div className='col-12 right'>
-														<h3>{item.title}</h3>
-														<p>{item.text}</p>
-													</div>
-												</div>
-											</div>
-										</Paper>
-										<br />
-									</div>
-								))
-							}
-							<div className='col-12'>
+				<div className='row'>
+					<Snackbar
+						open={this.state.snackbar_open}
+						message="Notification Dismissed"
+						autoHideDuration={3000}
+						onRequestClose={this.handleSnackbarClose}
+					/>
+					<br />
+					{
+						this.state.notifications.map((item, index) => (
+							<div key={index} className='col-12'>
 								<Paper style={style.card} zDepth={3}>
+									<FontIcon onClick={() => {
+										this.state.notifications.splice(index, 1)
+										this.state.snackbar_open = true
+										this.setState(this.state)
+									}} style={{
+										fontSize: 40,
+										position: 'absolute',
+										top: 10,
+										right: 10
+									}} className="material-icons">close</FontIcon>
 									<div className='container'>
 										<div className='row'>
-											<div className='col-6'>
-												<br /><br/>
-												<img className='container' src='logo.png' />
-											</div>
-											<div className='col-6 right'>
-												<h3>{user_data.company}</h3>
-												<p>{home_data.company.product}</p>
-												<span>{home_data.company.description}</span>
-												<br /><br />
-												<RaisedButton label="Visit Site" secondary={true} />
+											<div className='col-12 right'>
+												<h3>{item.title}</h3>
+												<p>{item.text}</p>
 											</div>
 										</div>
 									</div>
 								</Paper>
 								<br />
 							</div>
-							<div className='col-12'>
-								<Paper style={style.card} zDepth={3}>
-									<div className='container'>
-										<div className='row'>
-											<div className='col-6'>
-												<h1>
-													{home_data.wallet.balance}
-													<br />
-													{home_data.wallet.currency_code}
-												</h1>
-											</div>
-											<div className='col-6 right'>
-												<h3>Balance</h3>
-												<br /><br />
-												<RaisedButton onClick={() => history.push('/wallet')} label="Wallet" secondary={true} />
-											</div>
-										</div>
+						))
+					}
+					<div className='col-12'>
+						<Paper style={style.card} zDepth={3}>
+							<div className='container'>
+								<div className='row'>
+									<div className='col-6'>
+										<br /><br />
+										<img className='container' src='logo.png' />
 									</div>
-								</Paper>
-								<br />
-							</div>
-							<div className='col-12'>
-								<Paper style={style.card} zDepth={3}>
-									<div className='container'>
-										<div className='row'>
-											<div className='col-6'>
-												<br /><br/>
-												<img className='container' src='coins.png' />
-											</div>
-											<div className='col-6 right'>
-												<h3>Earn Tokens</h3>
-												<br /><br />
-												<RaisedButton onClick={() => history.push('/earn')} label="Rewards" secondary={true} />
-											</div>
-										</div>
+									<div className='col-6 right'>
+										<h3>{user_data.company}</h3>
+										<br /><br />
+										<RaisedButton label="Visit Site" secondary={true} />
 									</div>
-								</Paper>
-								<br />
+								</div>
 							</div>
-							<div className='col-12'>
-								<Paper style={style.card} zDepth={3}>
-									<div className='container'>
-										<div className='row'>
-											<div className='col-6'>
-												<br /><br/>
-												<img className='container' src='trading.png' />
-											</div>
-											<div className='col-6 right'>
-												<h3>Redeem Tokens</h3>
-												<br /><br />
-												<RaisedButton onClick={() => history.push('/market')} label="Perks" secondary={true} />
-											</div>
-										</div>
+						</Paper>
+						<br />
+					</div>
+					<div className='col-12'>
+						<Paper style={style.card} zDepth={3}>
+							<div className='container'>
+								<div className='row'>
+									<div className='col-6'>
+										<h1>
+											{11.11}
+											<br />
+											{"HIVE"}
+										</h1>
 									</div>
-								</Paper>
-								<br />
+									<div className='col-6 right'>
+										<h3>Balance</h3>
+										<br /><br />
+										<RaisedButton onClick={() => history.push('/wallet')} label="Wallet" secondary={true} />
+									</div>
+								</div>
 							</div>
-						</div> :
-						<p>No data to show</p>
-				}
+						</Paper>
+						<br />
+					</div>
+					<div className='col-12'>
+						<Paper style={style.card} zDepth={3}>
+							<div className='container'>
+								<div className='row'>
+									<div className='col-6'>
+										<br /><br />
+										<img className='container' src='coins.png' />
+									</div>
+									<div className='col-6 right'>
+										<h3>Earn Tokens</h3>
+										<br /><br />
+										<RaisedButton onClick={() => history.push('/earn')} label="Rewards" secondary={true} />
+									</div>
+								</div>
+							</div>
+						</Paper>
+						<br />
+					</div>
+					<div className='col-12'>
+						<Paper style={style.card} zDepth={3}>
+							<div className='container'>
+								<div className='row'>
+									<div className='col-6'>
+										<br /><br />
+										<img className='container' src='trading.png' />
+									</div>
+									<div className='col-6 right'>
+										<h3>Redeem Tokens</h3>
+										<br /><br />
+										<RaisedButton onClick={() => history.push('/market')} label="Perks" secondary={true} />
+									</div>
+								</div>
+							</div>
+						</Paper>
+						<br />
+					</div>
+				</div>
 			</div>
 		)
 	}
 }
 
 class HomeContainer extends Component {
-	componentDidMount() {
-		const { getHomeData } = this.props
-		getHomeData()
-	}
+	componentDidMount() {}
 
 	render() {
-		const { loading, home_data, history } = this.props
+		const { history } = this.props
 
 		return (
 			<div>
-				{
-					loading && !home_data ?
-						<Loader /> :
-						<Home history={history} home_data={home_data} />
-				}
+				<Home history={history} />
 			</div>
 		)
 	}
@@ -197,18 +183,11 @@ const style = {
 };
 
 function mapStateToProps(state) {
-	const { home_data, loading } = state.home
-
-	return {
-		loading,
-		home_data
-	}
+	return {}
 }
 
 function mapDispatchToProps(dispatch) {
-	return {
-		getHomeData: bindActionCreators(getHomeData, dispatch)
-	}
+	return {}
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeContainer);
