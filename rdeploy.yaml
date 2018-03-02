@@ -9,8 +9,10 @@ configs:
       cluster: staging
       namespace: launcher-dashboard-staging
       helm_values_path: ./etc/helm/staging/values.yaml
+      env_dir: ./etc/helm/staging/
     production:
       project: rehive-services
       cluster: production
       namespace: launcher-dashboard
       helm_values_path: ./etc/helm/production/values.yaml
+      env_dir: ./etc/helm/production/

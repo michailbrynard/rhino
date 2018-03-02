@@ -50,7 +50,7 @@ def next_version(ctx, bump):
     # Get latest git tag:
     try:
         latest_tag = latest_version(ctx)
-    except ReleaseError:
+    except:
         latest_tag = '0.0.0'
         bump = 'patch'
 
