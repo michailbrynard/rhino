@@ -45,10 +45,7 @@ export default () => {
 					<div>
 						{
 							token ?
-								<div style={{
-									marginLeft: '266px',
-									marginRight: '20px'
-								}}>
+								<div className='main'>
 									{
 										['/', '/wallet', '/earn', '/market', '/settings'].map((route, index) => (
 											<Route key={index} exact path={route} component={Nav} />

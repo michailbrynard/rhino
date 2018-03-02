@@ -51,7 +51,8 @@ class Landing extends Component {
 						{
 							loginLoading ?
 							 <SmallLoader/> :
-								<form onSubmit={() => {
+								<form onSubmit={(e) => {
+									e.preventDefault()
 									login(this.state.email, this.state.password)
 								}}>
 									<TextField
@@ -102,7 +103,8 @@ class Landing extends Component {
 									signupErr ?
 										<p>Error: {signupErr}</p> : null
 								}
-								<form onSubmit={() => {
+								<form onSubmit={(e) => {
+									e.preventDefault()
 									signup(this.state.email)
 								}}>
 									<TextField

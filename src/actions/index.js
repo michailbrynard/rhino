@@ -1,3 +1,5 @@
+import request from 'superagent'
+
 export const SIGNUP = "SIGNUP"
 export const SIGNUP_SUCCESS = "SIGNUP_SUCCESS"
 export const SIGNUP_ERROR = "SIGNUP_ERROR"
@@ -5,14 +7,14 @@ export const SIGNUP_ERROR = "SIGNUP_ERROR"
 export const signup = (signup_email) => (
 	dispatch => {
 		dispatch({ type: SIGNUP })
-
-		fetch(process.env.REACT_APP_API_URL + '/api/user/join/', {
+		fetch(process.env.REACT_APP_API_URL + '/user/join/', {
 			method: 'POST',
 			headers: {
 				'Accept': 'application/json',
 				'Content-Type': 'application/json',
 			},
-			body: JSON.stringify({ signup_email, company: 'dragon', referal_id: "d0a009c9-b5bc-4239-93d2-2f54220076a2" })
+			mode: 'cors',
+			body: JSON.stringify({ signup_email, company: 'launcher_test', referal_id: "d0a009c9-b5bc-4239-93d2-2f54220076a2" })
 		})
 		.then(response => {
 			return response.json()
@@ -21,7 +23,7 @@ export const signup = (signup_email) => (
 			if(json.status === 'success') {
 				dispatch({ type: SIGNUP_SUCCESS, data: json.data })
 			} else {
-				dispatch({ type: SIGNUP_ERROR, err: json.message })
+				dispatch({ type: SIGNUP_ERROR, err: json.data[0] })
 			}
 		})
 		.catch(err => {
@@ -45,7 +47,7 @@ export const login = (user, password) => (
 				'Accept': 'application/json',
 				'Content-Type': 'application/json',
 			},
-			body: JSON.stringify({ user, password, company: 'dragon' })
+			body: JSON.stringify({ user, password, company: 'launcher_test' })
 		})
 			.then(response => {
 				return response.json()
@@ -54,7 +56,7 @@ export const login = (user, password) => (
 				if (json.status === 'success') {
 					dispatch({ type: LOGIN_SUCCESS, data: json.data })
 				} else {
-					dispatch({ type: LOGIN_ERROR, err: json.message })
+					dispatch({ type: LOGIN_ERROR, err: json.data[0] })
 				}
 			})
 			.catch(err => {
@@ -79,7 +81,7 @@ export const getCampaignData = (company) => {
 	return dispatch => {
 		const token = localStorage.getItem('token')
 		dispatch({ type: GET_CAMPAIGN_DATA })
-		fetch(process.env.REACT_APP_API_URL + '/api/user/campaign/' + company, {
+		fetch(process.env.REACT_APP_API_URL + '/user/campaign/' + company, {
 		  // credentials: 'include',
 		  mode: 'cors',
 		  headers: {
@@ -110,7 +112,7 @@ export const getPerkData = (company) => {
 	return dispatch => {
 		const token = localStorage.getItem('token')
 		dispatch({ type: GET_PERK_DATA })
-		fetch(process.env.REACT_APP_API_URL + '/api/user/perk/' + company, {
+		fetch(process.env.REACT_APP_API_URL + '/user/perk/' + company, {
 			// credentials: 'include',
 			mode: 'cors',
 			headers: {

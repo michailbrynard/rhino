@@ -27,11 +27,9 @@ header, main, footer {
 	margin-top: 2.5vh;
 }
 
-@media only screen and (max-width : 992px) {
-	header, main, footer {
-		padding-left: 0;
-	}
-	.spacer {
-		height: 2vh;
+@media only screen and (min-width : 726px) {
+	.main {
+		margin-left: 266px;
+		margin-right: 20px;
 	}
 }
