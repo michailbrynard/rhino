@@ -6,9 +6,6 @@ body {
 	background-attachment: fixed;
 	background-size:  cover;
 }
-header, main, footer {
-	padding-left: 300px;
-}
 
 .spacer {
 	height: 15vh;
@@ -27,7 +24,7 @@ header, main, footer {
 	margin-top: 2.5vh;
 }
 
-@media only screen and (min-width : 726px) {
+@media only screen and (min-width : 723px) {
 	.main {
 		margin-left: 266px;
 		margin-right: 20px;

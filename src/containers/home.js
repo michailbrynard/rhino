@@ -79,11 +79,12 @@ class Home extends Component {
 						<Paper style={style.card} zDepth={3}>
 							<div className='container'>
 								<div className='row'>
-									<div className='col-6'>
+									<div className='col-6-sm'>
+									
 										<br /><br />
 										<img className='container' src='logo.png' />
 									</div>
-									<div className='col-6 right'>
+									<div className='col-6-sm right'>
 										<h3>{user_data.company}</h3>
 										<br /><br />
 										<RaisedButton label="Visit Site" secondary={true} />
@@ -97,14 +98,14 @@ class Home extends Component {
 						<Paper style={style.card} zDepth={3}>
 							<div className='container'>
 								<div className='row'>
-									<div className='col-6'>
+									<div className='col-6-sm'>
 										<h1>
 											{11.11}
 											<br />
 											{"HIVE"}
 										</h1>
 									</div>
-									<div className='col-6 right'>
+									<div className='col-6-sm right'>
 										<h3>Balance</h3>
 										<br /><br />
 										<RaisedButton onClick={() => history.push('/wallet')} label="Wallet" secondary={true} />
@@ -118,11 +119,11 @@ class Home extends Component {
 						<Paper style={style.card} zDepth={3}>
 							<div className='container'>
 								<div className='row'>
-									<div className='col-6'>
+									<div className='col-6-sm'>
 										<br /><br />
 										<img className='container' src='coins.png' />
 									</div>
-									<div className='col-6 right'>
+									<div className='col-6-sm right'>
 										<h3>Earn Tokens</h3>
 										<br /><br />
 										<RaisedButton onClick={() => history.push('/earn')} label="Rewards" secondary={true} />
@@ -136,11 +137,11 @@ class Home extends Component {
 						<Paper style={style.card} zDepth={3}>
 							<div className='container'>
 								<div className='row'>
-									<div className='col-6'>
+									<div className='col-6-sm'>
 										<br /><br />
 										<img className='container' src='trading.png' />
 									</div>
-									<div className='col-6 right'>
+									<div className='col-6-sm right'>
 										<h3>Redeem Tokens</h3>
 										<br /><br />
 										<RaisedButton onClick={() => history.push('/market')} label="Perks" secondary={true} />

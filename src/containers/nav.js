@@ -26,9 +26,9 @@ class Nav extends Component {
    */
 	updateDimensions() {
 		console.log("UPDATING WIDTH", this.state);
-		let update_width = window.innerWidth - 100;
+		let update_width = window.innerWidth;
 
-		if (this.state.width < 625) {
+		if (this.state.width < 722) {
 			this.setState({
 				width: update_width,
 				open: false
@@ -60,11 +60,12 @@ class Nav extends Component {
 					color: 'white'
 				}} label="Logout" />
 				<Drawer open={this.state.open} className="right">
+					<h3 className='center'>{user_data.company}</h3>
 					<MenuItem
 						style={{
 							backgroundColor: path === '/' ? blue700 : null
 						}}
-						leftIcon={<FontIcon style={{ color: path === '/' ? white : grey600 }} className="material-icons">home</FontIcon>}
+						leftIcon={<FontIcon style={{ color: path === '/' ? white : grey600, position: 'absolute', right: 20 }} className="material-icons">home</FontIcon>}
 						onClick={() => history.push('/')}>Home
 				</MenuItem>
 					<MenuItem
