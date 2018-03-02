@@ -28,10 +28,10 @@ export default class extends Component {
 								<h1>11.11 HIVE</h1>
 							</div>
 							<div className='row'>
-								<div className='col-6'>
+								<div className='col-6-sm'>
 									<RaisedButton onClick={() => this.handleToken_dialog_msg("Receive Tokens") } primary={true} label="Receive Tokens" />
 								</div>
-								<div className='col-6'>
+								<div className='col-6-sm'>
 									<RaisedButton onClick={() => this.handleToken_dialog_msg("Send Tokens")} primary={true} label="Send Tokens" />
 								</div>
 							</div>

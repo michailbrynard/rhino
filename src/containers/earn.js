@@ -19,11 +19,11 @@ const Earn = ({ data }) => (
 							<Paper style={style.card} zDepth={3}>
 								<div className='container'>
 									<div className='row'>
-										<div className='col-6'>
+										<div className='col-6-sm'>
 											<br /><br/>
 											<img className='container' src='logo.png' />
 										</div>
-										<div className='col-6 right'>
+										<div className='col-6-sm right'>
 											<h3>{ item.reward_type.toUpperCase() }</h3>
 											<h1>{ item.reward_amount } HIVE</h1>
 										</div>
@@ -33,7 +33,16 @@ const Earn = ({ data }) => (
 							<br />
 						</div>
 				)) : 
-				<h3>No Rewards</h3>
+					<div className='col-12'>
+						<Paper style={style.transaction_card} zDepth={3}>
+							<div className='container center'>
+								<br />
+								<h3>No Rewards</h3>
+								<br />
+							</div>
+						</Paper>
+						<br />
+					</div>
 			}
 		</div>
 	</div>
