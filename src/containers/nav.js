@@ -31,7 +31,7 @@ class Nav extends Component {
 				style={{
 					backgroundColor: path === '/' ? blue700 : null
 				}}
-				leftIcon={<FontIcon style={{ color: path === '/' ? white : grey600, position: 'absolute', left: '40%' }} className="material-icons">home</FontIcon>}
+				leftIcon={<FontIcon style={{ color: path === '/' ? white : grey600, position: 'absolute', left: '40%' }} className="material-icons">change_history</FontIcon>}
 				onClick={() => history.push('/')}>Home
 			</MenuItem>,
 
@@ -39,7 +39,7 @@ class Nav extends Component {
 				style={{
 					backgroundColor: path === '/wallet' ? blue700 : null
 				}}
-				leftIcon={<FontIcon style={{ color: path === '/wallet' ? white : grey600, position: 'absolute', left: '40%' }} className="material-icons">account_balance_wallet</FontIcon>}
+				leftIcon={<FontIcon style={{ color: path === '/wallet' ? white : grey600, position: 'absolute', left: '40%' }} className="material-icons">crop_square</FontIcon>}
 				onClick={() => history.push('/wallet')}>Wallet
 			</MenuItem>,
 
@@ -47,7 +47,7 @@ class Nav extends Component {
 				style={{
 					backgroundColor: path === '/earn' ? blue700 : null
 				}}
-				leftIcon={<FontIcon style={{ color: path === '/earn' ? white : grey600, position: 'absolute', left: '40%' }} className="material-icons">monetization_on</FontIcon>}
+				leftIcon={<FontIcon style={{ color: path === '/earn' ? white : grey600, position: 'absolute', left: '40%' }} className="material-icons">star_border</FontIcon>}
 				onClick={() => history.push('/earn')}>Rewards
 			</MenuItem>,
 
@@ -55,7 +55,7 @@ class Nav extends Component {
 				style={{
 					backgroundColor: path === '/market' ? blue700 : null
 				}}
-				leftIcon={<FontIcon style={{ color: path === '/market' ? white : grey600, position: 'absolute', left: '40%' }} className="material-icons">shopping_basket</FontIcon>}
+				leftIcon={<FontIcon style={{ color: path === '/market' ? white : grey600, position: 'absolute', left: '40%' }} className="material-icons">crop_7_5</FontIcon>}
 				onClick={() => history.push('/market')}>Market
 			</MenuItem>,
 
@@ -63,7 +63,7 @@ class Nav extends Component {
 				style={{
 					backgroundColor: path === '/settings' ? blue700 : null
 				}}
-				leftIcon={<FontIcon style={{ color: path === '/settings' ? white : grey600, position: 'absolute', left: '40%' }} className="material-icons">settings</FontIcon>}
+				leftIcon={<FontIcon style={{ color: path === '/settings' ? white : grey600, position: 'absolute', left: '40%' }} className="material-icons">details</FontIcon>}
 				onClick={() => history.push('/settings')}>Settings
 			</MenuItem>,
 
