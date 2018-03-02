@@ -13,6 +13,7 @@ import Wallet from './containers/wallet'
 import Market from './containers/market'
 import Earn from './containers/earn'
 import Landing from './containers/landing'
+import SetPassword from './containers/set_password'
 import Settings from './containers/settings'
 
 
@@ -58,7 +59,10 @@ export default () => {
 									<Route exact path='/settings' component={Settings} />
 
 								</div> :
-								<Route exact path='/' component={Landing} />
+								<div>
+									<Route exact path='/' component={Landing} />
+									<Route exact path='/setpassword' component={SetPassword} />
+								</div>
 						}
 					</div>
 				</Router>
