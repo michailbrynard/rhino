@@ -108,6 +108,8 @@ class Landing extends Component {
 									signup(this.state.email)
 								}}>
 									<TextField
+										inputStyle={{ color: "white" }}
+										hintStyle={{ color: "#999" }}
 										value={this.state.email}
 										onChange={e => this.setState({ email: e.target.value })}
 										hintText="Email"
@@ -115,7 +117,7 @@ class Landing extends Component {
 									{
 										signupLoading ?
 											<SmallLoader /> :
-											<RaisedButton type='submit' label="Join" secondary={true} />
+											<RaisedButton style={{ marginLeft: '8px' }} type='submit' label="Join" secondary={true} />
 									}
 								</form>
 								<br /><br />

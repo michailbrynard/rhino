@@ -25,6 +25,64 @@ class Nav extends Component {
 		const { path } = match
 		const user_data = JSON.parse(localStorage.getItem('user'))
 
+		const drawer_contents = [
+			<h3 className='center'>{user_data.company}</h3>,
+			<MenuItem
+				style={{
+					backgroundColor: path === '/' ? blue700 : null
+				}}
+				leftIcon={<FontIcon style={{ color: path === '/' ? white : grey600 }} className="material-icons">home</FontIcon>}
+				onClick={() => history.push('/')}>Home
+			</MenuItem>,
+
+			<MenuItem
+				style={{
+					backgroundColor: path === '/wallet' ? blue700 : null
+				}}
+				leftIcon={<FontIcon style={{ color: path === '/wallet' ? white : grey600 }} className="material-icons">account_balance_wallet</FontIcon>}
+				onClick={() => history.push('/wallet')}>Wallet
+			</MenuItem>,
+
+			<MenuItem
+				style={{
+					backgroundColor: path === '/earn' ? blue700 : null
+				}}
+				leftIcon={<FontIcon style={{ color: path === '/earn' ? white : grey600 }} className="material-icons">monetization_on</FontIcon>}
+				onClick={() => history.push('/earn')}>Rewards
+			</MenuItem>,
+
+			<MenuItem
+				style={{
+					backgroundColor: path === '/market' ? blue700 : null
+				}}
+				leftIcon={<FontIcon style={{ color: path === '/market' ? white : grey600 }} className="material-icons">shopping_basket</FontIcon>}
+				onClick={() => history.push('/market')}>Market
+			</MenuItem>,
+
+			<MenuItem
+				style={{
+					backgroundColor: path === '/settings' ? blue700 : null
+				}}
+				leftIcon={<FontIcon style={{ color: path === '/settings' ? white : grey600 }} className="material-icons">settings</FontIcon>}
+				onClick={() => history.push('/settings')}>Settings
+			</MenuItem>,
+
+			<List style={style.user_nav_view}>
+				<ListItem disabled style={{
+					justifyContent: 'center',
+					display: 'flex'
+				}}>
+				</ListItem>
+				<ListItem
+					disabled
+					className='center'
+					onClick={() => history.push('/')}
+					primaryText={user_data.username}
+					secondaryText={user_data.email}
+				/>
+			</List>
+		]
+
 		return (
 			<div>
 				<br />
@@ -38,109 +96,15 @@ class Nav extends Component {
 				}} label="Logout" />
 				<br/>
 				<Drawer onClick={() => this.setState({ open: false })} className="drawer right">
-					<h3 className='center'>{user_data.company}</h3>
-					<MenuItem
-						style={{
-							backgroundColor: path === '/' ? blue700 : null
-						}}
-						leftIcon={<FontIcon style={{ color: path === '/' ? white : grey600 }} className="material-icons">home</FontIcon>}
-						onClick={() => history.push('/')}>Home
-				</MenuItem>
-					<MenuItem
-						style={{
-							backgroundColor: path === '/wallet' ? blue700 : null
-						}}
-						leftIcon={<FontIcon style={{ color: path === '/wallet' ? white : grey600 }} className="material-icons">account_balance_wallet</FontIcon>}
-						onClick={() => history.push('/wallet')}>Wallet
-				</MenuItem>
-					<MenuItem
-						style={{
-							backgroundColor: path === '/earn' ? blue700 : null
-						}}
-						leftIcon={<FontIcon style={{ color: path === '/earn' ? white : grey600 }} className="material-icons">monetization_on</FontIcon>}
-						onClick={() => history.push('/earn')}>Rewards
-				</MenuItem>
-					<MenuItem
-						style={{
-							backgroundColor: path === '/market' ? blue700 : null
-						}}
-						leftIcon={<FontIcon style={{ color: path === '/market' ? white : grey600 }} className="material-icons">shopping_basket</FontIcon>}
-						onClick={() => history.push('/market')}>Market
-			</MenuItem>
-					<MenuItem
-						style={{
-							backgroundColor: path === '/settings' ? blue700 : null
-						}}
-						leftIcon={<FontIcon style={{ color: path === '/settings' ? white : grey600 }} className="material-icons">settings</FontIcon>}
-						onClick={() => history.push('/settings')}>Settings
-			</MenuItem>
-					<List style={style.user_nav_view}>
-						<ListItem disabled style={{
-							justifyContent: 'center',
-							display: 'flex'
-						}}>
-						</ListItem>
-						<ListItem
-							disabled
-							className='center'
-							onClick={() => history.push('/')}
-							primaryText={user_data.username}
-							secondaryText={user_data.email}
-						/>
-					</List>
+					{
+						drawer_contents.map(i => i)
+					}
 				</Drawer>
 
 				<Drawer open={this.state.open} className="mobile_drawer right">
-					<h3 className='center'>{user_data.company}</h3>
-					<MenuItem
-						style={{
-							backgroundColor: path === '/' ? blue700 : null
-						}}
-						leftIcon={<FontIcon style={{ color: path === '/' ? white : grey600 }} className="material-icons">home</FontIcon>}
-						onClick={() => history.push('/')}>Home
-				</MenuItem>
-					<MenuItem
-						style={{
-							backgroundColor: path === '/wallet' ? blue700 : null
-						}}
-						leftIcon={<FontIcon style={{ color: path === '/wallet' ? white : grey600 }} className="material-icons">account_balance_wallet</FontIcon>}
-						onClick={() => history.push('/wallet')}>Wallet
-				</MenuItem>
-					<MenuItem
-						style={{
-							backgroundColor: path === '/earn' ? blue700 : null
-						}}
-						leftIcon={<FontIcon style={{ color: path === '/earn' ? white : grey600 }} className="material-icons">monetization_on</FontIcon>}
-						onClick={() => history.push('/earn')}>Rewards
-				</MenuItem>
-					<MenuItem
-						style={{
-							backgroundColor: path === '/market' ? blue700 : null
-						}}
-						leftIcon={<FontIcon style={{ color: path === '/market' ? white : grey600 }} className="material-icons">shopping_basket</FontIcon>}
-						onClick={() => history.push('/market')}>Market
-			</MenuItem>
-					<MenuItem
-						style={{
-							backgroundColor: path === '/settings' ? blue700 : null
-						}}
-						leftIcon={<FontIcon style={{ color: path === '/settings' ? white : grey600 }} className="material-icons">settings</FontIcon>}
-						onClick={() => history.push('/settings')}>Settings
-			</MenuItem>
-					<List style={style.user_nav_view}>
-						<ListItem disabled style={{
-							justifyContent: 'center',
-							display: 'flex'
-						}}>
-						</ListItem>
-						<ListItem
-							disabled
-							className='center'
-							onClick={() => history.push('/')}
-							primaryText={user_data.username}
-							secondaryText={user_data.email}
-						/>
-					</List>
+					{
+						drawer_contents.map(i => i)
+					}
 				</Drawer>
 
 			</div>

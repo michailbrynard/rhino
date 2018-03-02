@@ -13,10 +13,12 @@ body {
 
 .title {
 	font-size: 60px;
+	color: white;
 }
 
 .subtitle {
 	font-size: 28px;
+	color: white;
 }
 
 .landing-img {

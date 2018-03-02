@@ -23,7 +23,7 @@ export const signup = (signup_email) => (
 			if(json.status === 'success') {
 				dispatch({ type: SIGNUP_SUCCESS, data: json.data })
 			} else {
-				dispatch({ type: SIGNUP_ERROR, err: json.data[0] })
+				dispatch({ type: SIGNUP_ERROR, err: json.message })
 			}
 		})
 		.catch(err => {
@@ -56,7 +56,7 @@ export const login = (user, password) => (
 				if (json.status === 'success') {
 					dispatch({ type: LOGIN_SUCCESS, data: json.data })
 				} else {
-					dispatch({ type: LOGIN_ERROR, err: json.data[0] })
+					dispatch({ type: LOGIN_ERROR, err: json.message })
 				}
 			})
 			.catch(err => {
