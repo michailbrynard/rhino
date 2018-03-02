@@ -16,35 +16,8 @@ class Nav extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			width: window.innerWidth,
 			open: false
 		}
-	}
-
-  /**
-   * Calculate & Update state of new dimensions
-   */
-	updateDimensions() {
-		console.log("UPDATING WIDTH", this.state);
-		let update_width = window.innerWidth;
-
-		if (this.state.width < 722) {
-			this.setState({
-				width: update_width,
-				open: false
-			})
-		} else {
-			this.setState({ width: update_width, open: true });
-		}
-	}
-
-	componentDidMount() {
-		this.updateDimensions();
-		window.addEventListener("resize", this.updateDimensions.bind(this));
-	}
-
-	componentWillUnmount() {
-		window.removeEventListener("resize", this.updateDimensions.bind(this));
 	}
 
 	render() {
@@ -55,17 +28,22 @@ class Nav extends Component {
 		return (
 			<div>
 				<br />
+				<FontIcon onClick={() => {
+					this.setState({ open: !this.state.open })
+				}} style={{ color: path === '/' ? white : grey600, position: 'absolute', left: 20, paddingTop: '5px' }} className="material-icons">menu</FontIcon>
 				<FlatButton onClick={() => logout()} style={{
 					float: 'right',
-					color: 'white'
+					color: 'white',
+					zIndex: 104
 				}} label="Logout" />
-				<Drawer open={this.state.open} className="right">
+				<br/>
+				<Drawer onClick={() => this.setState({ open: false })} className="drawer right">
 					<h3 className='center'>{user_data.company}</h3>
 					<MenuItem
 						style={{
 							backgroundColor: path === '/' ? blue700 : null
 						}}
-						leftIcon={<FontIcon style={{ color: path === '/' ? white : grey600, position: 'absolute', right: 20 }} className="material-icons">home</FontIcon>}
+						leftIcon={<FontIcon style={{ color: path === '/' ? white : grey600 }} className="material-icons">home</FontIcon>}
 						onClick={() => history.push('/')}>Home
 				</MenuItem>
 					<MenuItem
@@ -111,6 +89,60 @@ class Nav extends Component {
 						/>
 					</List>
 				</Drawer>
+
+				<Drawer open={this.state.open} className="mobile_drawer right">
+					<h3 className='center'>{user_data.company}</h3>
+					<MenuItem
+						style={{
+							backgroundColor: path === '/' ? blue700 : null
+						}}
+						leftIcon={<FontIcon style={{ color: path === '/' ? white : grey600 }} className="material-icons">home</FontIcon>}
+						onClick={() => history.push('/')}>Home
+				</MenuItem>
+					<MenuItem
+						style={{
+							backgroundColor: path === '/wallet' ? blue700 : null
+						}}
+						leftIcon={<FontIcon style={{ color: path === '/wallet' ? white : grey600 }} className="material-icons">account_balance_wallet</FontIcon>}
+						onClick={() => history.push('/wallet')}>Wallet
+				</MenuItem>
+					<MenuItem
+						style={{
+							backgroundColor: path === '/earn' ? blue700 : null
+						}}
+						leftIcon={<FontIcon style={{ color: path === '/earn' ? white : grey600 }} className="material-icons">monetization_on</FontIcon>}
+						onClick={() => history.push('/earn')}>Rewards
+				</MenuItem>
+					<MenuItem
+						style={{
+							backgroundColor: path === '/market' ? blue700 : null
+						}}
+						leftIcon={<FontIcon style={{ color: path === '/market' ? white : grey600 }} className="material-icons">shopping_basket</FontIcon>}
+						onClick={() => history.push('/market')}>Market
+			</MenuItem>
+					<MenuItem
+						style={{
+							backgroundColor: path === '/settings' ? blue700 : null
+						}}
+						leftIcon={<FontIcon style={{ color: path === '/settings' ? white : grey600 }} className="material-icons">settings</FontIcon>}
+						onClick={() => history.push('/settings')}>Settings
+			</MenuItem>
+					<List style={style.user_nav_view}>
+						<ListItem disabled style={{
+							justifyContent: 'center',
+							display: 'flex'
+						}}>
+						</ListItem>
+						<ListItem
+							disabled
+							className='center'
+							onClick={() => history.push('/')}
+							primaryText={user_data.username}
+							secondaryText={user_data.email}
+						/>
+					</List>
+				</Drawer>
+
 			</div>
 		)
 	}

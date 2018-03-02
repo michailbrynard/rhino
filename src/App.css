@@ -24,9 +24,18 @@ body {
 	margin-top: 2.5vh;
 }
 
+.drawer > div {
+	width: 0px !important;
+	-webkit-transition: width 1s !important;
+  transition: width 1s !important;
+}
+
 @media only screen and (min-width : 723px) {
 	.main {
 		margin-left: 266px;
 		margin-right: 20px;
+	}
+	.drawer > div {
+		width: 256px !important;
 	}
 }
