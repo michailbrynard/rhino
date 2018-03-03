@@ -1,0 +1,10 @@
+FROM node:latest
+COPY package.json package-lock.json /app/
+WORKDIR /app
+# TODO: figure out user/ permission issues
+RUN npm install
+COPY src/ /app/src/
+COPY public/ /app/public/
+# API url is set to a placeholder, needs to be configured in entrypoint script.
+CMD bash -c 'npm run build'
+
