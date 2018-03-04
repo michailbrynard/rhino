@@ -5,7 +5,7 @@ import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import { List, ListItem } from 'material-ui/List'
 import FontIcon from 'material-ui/FontIcon'
-import { yellow700, grey600, blue300, blue700, white } from 'material-ui/styles/colors';
+import { yellow600, grey600, blue300, blue700, white } from 'material-ui/styles/colors';
 
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -26,10 +26,10 @@ class Nav extends Component {
 		const user_data = JSON.parse(localStorage.getItem('user'))
 
 		const drawer_contents = [
-			<h3 className='center'>{user_data.company}</h3>,
+			<img alt='logo' className='nav-img' src='./logo.svg' />,
 			<MenuItem
 				style={{
-					backgroundColor: path === '/' ? blue700 : null
+					backgroundColor: path === '/' ? yellow600 : null
 				}}
 				leftIcon={<FontIcon style={{ color: path === '/' ? white : grey600, position: 'absolute', left: '40%' }} className="material-icons">change_history</FontIcon>}
 				onClick={() => history.push('/')}>Home
@@ -37,7 +37,7 @@ class Nav extends Component {
 
 			<MenuItem
 				style={{
-					backgroundColor: path === '/wallet' ? blue700 : null
+					backgroundColor: path === '/wallet' ? yellow600 : null
 				}}
 				leftIcon={<FontIcon style={{ color: path === '/wallet' ? white : grey600, position: 'absolute', left: '40%' }} className="material-icons">crop_square</FontIcon>}
 				onClick={() => history.push('/wallet')}>Wallet
@@ -45,7 +45,7 @@ class Nav extends Component {
 
 			<MenuItem
 				style={{
-					backgroundColor: path === '/earn' ? blue700 : null
+					backgroundColor: path === '/earn' ? yellow600 : null
 				}}
 				leftIcon={<FontIcon style={{ color: path === '/earn' ? white : grey600, position: 'absolute', left: '40%' }} className="material-icons">star_border</FontIcon>}
 				onClick={() => history.push('/earn')}>Rewards
@@ -53,7 +53,7 @@ class Nav extends Component {
 
 			<MenuItem
 				style={{
-					backgroundColor: path === '/market' ? blue700 : null
+					backgroundColor: path === '/market' ? yellow600 : null
 				}}
 				leftIcon={<FontIcon style={{ color: path === '/market' ? white : grey600, position: 'absolute', left: '40%' }} className="material-icons">crop_7_5</FontIcon>}
 				onClick={() => history.push('/market')}>Market

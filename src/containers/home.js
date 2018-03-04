@@ -82,11 +82,11 @@ class Home extends Component {
 									<div className='col-6-sm'>
 									
 										<br /><br />
-										<img className='container' src='logo.png' />
+										<img className='row-logo' src='rehive-logo1.svg' />
 									</div>
-									<div className='col-6-sm right'>
-										<h3>{user_data.company}</h3>
-										<br /><br />
+									<div className='col-6-sm left'>
+										<h3>Rehive</h3>
+										<p className='cardtext'>From ideas to production, Rehive partners with start ups, enterprises and governments to accelerate fintech innovation and build amazing fintech products.</p>
 										<RaisedButton label="Visit Site" secondary={true} />
 									</div>
 								</div>
@@ -98,16 +98,15 @@ class Home extends Component {
 						<Paper style={style.card} zDepth={3}>
 							<div className='container'>
 								<div className='row'>
-									<div className='col-6-sm'>
-										<h1>
+									<div className='col-6-sm '>
+										<h1 >
 											{11.11}
 											<br />
 											{"HIVE"}
 										</h1>
 									</div>
-									<div className='col-6-sm right'>
-										<h3>Balance</h3>
-										<br /><br />
+									<div className='col-6-sm left'>
+										<h1>Balance</h1>
 										<RaisedButton onClick={() => history.push('/wallet')} label="Wallet" secondary={true} />
 									</div>
 								</div>
@@ -121,11 +120,11 @@ class Home extends Component {
 								<div className='row'>
 									<div className='col-6-sm'>
 										<br /><br />
-										<img className='container' src='coins.png' />
+										<img className='container row-logo-b' src='coins.png' />
 									</div>
-									<div className='col-6-sm right'>
+									<div className='col-6-sm left'>
 										<h3>Earn Tokens</h3>
-										<br /><br />
+										<p className='cardtext'> Earn tokens by helping out Rehive! Refer a friend, report a bug or attend a hackathon and be rewarded with HIVE tokens.</p>
 										<RaisedButton onClick={() => history.push('/earn')} label="Rewards" secondary={true} />
 									</div>
 								</div>
@@ -139,11 +138,11 @@ class Home extends Component {
 								<div className='row'>
 									<div className='col-6-sm'>
 										<br /><br />
-										<img className='container' src='trading.png' />
+										<img className='container row-logo-b' src='trading.png' />
 									</div>
-									<div className='col-6-sm right'>
+									<div className='col-6-sm left'>
 										<h3>Redeem Tokens</h3>
-										<br /><br />
+										<p className='cardtext'> Spend HIVE tokens on perks! Exchange tokens for special perks or items in our marketplace!</p>
 										<RaisedButton onClick={() => history.push('/market')} label="Perks" secondary={true} />
 									</div>
 								</div>

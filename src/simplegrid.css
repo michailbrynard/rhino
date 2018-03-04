@@ -30,6 +30,7 @@ h2 {
 h3 {
 	font-size: 1.375rem;
 	font-family: 'Source Sans Pro', sans-serif;
+    -webkit-margin-after: 0.5em;
 }
 
 h4 {

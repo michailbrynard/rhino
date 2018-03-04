@@ -11,6 +11,8 @@ import { signup, login } from '../actions'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
+let { IconButton, NavigationClose, Styles } = require('material-ui')
+
 
 class Landing extends Component {
 
@@ -33,7 +35,11 @@ class Landing extends Component {
 
 		return (
 			<div>
-				<AppBar title="Launcher" showMenuIconButton={false} iconElementRight={<FlatButton onClick={this.handleOpen} label="Login" />} />
+				<AppBar
+				title = {<img alt='logo' className='header-img' src='./logo.svg' />}
+				showMenuIconButton={false}
+				iconElementRight={<FlatButton onClick={this.handleOpen} label="Login" />}
+				/>
 
 				<Dialog
 					contentStyle={{ maxWidth: "360px" }}
@@ -87,7 +93,7 @@ class Landing extends Component {
 				<div className='row'>
 					<div className='col-6 center'>
 						<br/>
-						<img alt='logo' className='landing-img' src='./logo.png' />
+						<img alt='logo' className='landing-img' src='./rehive-logo1.svg' />
 					</div>
 					{
 						signupData ?
@@ -97,8 +103,8 @@ class Landing extends Component {
 							
 							</div> :
 							<div className='col-6 center landing-row'>
-								<h1 className='title'>Product Name</h1>
-								<p className='subtitle'>This is a short description of the product</p>
+								<h1 className='title'>Rehive fintech platform.</h1>
+								<p className='subtitle'>Welcome to the Rehive supporter platform! Sign up for exciting rewards and updates on everything Rehive!</p>
 								{
 									signupErr ?
 										<p>Error: {signupErr}</p> : null
