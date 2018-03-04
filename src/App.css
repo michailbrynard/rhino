@@ -32,15 +32,33 @@ body {
 
 .nav-img {
 	height: 60px;
+	margin-top: 1.5vh;
+    margin-bottom: 2.5vh;
+}
 
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .row-logo {
     padding: 10px 20px 20px 15px;
+
 }
 
 .row-logo-b {
     padding: 0 20px 20px 0px;
+}
+
+.row-logo-c {
+    padding: 30px 20px 20px 15px;
+
+}
+
+.row-wallet {
+	margin: .5rem 2%;
+	min-height: .125rem;
 }
 
 .cardtext {

@@ -11,11 +11,20 @@ export const style = {
 	balance_card: {
 		width: '100%',
 		textAlign: 'center',
-		display: 'inline-block',
-		borderRadius: '10px'
+		display: 'block',
+		borderRadius: '10px',
+		alignItems: 'center',
+		margin: 'auto',
+		position: 'relative',
+		maxWidth: '500px'
 	},
 	transaction_card: {
-		borderRadius: '10px'
+		borderRadius: '10px',
+	    maxWidth: '500px',
+	    alignItems: 'center',
+		margin: 'auto',
+		position: 'relative',
+
 	},
 	user_nav_view: {
 		position: 'absolute',

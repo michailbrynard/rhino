@@ -93,6 +93,9 @@ p {
 .container {
 	width: 90%
 }
+.container-wallet{
+	width: 90%
+}
 
 .row {
 	position: relative;
