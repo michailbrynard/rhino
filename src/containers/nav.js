@@ -26,8 +26,9 @@ class Nav extends Component {
 		const user_data = JSON.parse(localStorage.getItem('user'))
 
 		const drawer_contents = [
-			<h3 className='center'>{user_data.company}</h3>,
+			<h3 key={0} className='center'>{user_data.company}</h3>,
 			<MenuItem
+				key={1}
 				style={{
 					backgroundColor: path === '/' ? blue700 : null
 				}}
@@ -36,6 +37,7 @@ class Nav extends Component {
 			</MenuItem>,
 
 			<MenuItem
+				key={2}
 				style={{
 					backgroundColor: path === '/wallet' ? blue700 : null
 				}}
@@ -44,6 +46,7 @@ class Nav extends Component {
 			</MenuItem>,
 
 			<MenuItem
+				key={3}
 				style={{
 					backgroundColor: path === '/earn' ? blue700 : null
 				}}
@@ -52,6 +55,7 @@ class Nav extends Component {
 			</MenuItem>,
 
 			<MenuItem
+				key={4}
 				style={{
 					backgroundColor: path === '/market' ? blue700 : null
 				}}
@@ -60,6 +64,7 @@ class Nav extends Component {
 			</MenuItem>,
 
 			<MenuItem
+				key={5}
 				style={{
 					backgroundColor: path === '/settings' ? blue700 : null
 				}}
@@ -67,7 +72,7 @@ class Nav extends Component {
 				onClick={() => history.push('/settings')}>Settings
 			</MenuItem>,
 
-			<List style={style.user_nav_view}>
+			<List key={6} style={style.user_nav_view}>
 				<ListItem disabled style={{
 					justifyContent: 'center',
 					display: 'flex'
