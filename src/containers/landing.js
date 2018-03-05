@@ -87,7 +87,7 @@ class Landing extends Component {
 				<div className='row'>
 					<div className='col-6 center'>
 						<br/>
-						<img alt='logo' className='landing-img' src='./logo.png' />
+						<img alt='logo' className='landing-img' src='logo.png' />
 					</div>
 					{
 						signupData ?

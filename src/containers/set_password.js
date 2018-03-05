@@ -44,7 +44,6 @@ class Landing extends Component {
 						}
 						<form onSubmit={(e) => {
 							e.preventDefault()
-
 							const params = new URLSearchParams(this.props.location.search);
 							const uid = params.get('uid');
 							const paramtoken = params.get('token');
