@@ -32,6 +32,38 @@ export const signup = (signup_email) => (
 	}
 )
 
+export const SET_PASSWORD = "SET_PASSWORD"
+export const SET_PASSWORD_SUCCESS = "SET_PASSWORD_SUCCESS"
+export const SET_PASSWORD_ERROR = "SET_PASSWORD_ERROR"
+
+export const setPassword = (new_password1, new_password2, uid, token) => (
+	dispatch => {
+		dispatch({ type: SET_PASSWORD })
+		fetch(process.env.REACT_APP_REHIVE_API_URL + '/auth/password/reset/confirm/', {
+			method: 'POST',
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json',
+			},
+			mode: 'cors',
+			body: JSON.stringify({ new_password1, new_password2, uid, token })
+		})
+			.then(response => {
+				return response.json()
+			})
+			.then(json => {
+				if (json.status === 'success') {
+					dispatch({ type: SET_PASSWORD_SUCCESS, data: json.data })
+				} else {
+					dispatch({ type: SET_PASSWORD_ERROR, err: json.message })
+				}
+			})
+			.catch(err => {
+				dispatch({ type: SET_PASSWORD_ERROR })
+			})
+	}
+)
+
 export const LOGIN = "LOGIN"
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS"
 export const LOGIN_ERROR = "LOGIN_ERROR"
