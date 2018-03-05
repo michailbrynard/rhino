@@ -7,7 +7,7 @@ import Dialog from 'material-ui/Dialog';
 
 import { SmallLoader } from '../components/loader'
 
-import { signup } from '../actions'
+import { setPassword } from '../actions'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
@@ -20,7 +20,9 @@ class Landing extends Component {
 	};
 
 	render() {
-		const { history, signup, signupErr, signupLoading, loginErr, loginData, loginLoading } = this.props
+		const { history, setPassword, setPasswordErr, setPasswordLoading, data } = this.props
+
+		data === 'success' ? history.push('/') : null
 
 		return (
 			<div>
@@ -32,8 +34,8 @@ class Landing extends Component {
 						<h1 className='title'>Set Password</h1>
 						<p className='subtitle'>Set your password to continue</p>
 						{
-							signupErr ?
-								<p>Error: {signupErr}</p> : 
+							setPasswordErr ?
+								<p>Error: {setPasswordErr}</p> : 
 								(
 									this.state.password.length > 0 && this.state.passwordConf.length > 0 &&
 									this.state.password !== this.state.passwordConf &&
@@ -46,9 +48,8 @@ class Landing extends Component {
 							const params = new URLSearchParams(this.props.location.search);
 							const uid = params.get('uid');
 							const paramtoken = params.get('token');
-
-							console.log("PASSWORD FOR SUBMISSION", this.state);
-							console.log("PARAMS", uid + ' ' + paramtoken);
+							const { password, passwordConf } = this.state
+							setPassword(password, passwordConf, uid, paramtoken)
 						}}>
 							<TextField
 								inputStyle={{ color: "white" }}
@@ -67,7 +68,7 @@ class Landing extends Component {
 								hintText="Confirm Password"
 							/><br/>
 							{
-								signupLoading ?
+								setPasswordLoading ?
 									<SmallLoader /> :
 									<RaisedButton type='submit' label="Set Password" secondary={true} />
 							}
@@ -81,16 +82,17 @@ class Landing extends Component {
 }
 
 function mapStateToProps(state) {
-	const { err, data, loading } = state.signup
+	const { err, data, loading } = state.set_password
 	return {
-		signupErr: err,
-		signupLoading: loading,
+		setPasswordErr: err,
+		setPasswordLoading: loading,
+		data
 	}
 }
 
 function mapDispatchToProps(dispatch) {
 	return {
-		signup: bindActionCreators(signup, dispatch)
+		setPassword: bindActionCreators(setPassword, dispatch)
 	}
 }
 

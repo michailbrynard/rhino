@@ -1,5 +1,3 @@
-import request from 'superagent'
-
 export const SIGNUP = "SIGNUP"
 export const SIGNUP_SUCCESS = "SIGNUP_SUCCESS"
 export const SIGNUP_ERROR = "SIGNUP_ERROR"
@@ -53,7 +51,7 @@ export const setPassword = (new_password1, new_password2, uid, token) => (
 			})
 			.then(json => {
 				if (json.status === 'success') {
-					dispatch({ type: SET_PASSWORD_SUCCESS, data: json.data })
+					dispatch({ type: SET_PASSWORD_SUCCESS, data: json.status })
 				} else {
 					dispatch({ type: SET_PASSWORD_ERROR, err: json.message })
 				}
