@@ -7,7 +7,7 @@ import Dialog from 'material-ui/Dialog';
 
 import { SmallLoader } from '../components/loader'
 
-import { signup } from '../actions'
+import { setPassword } from '../actions'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
@@ -20,7 +20,9 @@ class Landing extends Component {
 	};
 
 	render() {
-		const { history, signup, signupErr, signupLoading, loginErr, loginData, loginLoading } = this.props
+		const { history, setPassword, setPasswordErr, setPasswordLoading, data } = this.props
+
+		data === 'success' ? history.push('/') : null
 
 		return (
 			<div>
@@ -32,17 +34,27 @@ class Landing extends Component {
 						<h1 className='title'>Set Password</h1>
 						<p className='subtitle'>Set your password to continue</p>
 						{
-							signupErr ?
-								<p>Error: {signupErr}</p> : null
+							setPasswordErr ?
+								<p>Error: {setPasswordErr}</p> : 
+								(
+									this.state.password.length > 0 && this.state.passwordConf.length > 0 &&
+									this.state.password !== this.state.passwordConf &&
+									<p>Passwords do not match</p>
+								)
 						}
 						<form onSubmit={(e) => {
 							e.preventDefault()
-							console.log("PASSWORD FOR SUBMISSION", this.state);
+							const params = new URLSearchParams(this.props.location.search);
+							const uid = params.get('uid');
+							const paramtoken = params.get('token');
+							const { password, passwordConf } = this.state
+							setPassword(password, passwordConf, uid, paramtoken)
 						}}>
 							<TextField
 								inputStyle={{ color: "white" }}
 								hintStyle={{ color: "#999" }}
 								value={this.state.password}
+								type="password"
 								onChange={e => this.setState({ password: e.target.value })}
 								hintText="Password"
 							/><br />
@@ -50,11 +62,12 @@ class Landing extends Component {
 								inputStyle={{ color: "white" }}
 								hintStyle={{ color: "#999" }}
 								value={this.state.passwordConf}
+								type="password"
 								onChange={e => this.setState({ passwordConf: e.target.value })}
 								hintText="Confirm Password"
 							/><br/>
 							{
-								signupLoading ?
+								setPasswordLoading ?
 									<SmallLoader /> :
 									<RaisedButton type='submit' label="Set Password" secondary={true} />
 							}
@@ -68,16 +81,17 @@ class Landing extends Component {
 }
 
 function mapStateToProps(state) {
-	const { err, data, loading } = state.signup
+	const { err, data, loading } = state.set_password
 	return {
-		signupErr: err,
-		signupLoading: loading,
+		setPasswordErr: err,
+		setPasswordLoading: loading,
+		data
 	}
 }
 
 function mapDispatchToProps(dispatch) {
 	return {
-		signup: bindActionCreators(signup, dispatch)
+		setPassword: bindActionCreators(setPassword, dispatch)
 	}
 }
 
