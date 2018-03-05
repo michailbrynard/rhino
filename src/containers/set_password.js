@@ -33,16 +33,28 @@ class Landing extends Component {
 						<p className='subtitle'>Set your password to continue</p>
 						{
 							signupErr ?
-								<p>Error: {signupErr}</p> : null
+								<p>Error: {signupErr}</p> : 
+								(
+									this.state.password.length > 0 && this.state.passwordConf.length > 0 &&
+									this.state.password !== this.state.passwordConf &&
+									<p>Passwords do not match</p>
+								)
 						}
 						<form onSubmit={(e) => {
 							e.preventDefault()
+
+							const params = new URLSearchParams(this.props.location.search);
+							const uid = params.get('uid');
+							const paramtoken = params.get('token');
+
 							console.log("PASSWORD FOR SUBMISSION", this.state);
+							console.log("PARAMS", uid + ' ' + paramtoken);
 						}}>
 							<TextField
 								inputStyle={{ color: "white" }}
 								hintStyle={{ color: "#999" }}
 								value={this.state.password}
+								type="password"
 								onChange={e => this.setState({ password: e.target.value })}
 								hintText="Password"
 							/><br />
@@ -50,6 +62,7 @@ class Landing extends Component {
 								inputStyle={{ color: "white" }}
 								hintStyle={{ color: "#999" }}
 								value={this.state.passwordConf}
+								type="password"
 								onChange={e => this.setState({ passwordConf: e.target.value })}
 								hintText="Confirm Password"
 							/><br/>
