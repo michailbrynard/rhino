@@ -87,7 +87,7 @@ class Home extends Component {
 									<div className='col-6-sm left'>
 										<h3>Rehive</h3>
 										<p className='cardtext'>From ideas to production, Rehive partners with start ups, enterprises and governments to accelerate fintech innovation and build amazing fintech products.</p>
-										<RaisedButton label="Visit Site" secondary={true} />
+										<a href="https://rehive.com" target="_blank"><RaisedButton label="Visit Site" secondary={true} /></a>
 									</div>
 								</div>
 							</div>

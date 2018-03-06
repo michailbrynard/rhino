@@ -26,8 +26,9 @@ class Nav extends Component {
 		const user_data = JSON.parse(localStorage.getItem('user'))
 
 		const drawer_contents = [
-			<img alt='logo' className='nav-img' src='./logo.svg' />,
+			<img key={0} alt='logo' className='nav-img' src='./logo.1.svg' />,
 			<MenuItem
+				key={1}
 				style={{
 					backgroundColor: path === '/' ? yellow600 : null
 				}}
@@ -36,6 +37,7 @@ class Nav extends Component {
 			</MenuItem>,
 
 			<MenuItem
+				key={2}
 				style={{
 					backgroundColor: path === '/wallet' ? yellow600 : null
 				}}
@@ -44,6 +46,7 @@ class Nav extends Component {
 			</MenuItem>,
 
 			<MenuItem
+				key={3}
 				style={{
 					backgroundColor: path === '/earn' ? yellow600 : null
 				}}
@@ -52,6 +55,7 @@ class Nav extends Component {
 			</MenuItem>,
 
 			<MenuItem
+				key={4}
 				style={{
 					backgroundColor: path === '/market' ? yellow600 : null
 				}}
@@ -60,6 +64,7 @@ class Nav extends Component {
 			</MenuItem>,
 
 			<MenuItem
+				key={5}
 				style={{
 					backgroundColor: path === '/settings' ? yellow600 : null
 				}}
@@ -67,7 +72,7 @@ class Nav extends Component {
 				onClick={() => history.push('/settings')}>Settings
 			</MenuItem>,
 
-			<List style={style.user_nav_view}>
+			<List key={6} style={style.user_nav_view}>
 				<ListItem disabled style={{
 					justifyContent: 'center',
 					display: 'flex'
