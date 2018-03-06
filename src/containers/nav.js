@@ -26,14 +26,21 @@ class Nav extends Component {
 		const user_data = JSON.parse(localStorage.getItem('user'))
 
 		const drawer_contents = [
-			<img key={0} alt='logo' className='nav-img' src='./logo.1.svg' />,
+			<img style={{
+				margin: 'auto',
+				display: 'block'
+			}} key={0} alt='logo' className='nav-img' src='./logo.1.svg' />,
 			<MenuItem
 				key={1}
 				style={{
 					backgroundColor: path === '/' ? yellow600 : null
 				}}
 				leftIcon={<FontIcon style={{ color: path === '/' ? white : yellow600, position: 'absolute', left: '40%' }} className="material-icons">change_history</FontIcon>}
-				onClick={() => history.push('/')}>Home
+				onClick={() => history.push('/')}>
+				<span style={{
+					position: 'absolute',
+					left: '10%'
+				}}>Home</span>
 			</MenuItem>,
 
 			<MenuItem
@@ -42,7 +49,11 @@ class Nav extends Component {
 					backgroundColor: path === '/wallet' ? yellow600 : null
 				}}
 				leftIcon={<FontIcon style={{ color: path === '/wallet' ? white : yellow600, position: 'absolute', left: '40%' }} className="material-icons">crop_square</FontIcon>}
-				onClick={() => history.push('/wallet')}>Wallet
+				onClick={() => history.push('/wallet')}>
+				<span style={{
+					position: 'absolute',
+					left: '10%'
+				}}>Wallet</span>
 			</MenuItem>,
 
 			<MenuItem
@@ -51,7 +62,11 @@ class Nav extends Component {
 					backgroundColor: path === '/earn' ? yellow600 : null
 				}}
 				leftIcon={<FontIcon style={{ color: path === '/earn' ? white : yellow600, position: 'absolute', left: '40%' }} className="material-icons">star_border</FontIcon>}
-				onClick={() => history.push('/earn')}>Rewards
+				onClick={() => history.push('/earn')}>
+				<span style={{
+					position: 'absolute',
+					left: '10%'
+				}}>Rewards</span>
 			</MenuItem>,
 
 			<MenuItem
@@ -60,7 +75,11 @@ class Nav extends Component {
 					backgroundColor: path === '/market' ? yellow600 : null
 				}}
 				leftIcon={<FontIcon style={{ color: path === '/market' ? white : yellow600, position: 'absolute', left: '40%' }} className="material-icons">crop_7_5</FontIcon>}
-				onClick={() => history.push('/market')}>Market
+				onClick={() => history.push('/market')}>
+				<span style={{
+					position: 'absolute',
+					left: '10%'
+				}}>Market</span>
 			</MenuItem>,
 
 			<MenuItem
@@ -69,7 +88,11 @@ class Nav extends Component {
 					backgroundColor: path === '/settings' ? yellow600 : null
 				}}
 				leftIcon={<FontIcon style={{ color: path === '/settings' ? white : yellow600, position: 'absolute', left: '40%' }} className="material-icons">details</FontIcon>}
-				onClick={() => history.push('/settings')}>Settings
+				onClick={() => history.push('/settings')}>
+				<span style={{
+					position: 'absolute',
+					left: '10%'
+				}}>Settings</span>
 			</MenuItem>,
 
 			<List key={6} style={style.user_nav_view}>
@@ -100,13 +123,13 @@ class Nav extends Component {
 					zIndex: 104
 				}} label="Logout" />
 				<br/>
-				<Drawer onClick={() => this.setState({ open: false })} className="drawer right">
+				<Drawer onClick={() => this.setState({ open: false })} className="drawer left">
 					{
 						drawer_contents.map(i => i)
 					}
 				</Drawer>
 
-				<Drawer open={this.state.open} className="mobile_drawer right">
+				<Drawer docked={false} onRequestChange={() => this.setState({ open: false })} open={this.state.open} className="mobile_drawer left">
 					{
 						drawer_contents.map(i => i)
 					}
