@@ -57,7 +57,6 @@ export default () => {
 									<Route exact path='/earn' component={Earn} />
 									<Route exact path='/market' component={Market} />
 									<Route exact path='/settings' component={Settings} />
-
 								</div> :
 								<div>
 									<Route exact path='/' component={Landing} />

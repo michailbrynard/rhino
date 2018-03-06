@@ -2,13 +2,25 @@ import { yellow600, grey600, blue300, blue700, white } from 'material-ui/styles/
 
 export const style = {
 	card: {
-		height: 250,
 		display: 'flex',
-		alignItems: 'center',
-		position: 'relative',
+		padding: '30px 40px 25px',
+		flexDirection: 'row',
 		borderRadius: '10px',
 		maxWidth: '500px',
-		margin: 'auto'
+		alignItems: 'center'
+	},
+	card_right: {
+		width: '200px',
+		alignItems: 'center'
+	},
+	card_left: {
+		width: '200px',
+		alignItems: 'center',
+		textAlign: 'center',
+		paddingRight: '20px'
+	},
+	card_left_img: {
+		width: '100%'
 	},
 	balance_card: {
 		width: '100%',

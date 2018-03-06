@@ -65,6 +65,10 @@ body {
     font-size: 10px;
 }
 
+.card-heading {
+	margin-top: 0px;
+}
+
 
 .drawer > div {
 	width: 0px !important;

@@ -77,76 +77,57 @@ class Home extends Component {
 					}
 					<div className='col-12'>
 						<Paper style={style.card} zDepth={3}>
-							<div className='container'>
-								<div className='row'>
-									<div className='col-6-sm'>
-
-										<br /><br />
-										<img className='container' src='logo.png' />
-									</div>
-									<div className='col-6-sm right'>
-										<h3>{user_data.company}</h3>
-										<br /><br />
-										<RaisedButton label="Visit Site" secondary={true} />
-									</div>
-								</div>
+							<div style={style.card_left}>
+								<img style={style.card_left_img} src='logo.png' />
+							</div>
+							<div style={style.card_right} className='right'>
+								<h3 className='card-heading'>{user_data.company}</h3>
+								<br /><br />
+								<RaisedButton label="Visit Site" secondary={true} />
 							</div>
 						</Paper>
 						<br />
 					</div>
 					<div className='col-12'>
 						<Paper style={style.card} zDepth={3}>
-							<div className='container'>
-								<div className='row'>
-									<div className='col-6-sm'>
-										<h1>
-											{11.11}
-											<br />
-											{"HIVE"}
-										</h1>
-									</div>
-									<div className='col-6-sm right'>
-										<h3>Balance</h3>
-										<br /><br />
-										<RaisedButton onClick={() => history.push('/wallet')} label="Wallet" secondary={true} />
-									</div>
-								</div>
+							<div style={style.card_left}>
+								<br/>
+								<h1 className='card-heading'>
+									{11.11}
+									<br />
+									{"HIVE"}
+								</h1>
+							</div>
+							<div style={{ width: '200px'}} className='right'>
+								<h3 className='card-heading'>Balance</h3>
+								<br /><br />
+								<RaisedButton onClick={() => history.push('/wallet')} label="Wallet" secondary={true} />
 							</div>
 						</Paper>
 						<br />
 					</div>
 					<div className='col-12'>
 						<Paper style={style.card} zDepth={3}>
-							<div className='container'>
-								<div className='row'>
-									<div className='col-6-sm'>
-										<br /><br />
-										<img className='container' src='coins.png' />
-									</div>
-									<div className='col-6-sm right'>
-										<h3>Earn Tokens</h3>
-										<br /><br />
-										<RaisedButton onClick={() => history.push('/earn')} label="Rewards" secondary={true} />
-									</div>
-								</div>
+							<div style={style.card_left}>
+								<img style={style.card_left_img} src='coins.png' />
+							</div>
+							<div style={style.card_right} className='right'>
+								<h3 className='card-heading'>Earn Tokens</h3>
+								<br /><br />
+								<RaisedButton onClick={() => history.push('/earn')} label="Rewards" secondary={true} />
 							</div>
 						</Paper>
 						<br />
 					</div>
 					<div className='col-12'>
 						<Paper style={style.card} zDepth={3}>
-							<div className='container'>
-								<div className='row'>
-									<div className='col-6-sm'>
-										<br /><br />
-										<img className='container' src='trading.png' />
-									</div>
-									<div className='col-6-sm right'>
-										<h3>Redeem Tokens</h3>
-										<br /><br />
-										<RaisedButton onClick={() => history.push('/market')} label="Perks" secondary={true} />
-									</div>
-								</div>
+							<div style={style.card_left}>
+								<img style={style.card_left_img} src='trading.png' />
+							</div>
+							<div style={style.card_right} className='right'>
+								<h3 className='card-heading'>Redeem Tokens</h3>
+								<br /><br />
+								<RaisedButton onClick={() => history.push('/market')} label="Perks" secondary={true} />
 							</div>
 						</Paper>
 						<br />
