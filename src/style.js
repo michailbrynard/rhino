@@ -43,10 +43,10 @@ export const style = {
 		left: '10%'
 	},
 	drawer_link_highlight: (path, route) => ({
-		backgroundColor: path === route ? yellow600 : null
+		backgroundColor: path === route ? blue700 : null
 	}),
 	drawer_link_icon: (path, route) => ({ 
-		color: path === route ? white : yellow600, 
+		color: path === route ? white : blue700, 
 		position: 'absolute', 
 		left: '40%' 
 	}),

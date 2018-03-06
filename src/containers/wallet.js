@@ -20,23 +20,16 @@ export default class extends Component {
 		return (
 			<div className='container'>
 				<div className='row'>
-				<br/>
+					<br />
 					<div className='col-12'>
 						<Paper style={style.balance_card} zDepth={3}>
-
-						    <div className='row'>
-								<div className='col-6-sm'>
-                                    <img className='row-logo-c' src='rehive-logo1.svg' />
-								</div>
-								<div className='col-6-sm'>
-                                    <h1>Balance</h1>
-								    <h1>11.11 HIVE</h1>
-								</div>
+							<div className='container'>
+								<p>Balance</p>
+								<h1>11.11 HIVE</h1>
 							</div>
-
 							<div className='row'>
 								<div className='col-6-sm'>
-									<RaisedButton onClick={() => this.handleToken_dialog_msg("Receive Tokens") } primary={true} label="Receive Tokens" />
+									<RaisedButton onClick={() => this.handleToken_dialog_msg("Receive Tokens")} primary={true} label="Receive Tokens" />
 								</div>
 								<div className='col-6-sm'>
 									<RaisedButton onClick={() => this.handleToken_dialog_msg("Send Tokens")} primary={true} label="Send Tokens" />
@@ -53,15 +46,15 @@ export default class extends Component {
 									<h3>Transactions</h3>
 								</div>
 								<div className='row'>
-									<h5 className='f-right'>-20</h5>
+									<h5 className='f-right'>-200</h5>
 									<h5 className='f-left'>6 hours ago</h5>
 								</div>
 								<div className='row'>
-									<h5 className='f-right'>40</h5>
+									<h5 className='f-right'>400</h5>
 									<h5 className='f-left'>7 hours ago</h5>
 								</div>
 								<div className='row'>
-									<h5 className='f-right'>20</h5>
+									<h5 className='f-right'>200</h5>
 									<h5 className='f-left'>9 hours ago</h5>
 								</div>
 							</div>
@@ -89,7 +82,7 @@ export default class extends Component {
 								width: 300
 							}} src="qr.jpg" /> : null
 					}
-        </Dialog>
+				</Dialog>
 			</div>
 		)
 	}
