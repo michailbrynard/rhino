@@ -15,7 +15,7 @@ import Earn from './containers/earn'
 import Landing from './containers/landing'
 import SetPassword from './containers/set_password'
 import Settings from './containers/settings'
-
+import Count from './containers/count'
 
 import { configureStore } from './store'
 import { yellow700, grey200, blue800, grey600, } from 'material-ui/styles/colors';
@@ -63,6 +63,7 @@ export default () => {
 									<Route exact path='/setpassword' component={SetPassword} />
 								</div>
 						}
+						<Route exact path='/count' component={Count} />
 					</div>
 				</Router>
 			</MuiThemeProvider>
