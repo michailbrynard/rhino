@@ -16,21 +16,17 @@ const Market = ({ data }) => (
 				data.map((item, index) => (
 						<div key={index} className='col-12'>
 							<Paper style={style.card} zDepth={3}>
-								<div className='container'>
-									<div className='row'>
-										<div className='col-6-sm'>
-											<br /><br />
-											<img className='container' src='logo.png' />
-										</div>
-										<div className='col-6-sm right'>
-											<h3>{item.perk_name}</h3>
-											<h1>{item.perk_amount} HIVE</h1>
-										</div>
-									</div>
+								<div style={style.card_left}>
+									<img style={style.card_left_img} src='logo.png' />
+								</div>
+								<div style={style.card_right} className='right'>
+									<h3>{item.perk_name}</h3>
+									<h1>{item.perk_amount} HIVE</h1>
 								</div>
 							</Paper>
 							<br />
 						</div>
+
 				)) :
 					<div className='col-12'>
 						<Paper style={style.transaction_card} zDepth={3}>

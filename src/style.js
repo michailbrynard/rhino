@@ -3,6 +3,7 @@ import { yellow600, grey600, blue300, blue700, white } from 'material-ui/styles/
 export const style = {
 	card: {
 		display: 'flex',
+		position: 'relative',
 		padding: '30px 40px 25px',
 		flexDirection: 'row',
 		borderRadius: '10px',
@@ -23,20 +24,18 @@ export const style = {
 		width: '100%'
 	},
 	balance_card: {
-		width: '100%',
 		textAlign: 'center',
-		display: 'block',
 		borderRadius: '10px',
 		alignItems: 'center',
-		margin: 'auto',
+		padding: '30px 15px 25px',
 		position: 'relative',
 		maxWidth: '500px'
 	},
 	transaction_card: {
 		borderRadius: '10px',
-	    maxWidth: '500px',
-	    alignItems: 'center',
-		margin: 'auto',
+	  maxWidth: '500px',
+	  alignItems: 'center',
+		padding: '30px 40px',
 		position: 'relative',
 
 	},
@@ -52,7 +51,7 @@ export const style = {
 	},
 	drawer_link: {
 		position: 'absolute',
-		left: '10%'
+		left: '60%'
 	},
 	drawer_link_highlight: (path, route) => ({
 		backgroundColor: path === route ? blue700 : null

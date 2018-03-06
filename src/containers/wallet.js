@@ -29,10 +29,10 @@ export default class extends Component {
 							</div>
 							<div className='row'>
 								<div className='col-6-sm'>
-									<RaisedButton onClick={() => this.handleToken_dialog_msg("Receive Tokens")} primary={true} label="Receive Tokens" />
+									<RaisedButton onClick={() => this.handleToken_dialog_msg("Receive Tokens")} primary={true} label="Receive" />
 								</div>
 								<div className='col-6-sm'>
-									<RaisedButton onClick={() => this.handleToken_dialog_msg("Send Tokens")} primary={true} label="Send Tokens" />
+									<RaisedButton onClick={() => this.handleToken_dialog_msg("Send Tokens")} primary={true} label="Send" />
 								</div>
 							</div>
 							<br />

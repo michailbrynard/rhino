@@ -84,10 +84,10 @@ class Nav extends Component {
 				<FontIcon onClick={() => { this.setState({ open: !this.state.open }) }} style={style.nav_menu_icon} className="material-icons">menu</FontIcon>
 				<FlatButton onClick={() => logout()} style={style.logout_btn} label="Logout" />
 				<br/>
-				<Drawer onClick={() => this.setState({ open: false })} className="drawer left">
+				<Drawer onClick={() => this.setState({ open: false })} className="drawer">
 					{ drawer_contents.map(i => i) }
 				</Drawer>
-				<Drawer docked={false} onRequestChange={() => this.setState({ open: false })} open={this.state.open} className="mobile_drawer left">
+				<Drawer width={225} docked={false} onRequestChange={() => this.setState({ open: false })} open={this.state.open} className="mobile_drawer">
 					{ drawer_contents.map(i => i) }
 				</Drawer>
 			</div>
