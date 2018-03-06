@@ -31,10 +31,10 @@ class Home extends Component {
 			snackbar_open: false,
 		});
 	};
-	
+
 	render() {
 
-		const {history} = this.props
+		const { history } = this.props
 
 		const user_data = JSON.parse(localStorage.getItem('user'))
 
@@ -77,75 +77,57 @@ class Home extends Component {
 					}
 					<div className='col-12'>
 						<Paper style={style.card} zDepth={3}>
-							<div className='container'>
-								<div className='row'>
-									<div className='col-6-sm'>
-
-										<br /><br />
-										<img className='row-logo' src='rehive-logo1.svg' />
-									</div>
-									<div className='col-6-sm left'>
-										<h3>Rehive</h3>
-										<p className='cardtext'>From ideas to production, Rehive partners with start ups, enterprises and governments to accelerate fintech innovation and build amazing fintech products.</p>
-										<a href="https://rehive.com" target="_blank"><RaisedButton label="Visit Site" secondary={true} /></a>
-									</div>
-								</div>
+							<div style={style.card_left}>
+								<img style={style.card_left_img} src='rehive-logo1.svg' />
+							</div>
+							<div style={style.card_right} className='right'>
+								<h3>Rehive</h3>
+								<p className='cardtext'>From ideas to production, Rehive partners with start ups, enterprises and governments to accelerate fintech innovation and build amazing fintech products.</p>
+								<a href="https://rehive.com" target="_blank"><RaisedButton label="Visit Site" secondary={true} /></a>
 							</div>
 						</Paper>
 						<br />
 					</div>
 					<div className='col-12'>
 						<Paper style={style.card} zDepth={3}>
-							<div className='container'>
-								<div className='row'>
-									<div className='col-6-sm '>
-										<h1 >
-											{11.11}
-											<br />
-											{"HIVE"}
-										</h1>
-									</div>
-									<div className='col-6-sm left'>
-										<h1>Balance</h1>
-										<RaisedButton onClick={() => history.push('/wallet')} label="Wallet" secondary={true} />
-									</div>
-								</div>
+							<div style={style.card_left}>
+								<br/>
+								<h1 className='card-heading'>
+									{11.11}
+									<br />
+									{"HIVE"}
+								</h1>
+							</div>
+							<div style={{ width: '200px'}} className='right'>
+								<h3 className='card-heading'>Balance</h3>
+								<br /><br />
+								<RaisedButton onClick={() => history.push('/wallet')} label="Wallet" secondary={true} />
 							</div>
 						</Paper>
 						<br />
 					</div>
 					<div className='col-12'>
 						<Paper style={style.card} zDepth={3}>
-							<div className='container'>
-								<div className='row'>
-									<div className='col-6-sm'>
-										<br /><br />
-										<img className='container row-logo-b' src='coins.png' />
-									</div>
-									<div className='col-6-sm left'>
-										<h3>Earn Tokens</h3>
-										<p className='cardtext'> Earn tokens by helping out Rehive! Refer a friend, report a bug or attend a hackathon and be rewarded with HIVE tokens.</p>
-										<RaisedButton onClick={() => history.push('/earn')} label="Earn" secondary={true} />
-									</div>
-								</div>
+							<div style={style.card_left}>
+								<img style={style.card_left_img} src='coins.png' />
+							</div>
+							<div style={style.card_right} className='right'>
+								<h3 className='card-heading'>Earn Tokens</h3>
+								<br /><br />
+								<RaisedButton onClick={() => history.push('/earn')} label="Rewards" secondary={true} />
 							</div>
 						</Paper>
 						<br />
 					</div>
 					<div className='col-12'>
 						<Paper style={style.card} zDepth={3}>
-							<div className='container'>
-								<div className='row'>
-									<div className='col-6-sm'>
-										<br /><br />
-										<img className='container row-logo-b' src='trading.png' />
-									</div>
-									<div className='col-6-sm left'>
-										<h3>Redeem Tokens</h3>
-										<p className='cardtext'> Spend HIVE tokens on perks! Exchange tokens for special perks or items in our marketplace!</p>
-										<RaisedButton onClick={() => history.push('/market')} label="Perks" secondary={true} />
-									</div>
-								</div>
+							<div style={style.card_left}>
+								<img style={style.card_left_img} src='trading.png' />
+							</div>
+							<div style={style.card_right} className='right'>
+								<h3 className='card-heading'>Redeem Tokens</h3>
+								<br /><br />
+								<RaisedButton onClick={() => history.push('/market')} label="Perks" secondary={true} />
 							</div>
 						</Paper>
 						<br />
@@ -157,7 +139,7 @@ class Home extends Component {
 }
 
 class HomeContainer extends Component {
-	componentDidMount() {}
+	componentDidMount() { }
 
 	render() {
 		const { history } = this.props

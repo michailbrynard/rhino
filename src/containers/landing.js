@@ -36,9 +36,9 @@ class Landing extends Component {
 		return (
 			<div>
 				<AppBar
-				title = {<img alt='logo' className='header-img' src='./logo.svg' />}
-				showMenuIconButton={false}
-				iconElementRight={<FlatButton onClick={this.handleOpen} label="Login" />}
+					title={<img alt='logo' className='header-img' src='./logo.svg' />}
+					showMenuIconButton={false}
+					iconElementRight={<FlatButton onClick={this.handleOpen} label="Login" />}
 				/>
 
 				<Dialog
@@ -56,7 +56,7 @@ class Landing extends Component {
 						}
 						{
 							loginLoading ?
-							 <SmallLoader/> :
+								<SmallLoader /> :
 								<form onSubmit={(e) => {
 									e.preventDefault()
 									login(this.state.email, this.state.password)
@@ -88,19 +88,19 @@ class Landing extends Component {
 						}
 					</div>
 				</Dialog>
-				
+
 				<div className='spacer'></div>
 				<div className='row'>
 					<div className='col-6 center'>
-						<br/>
+						<br />
 						<img alt='logo' className='landing-img' src='./rehive-logo1.svg' />
 					</div>
 					{
 						signupData ?
 							<div className='col-6 center row'>
-								<h1 className='title'>Thank you for signing up to { signupData.company }</h1>
+								<h1 className='title'>Thank you for signing up to {signupData.company}</h1>
 								<p className='subtitle'>Check your email for the link to create your password and login</p>
-							
+
 							</div> :
 							<div className='col-6  landing-row'>
 								<h1 className='title'>Rehive fintech platform</h1>

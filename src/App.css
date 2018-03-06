@@ -63,7 +63,11 @@ body {
 }
 
 .cardtext {
-    font-size: 10px;
+    font-size: 12px;
+}
+
+.card-heading {
+	margin-top: 0px;
 }
 
 

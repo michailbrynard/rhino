@@ -18,15 +18,15 @@ import Settings from './containers/settings'
 
 
 import { configureStore } from './store'
-import { yellow600, grey200, blue800, grey600, } from 'material-ui/styles/colors';
+import { yellow700, grey200, blue800, grey600, } from 'material-ui/styles/colors';
 
 const muiTheme = getMuiTheme({
 	palette: {
-		primary1Color: yellow600,
+		primary1Color: yellow700,
 		primary2Color: grey600,
 		primary3Color: blue800,
 		canvasColor: grey200,
-		accent1Color: yellow600,
+		accent1Color: yellow700,
 		accent2Color: grey600,
 		accent3Color: blue800,
 	},
@@ -57,7 +57,6 @@ export default () => {
 									<Route exact path='/earn' component={Earn} />
 									<Route exact path='/market' component={Market} />
 									<Route exact path='/settings' component={Settings} />
-
 								</div> :
 								<div>
 									<Route exact path='/' component={Landing} />
