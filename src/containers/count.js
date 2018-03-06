@@ -7,7 +7,7 @@ import Dialog from 'material-ui/Dialog';
 
 import { SmallLoader } from '../components/loader'
 
-import { signup, login } from '../actions'
+import { getSignupCountData } from '../actions'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
@@ -15,6 +15,12 @@ let { IconButton, NavigationClose, Styles } = require('material-ui')
 
 
 class Count extends Component {
+
+	componentDidMount() {
+		const { getSignupCountData } = this.props
+		const user_data = JSON.parse(localStorage.getItem('user'))
+		getSignupCountData(user_data.company)
+	}
 	render() {
 		const { history } = this.props
 
@@ -66,11 +72,18 @@ class Count extends Component {
 }
 
 function mapStateToProps(state) {
-	return {}
+	const { data, loading, err } = state.signup_count
+	return {
+		data,
+		loading,
+		err
+	}
 }
 
 function mapDispatchToProps(dispatch) {
-	return {}
+	return {
+		getSignupCountData: bindActionCreators(getSignupCountData, dispatch)
+	}
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Count)
