@@ -125,7 +125,7 @@ class Home extends Component {
 									<div className='col-6-sm left'>
 										<h3>Earn Tokens</h3>
 										<p className='cardtext'> Earn tokens by helping out Rehive! Refer a friend, report a bug or attend a hackathon and be rewarded with HIVE tokens.</p>
-										<RaisedButton onClick={() => history.push('/earn')} label="Rewards" secondary={true} />
+										<RaisedButton onClick={() => history.push('/earn')} label="Earn" secondary={true} />
 									</div>
 								</div>
 							</div>
