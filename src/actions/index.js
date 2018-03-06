@@ -164,3 +164,65 @@ export const getPerkData = (company) => {
 			})
 	}
 }
+
+export const GET_SIGNUP_COUNT_DATA = "GET_SIGNUP_COUNT_DATA"
+export const GET_SIGNUP_COUNT_DATA_SUCCESS = "GET_SIGNUP_COUNT_DATA_SUCCESS"
+export const GET_SIGNUP_COUNT_DATA_ERROR = "GET_SIGNUP_COUNT_DATA_ERROR"
+
+export const getSignupCountData = (company) => {
+	return dispatch => {
+		// const token = localStorage.getItem('token')
+		dispatch({ type: GET_SIGNUP_COUNT_DATA })
+		fetch(process.env.REACT_APP_API_URL + '/user/count/' + company + '/signup', {
+			// credentials: 'include',
+			mode: 'cors',
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json',
+				// 'authorization': `Bearer ${token}`
+			}
+		})
+			.then(response => response.json())
+			.then(json => {
+				if (json.status === 'success') {
+					dispatch({ type: GET_SIGNUP_COUNT_DATA_SUCCESS, data: json.data.results })
+				} else {
+					dispatch({ type: GET_SIGNUP_COUNT_DATA_ERROR, err: json.message })
+				}
+			})
+			.catch(err => {
+				dispatch({ type: GET_SIGNUP_COUNT_DATA_ERROR, err })
+			})
+	}
+}
+
+export const GET_REWARD_COUNT_DATA = "GET_REWARD_COUNT_DATA"
+export const GET_REWARD_COUNT_DATA_SUCCESS = "GET_REWARD_COUNT_DATA_SUCCESS"
+export const GET_REWARD_COUNT_DATA_ERROR = "GET_REWARD_COUNT_DATA_ERROR"
+
+export const getRewardCountData = (company, reward_type) => {
+	return dispatch => {
+		// const token = localStorage.getItem('token')
+		dispatch({ type: GET_REWARD_COUNT_DATA })
+		fetch(process.env.REACT_APP_API_URL + '/user/count/' + company + '/' + reward_type, {
+			// credentials: 'include',
+			mode: 'cors',
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json',
+				// 'authorization': `Bearer ${token}`
+			}
+		})
+			.then(response => response.json())
+			.then(json => {
+				if (json.status === 'success') {
+					dispatch({ type: GET_REWARD_COUNT_DATA_SUCCESS, data: json.data.results })
+				} else {
+					dispatch({ type: GET_REWARD_COUNT_DATA_ERROR, err: json.message })
+				}
+			})
+			.catch(err => {
+				dispatch({ type: GET_REWARD_COUNT_DATA_ERROR, err })
+			})
+	}
+}
