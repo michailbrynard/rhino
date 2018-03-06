@@ -1,3 +1,5 @@
+import { yellow600, grey600, blue300, blue700, white } from 'material-ui/styles/colors';
+
 export const style = {
 	card: {
 		height: 250,
@@ -31,5 +33,32 @@ export const style = {
 		bottom: 0,
 		left: 0,
 		right: 0
+	},
+	drawer_logo: {
+		margin: 'auto',
+		display: 'block'
+	},
+	drawer_link: {
+		position: 'absolute',
+		left: '10%'
+	},
+	drawer_link_highlight: (path, route) => ({
+		backgroundColor: path === route ? yellow600 : null
+	}),
+	drawer_link_icon: (path, route) => ({ 
+		color: path === route ? white : yellow600, 
+		position: 'absolute', 
+		left: '40%' 
+	}),
+	nav_menu_icon: { 
+		color: white, 
+		position: 'absolute', 
+		left: 20, 
+		paddingTop: '5px' 
+	},
+	logout_btn: {
+		float: 'right',
+		color: 'white',
+		zIndex: 104
 	}
 };
