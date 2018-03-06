@@ -19,6 +19,7 @@ body {
 .subtitle {
 	font-size: 20px;
 	color: white;
+
 }
 
 .landing-img {
@@ -43,7 +44,7 @@ body {
 }
 
 .row-logo {
-    padding: 10px 20px 20px 15px;
+    padding: 0px 20px 20px 15px;
 
 }
 

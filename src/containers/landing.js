@@ -97,13 +97,13 @@ class Landing extends Component {
 					</div>
 					{
 						signupData ?
-							<div className='col-6 center landing-row'>
+							<div className='col-6 center row'>
 								<h1 className='title'>Thank you for signing up to { signupData.company }</h1>
 								<p className='subtitle'>Check your email for the link to create your password and login</p>
 							
 							</div> :
-							<div className='col-6 center landing-row'>
-								<h1 className='title'>Rehive fintech platform.</h1>
+							<div className='col-6  landing-row'>
+								<h1 className='title'>Rehive fintech platform</h1>
 								<p className='subtitle'>Welcome to the Rehive supporter platform! Sign up for exciting rewards and updates on everything Rehive!</p>
 								{
 									signupErr ?

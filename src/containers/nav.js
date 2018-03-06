@@ -48,7 +48,7 @@ class Nav extends Component {
 					backgroundColor: path === '/earn' ? yellow600 : null
 				}}
 				leftIcon={<FontIcon style={{ color: path === '/earn' ? white : yellow600, position: 'absolute', left: '40%' }} className="material-icons">star_border</FontIcon>}
-				onClick={() => history.push('/earn')}>Rewards
+				onClick={() => history.push('/earn')}>Earn
 			</MenuItem>,
 
 			<MenuItem
