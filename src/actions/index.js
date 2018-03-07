@@ -12,7 +12,7 @@ export const signup = (signup_email) => (
 				'Content-Type': 'application/json',
 			},
 			mode: 'cors',
-			body: JSON.stringify({ signup_email, company: 'launcher_test', referal_id: "d0a009c9-b5bc-4239-93d2-2f54220076a2" })
+			body: JSON.stringify({ signup_email, company: 'launcher_test', referral_id: "d0a009c9-b5bc-4239-93d2-2f54220076a2" })
 		})
 		.then(response => {
 			return response.json()
