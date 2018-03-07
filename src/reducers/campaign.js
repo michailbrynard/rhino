@@ -6,7 +6,7 @@ import {
 
 import { merge } from 'lodash'
 
-export default (state = { loading: false }, action) => {
+export default (state = { loading: false, data: [], err: null }, action) => {
 	switch (action.type) {
 		case GET_CAMPAIGN_DATA:
 			return merge({}, {
