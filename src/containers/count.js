@@ -23,15 +23,26 @@ class SignupCount extends Component {
 		getSignupCountData(user_data.company)
 	}
 	render() {
-		const { history } = this.props
+		const { history, signupCountData } = this.props
+		const { err, loading, data } = signupCountData
 
 		return (
 			<div>
 					<div style={style.content}>
-						<div>
-						<h1 style={style.header}>108 801</h1>
-						<span>USERS SIGNED UP</span>
-						</div>
+						{
+							loading ?
+							<SmallLoader/> :
+							(
+								err ?
+								<h3>{err}</h3> :
+								(
+										data && <div>
+											<h1 style={style.header}>108 801</h1>
+											<span>USERS SIGNED UP</span>
+										</div>
+								)
+							)
+						}
 					</div>
 					<div style={style.overlay}></div>
 				<div className='row'>
@@ -107,7 +118,7 @@ const style = {
 
 class Count extends Component {
 	render() {
-		const { history, match, getSignupCountData } = this.props
+		const { history, match, getSignupCountData, signupCountData } = this.props
 
 		return (
 			<div>
@@ -117,7 +128,7 @@ class Count extends Component {
 				/>
 				<Tabs>
 					<Tab label="Signups">
-						<SignupCount getSignupCountData={getSignupCountData} params={match.params} />
+						<SignupCount getSignupCountData={getSignupCountData} params={match.params} signupCountData={signupCountData} />
 					</Tab>
 					<Tab label="Rewards Claimed">
 						<RewardCount getSignupCountData={getSignupCountData} params={match.params} />
@@ -131,9 +142,11 @@ class Count extends Component {
 function mapStateToProps(state) {
 	const { data, loading, err } = state.signup_count
 	return {
-		data,
-		loading,
-		err
+		signupCountData: {
+			data,
+			loading,
+			err
+		}
 	}
 }
 

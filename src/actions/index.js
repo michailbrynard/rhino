@@ -191,7 +191,8 @@ export const getSignupCountData = (company) => {
 				}
 			})
 			.catch(err => {
-				dispatch({ type: GET_SIGNUP_COUNT_DATA_ERROR, err })
+				console.log("ERR", err);
+				dispatch({ type: GET_SIGNUP_COUNT_DATA_ERROR, err: err.toString() })
 			})
 	}
 }
