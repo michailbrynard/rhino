@@ -6,5 +6,5 @@ RUN npm install
 COPY src/ /app/src/
 COPY public/ /app/public/
 # API url is set to a placeholder, needs to be configured in entrypoint script.
-CMD bash -c 'REACT_APP_API_URL={{API_URL}} REACT_APP_REHIVE_API_URL={{REHIVE_API_URL}} npm run build'
+CMD bash -c 'REACT_APP_API_URL={{API_URL}} REACT_APP_STELLAR_SERVICE_URL={{STELLAR_SERVICE_URL}} REACT_APP_REHIVE_API_URL={{REHIVE_API_URL}} npm run build'
 
