@@ -5,6 +5,7 @@ import campaign from './campaign'
 import perk from './perk'
 import set_password from './set_password'
 import signup_count from './signup_count'
+import reward_count from './reward_count'
 
 export default combineReducers({
 	signup,
@@ -12,5 +13,6 @@ export default combineReducers({
 	campaign,
 	perk,
 	set_password,
-	signup_count
+	signup_count,
+	reward_count
 })

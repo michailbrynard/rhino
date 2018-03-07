@@ -4,6 +4,7 @@ import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
 import Dialog from 'material-ui/Dialog';
+import { Tabs, Tab } from 'material-ui/Tabs';
 
 import { SmallLoader } from '../components/loader'
 
@@ -11,14 +12,14 @@ import { getSignupCountData } from '../actions'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-let { IconButton, NavigationClose, Styles } = require('material-ui')
 
 
 class Count extends Component {
 
 	componentDidMount() {
-		const { getSignupCountData } = this.props
+		const { getSignupCountData, match } = this.props
 		const user_data = JSON.parse(localStorage.getItem('user'))
+		console.log("PARAMS", match.params);
 		getSignupCountData(user_data.company)
 	}
 	render() {
