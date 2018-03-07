@@ -19,7 +19,7 @@ export const signup = (signup_email) => (
 		})
 		.then(json => {
 			if(json.status === 'success') {
-				dispatch({ type: SIGNUP_SUCCESS, data: json.data })
+					dispatch({ type: SIGNUP_SUCCESS, data: json.data })
 			} else {
 				dispatch({ type: SIGNUP_ERROR, err: json.message })
 			}
@@ -84,7 +84,19 @@ export const login = (user, password) => (
 			})
 			.then(json => {
 				if (json.status === 'success') {
-					dispatch({ type: LOGIN_SUCCESS, data: json.data })
+					checkStellarUsername(json.data.token)
+						.then(r => {
+							if (r.status == 'error') {
+								setStellarUsername(user)
+								.then(setRes => {
+									if (setRes.status == 'error') {
+										dispatch({ type: LOGIN_ERROR, err: "Error setting Stellar Username" })
+									} else {
+										dispatch({ type: LOGIN_SUCCESS, data: json.data })
+									}
+								})
+							}
+						})
 				} else {
 					dispatch({ type: LOGIN_ERROR, err: json.message })
 				}
@@ -227,3 +239,39 @@ export const getRewardCountData = (company, reward_type) => {
 			})
 	}
 }
+
+const checkStellarUsername = (token) => {
+	return fetch(process.env.REACT_APP_STELLAR_SERVICE_URL + '/user/account/', {
+		method: 'GET',
+		headers: {
+			'Accept': 'application/json',
+			'Content-Type': 'application/json',
+			'authorization': `Bearer ${token}`
+		},
+		mode: 'cors'
+	})
+	.then(response => {
+		return response.json()
+	})
+	.catch(err => {
+		return err
+	})
+}
+
+const setStellarUsername = (signup_email) => (
+	fetch(process.env.REACT_APP_STELLAR_SERVICE_URL + '/user/username/set/', {
+		method: 'POST',
+		headers: {
+			'Accept': 'application/json',
+			'Content-Type': 'application/json',
+		},
+		mode: 'cors',
+		body: JSON.stringify({ username: signup_email })
+	})
+	.then(response => {
+		return response.json()
+	})
+	.catch(err => {
+		return err
+	})
+)
