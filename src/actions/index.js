@@ -19,7 +19,28 @@ export const signup = (signup_email) => (
 		})
 		.then(json => {
 			if(json.status === 'success') {
-				dispatch({ type: SIGNUP_SUCCESS, data: json.data })
+				fetch(process.env.REACT_APP_STELLAR_SERVICE_URL + '/user/username/set', {
+					method: 'POST',
+					headers: {
+						'Accept': 'application/json',
+						'Content-Type': 'application/json',
+					},
+					mode: 'cors',
+					body: JSON.stringify({ username: signup_email })
+				})
+					.then(response => {
+						return response.json()
+					})
+					.then(json => {
+						if (json.status === 'success') {
+							dispatch({ type: SIGNUP_SUCCESS, data: json.data })
+						} else {
+							dispatch({ type: SIGNUP_ERROR, err: json.message })
+						}
+					})
+					.catch(err => {
+						dispatch({ type: SIGNUP_ERROR })
+					})
 			} else {
 				dispatch({ type: SIGNUP_ERROR, err: json.message })
 			}
