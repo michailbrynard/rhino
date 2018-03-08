@@ -106,8 +106,8 @@ class Landing extends Component {
 								<h1 className='title'>Rehive fintech platform</h1>
 								<p className='subtitle'>Welcome to the Rehive supporter platform! Sign up for exciting rewards and updates on everything Rehive!</p>
 								{
-									signupErr ?
-										<p>Error: {signupErr}</p> : null
+									//signupErr ?
+									//	<p>Error: {signupErr}</p> : null
 								}
 								<form onSubmit={(e) => {
 									e.preventDefault()
@@ -136,11 +136,10 @@ class Landing extends Component {
 }
 
 function mapStateToProps(state) {
-	const { err, data, loading } = state.signup
 	return {
-		signupErr: err,
-		signupData: data,
-		signupLoading: loading,
+		signupErr: state.signup.err,
+		signupData: state.signup.data,
+		signupLoading: state.signup.loading,
 		loginErr: state.login.err,
 		loginData: state.login.data,
 		loginLoading: state.login.loading

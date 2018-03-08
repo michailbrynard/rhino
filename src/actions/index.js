@@ -12,7 +12,7 @@ export const signup = (signup_email) => (
 				'Content-Type': 'application/json',
 			},
 			mode: 'cors',
-			body: JSON.stringify({ signup_email, company: 'launcher_test', referral_id: "d0a009c9-b5bc-4239-93d2-2f54220076a2" })
+			body: JSON.stringify({ signup_email, company: 'launcher_test', referral_id: "1234" })
 		})
 		.then(response => {
 			return response.json()
@@ -27,6 +27,40 @@ export const signup = (signup_email) => (
 		.catch(err => {
 			dispatch({ type: SIGNUP_ERROR })
 		})
+	}
+)
+
+export const CREATE_DEBIT = "CREATE_DEBIT"
+export const CREATE_DEBIT_SUCCESS = "CREATE_DEBIT_SUCCESS"
+export const CREATE_DEBIT_ERROR = "CREATE_DEBIT_ERROR"
+
+export const createDebit = (currency, amount) => (
+	dispatch => {
+		dispatch({ type: CREATE_DEBIT })
+		const token = localStorage.getItem('token')
+		fetch(process.env.REACT_APP_REHIVE_API_URL + '/transactions/debit/', {
+			method: 'POST',
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json',
+				'Authorization': `Token ${token}`
+			},
+			mode: 'cors',
+			body: JSON.stringify({ currency, amount })
+		})
+			.then(response => {
+				return response.json()
+			})
+			.then(json => {
+				if (json.status === 'success') {
+					dispatch({ type: CREATE_DEBIT_SUCCESS, data: json.data })
+				} else {
+					dispatch({ type: CREATE_DEBIT_ERROR, err: json.message })
+				}
+			})
+			.catch(err => {
+				dispatch({ type: CREATE_DEBIT_ERROR })
+			})
 	}
 )
 
@@ -84,18 +118,18 @@ export const login = (user, password) => (
 			})
 			.then(json => {
 				if (json.status === 'success') {
-					checkStellarUsername(json.data.token)
-						.then(r => {
-							if (r.status == 'error') {
-								setStellarUsername(user)
-								.then(setRes => {
-									if (setRes.status == 'error') {
-										dispatch({ type: LOGIN_ERROR, err: "Error setting Stellar Username" })
-									} else {
-										dispatch({ type: LOGIN_SUCCESS, data: json.data })
-									}
-								})
-							}
+					getBalanceData(json.data.token)
+					.then(r => {
+						let data = json.data
+						data['user']['balance'] = r.data.results[0].currencies[0]
+						getTransactionData(json.data.token)
+						.then(tr => {
+							data['user']['transactions'] = tr.data.results
+							dispatch({ type: LOGIN_SUCCESS, data })
+						})
+					})
+						.catch(err => {
+							dispatch({ type: LOGIN_ERROR })
 						})
 				} else {
 					dispatch({ type: LOGIN_ERROR, err: json.message })
@@ -276,3 +310,64 @@ const setStellarUsername = (signup_email) => (
 		return err
 	})
 )
+
+const getBalanceData = (token) => {
+	return fetch(process.env.REACT_APP_REHIVE_API_URL + '/accounts/', {
+		method: 'GET',
+		headers: {
+			'Accept': 'application/json',
+			'Content-Type': 'application/json',
+			'Authorization': `Token ${token}`
+		},
+		mode: 'cors'
+	})
+		.then(response => {
+			return response.json()
+		})
+		.catch(err => {
+			return err
+		})
+}
+
+const getTransactionData = (token) => {
+	return fetch(process.env.REACT_APP_REHIVE_API_URL + '/transactions/', {
+		method: 'GET',
+		headers: {
+			'Accept': 'application/json',
+			'Content-Type': 'application/json',
+			'Authorization': `Token ${token}`
+		},
+		mode: 'cors'
+	})
+		.then(response => {
+			return response.json()
+		})
+		.catch(err => {
+			return err
+		})
+}
+
+
+
+// Clean this up in the future
+
+export const GET_WALLET_DATA = "GET_WALLET_DATA"
+export const GET_WALLET_DATA_SUCCESS = "GET_WALLET_DATA_SUCCESS"
+export const GET_WALLET_DATA_ERROR = "GET_WALLET_DATA_ERROR"
+
+export const getWalletData = (company, reward_type) => {
+	return dispatch => {
+		const token = localStorage.getItem('token')
+		dispatch({ type: GET_WALLET_DATA })
+		getBalanceData(token)
+			.then(r => {
+				getTransactionData(token)
+					.then(tr => {
+						dispatch({ type: GET_WALLET_DATA_SUCCESS, data: { balance: r.data.results[0].currencies[0], transactions: tr.data.results} })
+					})
+			})
+			.catch(err => {
+				dispatch({ type: GET_WALLET_DATA_ERROR })
+			})
+	}
+}
