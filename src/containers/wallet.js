@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import Paper from 'material-ui/Paper';
 import { RaisedButton, Dialog, FlatButton } from 'material-ui';
+import moment from 'moment'
+
 import { style } from '../style'
 
 export default class extends Component {
@@ -19,7 +21,7 @@ export default class extends Component {
 	render() {
 
 		const user_data = JSON.parse(localStorage.getItem('user'))
-		
+
 		return (
 			<div className='container'>
 				<div className='row'>
@@ -28,7 +30,7 @@ export default class extends Component {
 						<Paper style={style.balance_card} zDepth={3}>
 							<div className='container'>
 								<p>Balance</p>
-								<h1>{user_data && user_data.currency && user_data.balance.balance} {user_data && user_data.currency && user_data.currency.code}</h1>
+								<h1>{user_data && user_data.balance && user_data.balance.balance} {user_data && user_data.currency && user_data.currency.code}</h1>
 							</div>
 							<div className='row'>
 								<div className='col-6-sm'>
@@ -48,18 +50,19 @@ export default class extends Component {
 									<br />
 									<h3>Transactions</h3>
 								</div>
-								<div className='row'>
-									<h5 className='f-right'>-200</h5>
-									<h5 className='f-left'>6 hours ago</h5>
-								</div>
-								<div className='row'>
-									<h5 className='f-right'>400</h5>
-									<h5 className='f-left'>7 hours ago</h5>
-								</div>
-								<div className='row'>
-									<h5 className='f-right'>200</h5>
-									<h5 className='f-left'>9 hours ago</h5>
-								</div>
+								{
+									user_data && user_data.transactions && user_data.transactions.length > 0 ?
+									user_data.transactions.map((t, index) => (
+											<div className='row'>
+												<h5 className='f-right'>{t.tx_type === 'credit' ? '+' : '-'}{t.amount}</h5>
+												<h5 className='f-left'>{moment(t.created).fromNow()}</h5>
+											</div>
+									)) :
+										<div className='row'>
+											<h5 className='f-right'></h5>
+											<h5 className='f-left'>No Transactions</h5>
+										</div>
+								}
 							</div>
 						</Paper>
 					</div>
