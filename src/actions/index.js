@@ -118,19 +118,7 @@ export const login = (user, password) => (
 			})
 			.then(json => {
 				if (json.status === 'success') {
-					getBalanceData(json.data.token)
-					.then(r => {
-						let data = json.data
-						data['user']['balance'] = r.data.results[0].currencies[0]
-						getTransactionData(json.data.token)
-						.then(tr => {
-							data['user']['transactions'] = tr.data.results
-							dispatch({ type: LOGIN_SUCCESS, data })
-						})
-					})
-						.catch(err => {
-							dispatch({ type: LOGIN_ERROR })
-						})
+					dispatch({ type: LOGIN_SUCCESS, data: json.data })
 				} else {
 					dispatch({ type: LOGIN_ERROR, err: json.message })
 				}
@@ -231,7 +219,7 @@ export const getSignupCountData = (company) => {
 			.then(response => response.json())
 			.then(json => {
 				if (json.status === 'success') {
-					dispatch({ type: GET_SIGNUP_COUNT_DATA_SUCCESS, data: json.data.results })
+					dispatch({ type: GET_SIGNUP_COUNT_DATA_SUCCESS, data: json.data })
 				} else {
 					dispatch({ type: GET_SIGNUP_COUNT_DATA_ERROR, err: json.message })
 				}

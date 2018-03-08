@@ -15,6 +15,7 @@ export default (state = { loading: false }, action) => {
 			})
 		case LOGIN_SUCCESS:
 			// NOTE: Storing token in localStorage for now
+			console.log("LOGIN DATA", action.data);
 			localStorage.setItem('token', action.data.token)
 			localStorage.setItem('user', JSON.stringify(action.data.user))
 			window.location.reload()

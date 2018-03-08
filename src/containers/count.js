@@ -21,13 +21,11 @@ class SignupCount extends Component {
 	componentDidMount() {
 		const { getSignupCountData, params } = this.props
 		const user_data = JSON.parse(localStorage.getItem('user'))
-		console.log("PARAMS", params);
 		getSignupCountData(user_data.company)
 	}
 	render() {
 		const { history, signupCountData } = this.props
 		const { err, loading, data } = signupCountData
-
 		return (
 			<div>
 					<div style={style.content}>
@@ -38,8 +36,8 @@ class SignupCount extends Component {
 								err ?
 								<h3>{err}</h3> :
 								(
-										data && <div>
-											<h1 style={style.header}>108 801</h1>
+										signupCountData.data && <div>
+											<h1 style={style.header}>{signupCountData.data}</h1>
 											<span>USERS SIGNED UP</span>
 										</div>
 								)
@@ -62,7 +60,6 @@ class RewardCount extends Component {
 	componentDidMount() {
 		const { getSignupCountData, params } = this.props
 		const user_data = JSON.parse(localStorage.getItem('user'))
-		console.log("PARAMS", params);
 		getSignupCountData(user_data.company)
 	}
 	render() {
@@ -137,7 +134,7 @@ class Count extends Component {
 	}
 	componentDidMount() {
 		const user_data = JSON.parse(localStorage.getItem('user'))
-		this.props.getCampaignData(user_data.company)
+		this.props.getSignupCountData(user_data.company)
 	}
 	render() {
 		const { history, match, getSignupCountData, signupCountData, rewards } = this.props
@@ -187,7 +184,7 @@ class Count extends Component {
 													</div>
 											}
 										</div> :
-										<RewardCount getSignupCountData={getSignupCountData} reward={this.state.selectedReward} clearSelectedReward={() => this.setState({ selectedReward: null })} />
+											<h1>No Data</h1>
 								}
 							</Tab>
 						</Tabs>
