@@ -25,7 +25,6 @@ class Wallet extends Component {
 	render() {
 
 		const { data, loading, err } = this.props
-		console.log("DATA IN WALLET", data);
 		return (
 			<div className='container'>
 				{
