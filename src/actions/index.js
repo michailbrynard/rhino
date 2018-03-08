@@ -351,7 +351,7 @@ export const getWalletData = (company, reward_type) => {
 			.then(r => {
 				getTransactionData(token)
 					.then(tr => {
-						dispatch({ type: GET_WALLET_DATA_SUCCESS, data: { balance: r.data.results[0].currencies[0], transactions: tr.data.results} })
+						dispatch({ type: GET_WALLET_DATA_SUCCESS, data: { balance: r.data && r.data.results && r.data.results[0] && r.data.results[0].currencies[0] || 0, transactions: tr.data.results || []} })
 					})
 			})
 			.catch(err => {
