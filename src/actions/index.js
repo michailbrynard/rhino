@@ -30,6 +30,40 @@ export const signup = (signup_email) => (
 	}
 )
 
+export const CREATE_DEBIT = "CREATE_DEBIT"
+export const CREATE_DEBIT_SUCCESS = "CREATE_DEBIT_SUCCESS"
+export const CREATE_DEBIT_ERROR = "CREATE_DEBIT_ERROR"
+
+export const createDebit = (currency, amount) => (
+	dispatch => {
+		dispatch({ type: CREATE_DEBIT })
+		const token = localStorage.getItem('token')
+		fetch(process.env.REACT_APP_REHIVE_API_URL + '/transactions/debit/', {
+			method: 'POST',
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json',
+				'Authorization': `Token ${token}`
+			},
+			mode: 'cors',
+			body: JSON.stringify({ currency, amount })
+		})
+			.then(response => {
+				return response.json()
+			})
+			.then(json => {
+				if (json.status === 'success') {
+					dispatch({ type: CREATE_DEBIT_SUCCESS, data: json.data })
+				} else {
+					dispatch({ type: CREATE_DEBIT_ERROR, err: json.message })
+				}
+			})
+			.catch(err => {
+				dispatch({ type: CREATE_DEBIT_ERROR })
+			})
+	}
+)
+
 export const SET_PASSWORD = "SET_PASSWORD"
 export const SET_PASSWORD_SUCCESS = "SET_PASSWORD_SUCCESS"
 export const SET_PASSWORD_ERROR = "SET_PASSWORD_ERROR"

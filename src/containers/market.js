@@ -4,40 +4,55 @@ import Loader from '../components/loader'
 
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { getPerkData } from '../actions'
+import { getPerkData, createDebit } from '../actions'
 import { style } from '../style'
 
-const Market = ({ data }) => (
+const Market = ({ data, createDebit, debit_data }) => (
 	<div className='container'>
-		<div className='row'>
+		<div >
 		<br/>
 			{
-				data && data.length > 0 ?
-				data.map((item, index) => (
-						<div key={index} className='col-12'>
-							<Paper style={style.card} zDepth={3}>
-								<div style={style.card_left}>
-									<img style={style.card_left_img} src='logo.png' />
-								</div>
-								<div style={style.card_right} className='right'>
-									<h3>{item.perk_name}</h3>
-									<h1>{item.perk_amount} HIVE</h1>
+				debit_data ?
+						<div className='col-12'>
+							<Paper style={style.transaction_card} zDepth={3}>
+								<div className='container center'>
+									<br />
+									<h3>Successfully Bought</h3>
+									<br />
 								</div>
 							</Paper>
 							<br />
-						</div>
+						</div>:
+					<div className='row'>
+						{
+							data && data.length > 0 ?
+								data.map((item, index) => (
+									<div key={index} className='col-12'>
+										<Paper onClick={() => createDebit("HIVE", item.perk_amount)} style={style.card} zDepth={3}>
+											<div style={style.card_left}>
+												<img style={style.card_left_img} src='logo.png' />
+											</div>
+											<div style={style.card_right} className='right'>
+												<h3>{item.perk_name}</h3>
+												<h1>{item.perk_amount} HIVE</h1>
+											</div>
+										</Paper>
+										<br />
+									</div>
 
-				)) :
-					<div className='col-12'>
-						<Paper style={style.transaction_card} zDepth={3}>
-							<div className='container center'>
-								<br />
-								<h3>No perks</h3>
-								<br />
-							</div>
-						</Paper>
-						<br />
-					</div>
+								)) :
+								<div className='col-12'>
+									<Paper style={style.transaction_card} zDepth={3}>
+										<div className='container center'>
+											<br />
+											<h3>No perks</h3>
+											<br />
+										</div>
+									</Paper>
+									<br />
+								</div>
+						}
+				</div>
 			}
 		</div>
 	</div>
@@ -50,13 +65,13 @@ class MarketContainer extends Component {
 	}
 
 	render() {
-		const { loading, data } = this.props
+		const { loading, data, createDebit, debit_data } = this.props
 		return (
 			<div>
 				{
 					loading ?
 					<Loader/> :
-					<Market data={data}/>
+					<Market debit_data={debit_data} createDebit={createDebit} data={data}/>
 				}
 			</div>
 		)
@@ -64,16 +79,18 @@ class MarketContainer extends Component {
 }
 
 function mapStateToProps(state) {
-	const { data, loading } = state.perk
+	const { data, loading, debit_data } = state.perk
 	return {
 		data,
-		loading
+		loading,
+		debit_data
 	}
 }
 
 function mapDispatchToProps(dispatch) {
 	return {
-		getPerkData: bindActionCreators(getPerkData, dispatch)
+		getPerkData: bindActionCreators(getPerkData, dispatch),
+		createDebit: bindActionCreators(createDebit, dispatch)
 	}
 }
 

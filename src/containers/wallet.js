@@ -53,7 +53,7 @@ export default class extends Component {
 								{
 									user_data && user_data.transactions && user_data.transactions.length > 0 ?
 									user_data.transactions.map((t, index) => (
-											<div className='row'>
+											<div key={index} className='row'>
 												<h5 className='f-right'>{t.tx_type === 'credit' ? '+' : '-'}{t.amount}</h5>
 												<h5 className='f-left'>{moment(t.created).fromNow()}</h5>
 											</div>
