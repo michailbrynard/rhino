@@ -151,7 +151,7 @@ export const getCampaignData = (company) => {
 		  headers: {
 		    'Accept': 'application/json',
 				'Content-Type': 'application/json',
-				'authorization': `Bearer ${token}`
+				'Authorization': 'Token ${token}'
 		  }
 		})
 		.then(response => response.json())
@@ -182,7 +182,7 @@ export const getPerkData = (company) => {
 			headers: {
 				'Accept': 'application/json',
 				'Content-Type': 'application/json',
-				'authorization': `Bearer ${token}`
+				'Authorization': 'Token ${token}'
 			}
 		})
 			.then(response => response.json())
@@ -213,7 +213,7 @@ export const getSignupCountData = (company) => {
 			headers: {
 				'Accept': 'application/json',
 				'Content-Type': 'application/json',
-				// 'authorization': `Bearer ${token}`
+				// 'Authorization': 'Token ${token}'
 			}
 		})
 			.then(response => response.json())
@@ -245,7 +245,7 @@ export const getRewardCountData = (company, reward_type) => {
 			headers: {
 				'Accept': 'application/json',
 				'Content-Type': 'application/json',
-				// 'authorization': `Bearer ${token}`
+				// 'Authorization': 'Token ${token}'
 			}
 		})
 			.then(response => response.json())
@@ -268,7 +268,7 @@ const checkStellarUsername = (token) => {
 		headers: {
 			'Accept': 'application/json',
 			'Content-Type': 'application/json',
-			'authorization': `Bearer ${token}`
+			'Authorization': 'Token ${token}'
 		},
 		mode: 'cors'
 	})
@@ -286,6 +286,7 @@ const setStellarUsername = (signup_email) => (
 		headers: {
 			'Accept': 'application/json',
 			'Content-Type': 'application/json',
+			'Authorization': 'Token ${token}'
 		},
 		mode: 'cors',
 		body: JSON.stringify({ username: signup_email })
