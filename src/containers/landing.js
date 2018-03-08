@@ -136,11 +136,10 @@ class Landing extends Component {
 }
 
 function mapStateToProps(state) {
-	const { err, data, loading } = state.signup
 	return {
-		signupErr: err,
-		signupData: data,
-		signupLoading: loading,
+		signupErr: state.signup.err,
+		signupData: state.signup.data,
+		signupLoading: state.signup.loading,
 		loginErr: state.login.err,
 		loginData: state.login.data,
 		loginLoading: state.login.loading

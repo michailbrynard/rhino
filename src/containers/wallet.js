@@ -17,6 +17,9 @@ export default class extends Component {
 	};
 
 	render() {
+
+		const user_data = JSON.parse(localStorage.getItem('user'))
+		
 		return (
 			<div className='container'>
 				<div className='row'>
@@ -25,7 +28,7 @@ export default class extends Component {
 						<Paper style={style.balance_card} zDepth={3}>
 							<div className='container'>
 								<p>Balance</p>
-								<h1>11.11 HIVE</h1>
+								<h1>{user_data && user_data.currency && user_data.balance.balance} {user_data && user_data.currency && user_data.currency.code}</h1>
 							</div>
 							<div className='row'>
 								<div className='col-6-sm'>

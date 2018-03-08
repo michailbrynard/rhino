@@ -84,7 +84,15 @@ export const login = (user, password) => (
 			})
 			.then(json => {
 				if (json.status === 'success') {
-					dispatch({ type: SIGNUP_SUCCESS, data: json.data })
+					getBalanceData(json.data.token)
+					.then(r => {
+						let data = json.data
+						data['user']['balance'] = r.data.results[0].currencies[0]
+						dispatch({ type: LOGIN_SUCCESS, data })
+					})
+						.catch(err => {
+							dispatch({ type: LOGIN_ERROR })
+						})
 				} else {
 					dispatch({ type: LOGIN_ERROR, err: json.message })
 				}
@@ -263,3 +271,21 @@ const setStellarUsername = (signup_email) => (
 		return err
 	})
 )
+
+const getBalanceData = (token) => {
+	return fetch(process.env.REACT_APP_REHIVE_API_URL + '/accounts/', {
+		method: 'GET',
+		headers: {
+			'Accept': 'application/json',
+			'Content-Type': 'application/json',
+			'Authorization': `Token ${token}`
+		},
+		mode: 'cors'
+	})
+		.then(response => {
+			return response.json()
+		})
+		.catch(err => {
+			return err
+		})
+}

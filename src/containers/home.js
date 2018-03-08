@@ -93,9 +93,9 @@ class Home extends Component {
 							<div style={style.card_left}>
 								<br/>
 								<h1 className='card-heading'>
-									{11.11}
+									{user_data && user_data.currency && user_data.balance.balance}
 									<br />
-									{"HIVE"}
+									{user_data && user_data.currency && user_data.currency.code}
 								</h1>
 							</div>
 							<div style={{ width: '200px'}} className='right'>
