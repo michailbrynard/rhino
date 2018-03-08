@@ -151,7 +151,7 @@ export const getCampaignData = (company) => {
 		  headers: {
 		    'Accept': 'application/json',
 				'Content-Type': 'application/json',
-				'Authorization': 'Token ${token}'
+				// 'Authorization': 'Token ${token}'
 		  }
 		})
 		.then(response => response.json())
@@ -182,7 +182,7 @@ export const getPerkData = (company) => {
 			headers: {
 				'Accept': 'application/json',
 				'Content-Type': 'application/json',
-				'Authorization': 'Token ${token}'
+				// 'Authorization': 'Token ${token}'
 			}
 		})
 			.then(response => response.json())
