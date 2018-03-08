@@ -345,3 +345,28 @@ const getTransactionData = (token) => {
 			return err
 		})
 }
+
+
+
+// Clean this up in the future
+
+export const GET_WALLET_DATA = "GET_WALLET_DATA"
+export const GET_WALLET_DATA_SUCCESS = "GET_WALLET_DATA_SUCCESS"
+export const GET_WALLET_DATA_ERROR = "GET_WALLET_DATA_ERROR"
+
+export const getWalletData = (company, reward_type) => {
+	return dispatch => {
+		const token = localStorage.getItem('token')
+		dispatch({ type: GET_WALLET_DATA })
+		getBalanceData(token)
+			.then(r => {
+				getTransactionData(token)
+					.then(tr => {
+						dispatch({ type: GET_WALLET_DATA_SUCCESS, data: { balance: r.data.results[0].currencies[0], transactions: tr.data.results} })
+					})
+			})
+			.catch(err => {
+				dispatch({ type: GET_WALLET_DATA_ERROR })
+			})
+	}
+}
