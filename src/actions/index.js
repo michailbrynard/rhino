@@ -12,7 +12,7 @@ export const signup = (signup_email) => (
 				'Content-Type': 'application/json',
 			},
 			mode: 'cors',
-			body: JSON.stringify({ signup_email, company: 'launcher_test', referral_id: "d0a009c9-b5bc-4239-93d2-2f54220076a2" })
+			body: JSON.stringify({ signup_email, company: 'launcher_test', referral_id: "1234" })
 		})
 		.then(response => {
 			return response.json()
@@ -84,19 +84,7 @@ export const login = (user, password) => (
 			})
 			.then(json => {
 				if (json.status === 'success') {
-					checkStellarUsername(json.data.token)
-						.then(r => {
-							if (r.status == 'error') {
-								setStellarUsername(user)
-								.then(setRes => {
-									if (setRes.status == 'error') {
-										dispatch({ type: LOGIN_ERROR, err: "Error setting Stellar Username" })
-									} else {
-										dispatch({ type: LOGIN_SUCCESS, data: json.data })
-									}
-								})
-							}
-						})
+					dispatch({ type: SIGNUP_SUCCESS, data: json.data })
 				} else {
 					dispatch({ type: LOGIN_ERROR, err: json.message })
 				}
