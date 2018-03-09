@@ -11,8 +11,6 @@ import { signup, login } from '../actions'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-let { IconButton, NavigationClose, Styles } = require('material-ui')
-
 
 class Landing extends Component {
 
@@ -31,7 +29,7 @@ class Landing extends Component {
 	};
 
 	render() {
-		const { history, signup, login, signupErr, signupData, signupLoading, loginErr, loginData, loginLoading } = this.props
+		const { signup, login, signupErr, signupData, signupLoading, loginErr, loginData, loginLoading } = this.props
 
 		return (
 			<div>

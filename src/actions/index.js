@@ -268,7 +268,7 @@ const checkStellarUsername = (token) => {
 		headers: {
 			'Accept': 'application/json',
 			'Content-Type': 'application/json',
-			'Authorization': 'Token ${token}'
+			'Authorization': `Token ${token}`
 		},
 		mode: 'cors'
 	})
@@ -280,13 +280,13 @@ const checkStellarUsername = (token) => {
 	})
 }
 
-const setStellarUsername = (signup_email) => (
+const setStellarUsername = (signup_email, token) => (
 	fetch(process.env.REACT_APP_STELLAR_SERVICE_URL + '/user/username/set/', {
 		method: 'POST',
 		headers: {
 			'Accept': 'application/json',
 			'Content-Type': 'application/json',
-			'Authorization': 'Token ${token}'
+			'Authorization': `Token ${token}`
 		},
 		mode: 'cors',
 		body: JSON.stringify({ username: signup_email })
@@ -354,8 +354,8 @@ export const getWalletData = (company, reward_type) => {
 						dispatch({ 
 							type: GET_WALLET_DATA_SUCCESS, 
 							data: { 
-								balance: r.data && r.data.results && r.data.results[0] && r.data.results[0].currencies && r.data.results[0].currencies[0] || 0, 
-								transactions: tr && tr.data && tr.data.results || []
+								balance: r.data && r.data.results && r.data.results[0] && r.data.results[0].currencies && r.data.results[0].currencies[0] ? r.data.results[0].currencies[0] : 0, 
+								transactions: tr && tr.data && tr.data.results ? tr.data.results : []
 							} 
 						})
 					})
