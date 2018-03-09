@@ -149,17 +149,9 @@ export const GET_CAMPAIGN_DATA_ERROR = "GET_CAMPAIGN_DATA_ERROR"
 
 export const getCampaignData = (company) => {
 	return dispatch => {
-		const token = localStorage.getItem('token')
 		dispatch({ type: GET_CAMPAIGN_DATA })
-		fetch(process.env.REACT_APP_API_URL + '/user/campaign/' + company, {
-		  // credentials: 'include',
-		  mode: 'cors',
-		  headers: {
-		    'Accept': 'application/json',
-				'Content-Type': 'application/json',
-				// 'Authorization': 'Token ${token}'
-		  }
-		})
+		const route = process.env.REACT_APP_API_URL + '/user/campaign/' + company
+		return callApi('GET', route)
 		.then(response => response.json())
 		.then(json => {
 			if (json.status === 'success') {
@@ -245,6 +237,7 @@ export const getRewardCountData = (company, reward_type) => {
 	return dispatch => {
 		// const token = localStorage.getItem('token')
 		dispatch({ type: GET_REWARD_COUNT_DATA })
+		
 		fetch(process.env.REACT_APP_API_URL + '/user/count/' + company + '/' + reward_type, {
 			// credentials: 'include',
 			mode: 'cors',
@@ -286,47 +279,6 @@ const checkStellarUsername = (token) => {
 	})
 }
 
-const setStellarUsername = (signup_email, token) => (
-	fetch(process.env.REACT_APP_STELLAR_SERVICE_URL + '/user/username/set/', {
-		method: 'POST',
-		headers: {
-			'Accept': 'application/json',
-			'Content-Type': 'application/json',
-			'Authorization': `Token ${token}`
-		},
-		mode: 'cors',
-		body: JSON.stringify({ username: signup_email })
-	})
-	.then(response => {
-		return response.json()
-	})
-	.catch(err => {
-		return err
-	})
-)
-
-const getBalanceData = (token) => {
-	const route = process.env.REACT_APP_REHIVE_API_URL + '/accounts/'
-	return callApi('GET', route, token)
-	.then(response => {
-		return response.json()
-	})
-	.catch(err => err)
-}
-
-const getTransactionData = (token) => {
-	const route = process.env.REACT_APP_REHIVE_API_URL + '/transactions/'
-	return callApi('GET', route, token)
-	.then(response => {
-		return response.json()
-	})
-	.catch(err => err)
-}
-
-
-
-// Clean this up in the future
-
 export const GET_WALLET_DATA = "GET_WALLET_DATA"
 export const GET_WALLET_DATA_SUCCESS = "GET_WALLET_DATA_SUCCESS"
 export const GET_WALLET_DATA_ERROR = "GET_WALLET_DATA_ERROR"
@@ -352,4 +304,34 @@ export const getWalletData = (company, reward_type) => {
 			dispatch({ type: GET_WALLET_DATA_ERROR })
 		})
 	}
+}
+
+
+const setStellarUsername = (signup_email, token) => {
+	const route = process.env.REACT_APP_STELLAR_SERVICE_URL + '/user/username/set/'
+	return callApi('POST', route, token, { username: signup_email })
+		.then(response => {
+			return response.json()
+		})
+		.catch(err => {
+			return err
+		})
+}
+
+const getBalanceData = (token) => {
+	const route = process.env.REACT_APP_REHIVE_API_URL + '/accounts/'
+	return callApi('GET', route, token)
+		.then(response => {
+			return response.json()
+		})
+		.catch(err => err)
+}
+
+const getTransactionData = (token) => {
+	const route = process.env.REACT_APP_REHIVE_API_URL + '/transactions/'
+	return callApi('GET', route, token)
+		.then(response => {
+			return response.json()
+		})
+		.catch(err => err)
 }
