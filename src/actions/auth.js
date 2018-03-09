@@ -9,19 +9,16 @@ export const signup = (signup_email) => (
 		dispatch({ type: SIGNUP })
 		const route = process.env.REACT_APP_API_URL + '/user/join/'
 		callApi('POST', route, null, { signup_email, company: 'launcher_test', referral_id: "1234" })
-			.then(response => {
-				return response.json()
-			})
-			.then(json => {
-				if (json.status === 'success') {
-					dispatch({ type: SIGNUP_SUCCESS, data: json.data })
-				} else {
-					dispatch({ type: SIGNUP_ERROR, err: json.message })
-				}
-			})
-			.catch(err => {
-				dispatch({ type: SIGNUP_ERROR })
-			})
+		.then(json => {
+			if (json.status === 'success') {
+				dispatch({ type: SIGNUP_SUCCESS, data: json.data })
+			} else {
+				dispatch({ type: SIGNUP_ERROR, err: json.message })
+			}
+		})
+		.catch(err => {
+			dispatch({ type: SIGNUP_ERROR })
+		})
 	}
 )
 
@@ -36,9 +33,6 @@ export const setPassword = (new_password1, new_password2, uid, token) => (
 		const route = process.env.REACT_APP_REHIVE_API_URL + '/auth/password/reset/confirm/'
 		const token = localStorage.getItem('token')
 		callApi('POST', route, token, { new_password1, new_password2, uid, token })
-			.then(response => {
-				return response.json()
-			})
 			.then(json => {
 				if (json.status === 'success') {
 					dispatch({ type: SET_PASSWORD_SUCCESS, data: json.status })
@@ -61,9 +55,6 @@ export const login = (user, password) => (
 		dispatch({ type: LOGIN })
 		const route = process.env.REACT_APP_REHIVE_API_URL + '/auth/login/'
 		callApi('POST', route, null, { user, password, company: 'launcher_test' })
-			.then(response => {
-				return response.json()
-			})
 			.then(json => {
 				if (json.status === 'success') {
 					dispatch({ type: LOGIN_SUCCESS, data: json.data })
@@ -88,9 +79,6 @@ export const logout = () => (
 // const setStellarUsername = (signup_email, token) => {
 // 	const route = process.env.REACT_APP_STELLAR_SERVICE_URL + '/user/username/set/'
 // 	return callApi('POST', route, token, { username: signup_email })
-// 		.then(response => {
-// 			return response.json()
-// 		})
 // 		.catch(err => {
 // 			return err
 // 		})
@@ -99,9 +87,6 @@ export const logout = () => (
 // const checkStellarUsername = (token) => {
 // 	const route = process.env.REACT_APP_STELLAR_SERVICE_URL + '/user/account/'
 // 	return callApi('GET', route, token)
-// 		.then(response => {
-// 			return response.json()
-// 		})
 // 		.catch(err => {
 // 			return err
 // 		})

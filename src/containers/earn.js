@@ -6,7 +6,7 @@ import { bindActionCreators } from 'redux'
 
 import { getCampaignData } from '../actions/campaign'
 import Loader from '../components/loader'
-import { style } from '../style'
+import { style } from '../style/'
 
 const Earn = ({ data }) => (
 	<div className='container'>

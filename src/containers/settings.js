@@ -1,6 +1,6 @@
 import React from 'react'
 import Paper from 'material-ui/Paper';
-import { style } from '../style'
+import { style } from '../style/'
 
 export default () => (
 	<div className='container'>

@@ -16,5 +16,9 @@ export const callApi = (method, route, token, data) => {
 
 	if (data) { config['body'] = JSON.stringify(data) }
 
-	return fetch(route, config)
+	return Promise.resolve(
+		fetch(route, config)
+		.then(response => response.json())
+		.catch(err => err)
+	)
 }

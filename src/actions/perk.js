@@ -9,7 +9,6 @@ export const getPerkData = (company) => {
 		dispatch({ type: GET_PERK_DATA })
 		const route = process.env.REACT_APP_API_URL + '/user/perk/' + company
 		return callApi('GET', route)
-			.then(response => response.json())
 			.then(json => {
 				if (json.status === 'success') {
 					dispatch({ type: GET_PERK_DATA_SUCCESS, data: json.data.results })

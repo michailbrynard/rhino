@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { getPerkData } from '../actions/perk'
 import { createDebit } from '../actions/transaction'
-import { style } from '../style'
+import { style } from '../style/'
 
 const Market = ({ data, createDebit, debit_data }) => (
 	<div className='container'>

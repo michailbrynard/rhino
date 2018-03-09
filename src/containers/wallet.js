@@ -7,7 +7,7 @@ import { getWalletData } from '../actions/wallet'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import Loader from '../components/loader'
-import { style } from '../style'
+import { style } from '../style/'
 
 class Wallet extends Component {
 	state = {

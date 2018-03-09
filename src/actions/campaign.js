@@ -9,7 +9,6 @@ export const getCampaignData = (company) => {
 		dispatch({ type: GET_CAMPAIGN_DATA })
 		const route = process.env.REACT_APP_API_URL + '/user/campaign/' + company
 		return callApi('GET', route)
-			.then(response => response.json())
 			.then(json => {
 				if (json.status === 'success') {
 					dispatch({ type: GET_CAMPAIGN_DATA_SUCCESS, data: json.data.results })

@@ -10,9 +10,6 @@ export const createDebit = (currency, amount) => (
 		const route = process.env.REACT_APP_REHIVE_API_URL + '/transactions/debit/'
 		const token = localStorage.getItem('token')
 		callApi('POST', route, token, { currency, amount })
-			.then(response => {
-				return response.json()
-			})
 			.then(json => {
 				if (json.status === 'success') {
 					dispatch({ type: CREATE_DEBIT_SUCCESS, data: json.data })

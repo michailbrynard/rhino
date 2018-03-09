@@ -8,7 +8,7 @@ import FontIcon from 'material-ui/FontIcon'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { logout } from '../actions/auth'
-import { style } from '../style'
+import { style } from '../style/'
 
 class Nav extends Component {
 	constructor(props) {

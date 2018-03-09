@@ -10,7 +10,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 import Loader from '../components/loader'
-import { style } from '../style'
+import { style } from '../style/'
 
 class Home extends Component {
 	constructor(props) {
