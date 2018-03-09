@@ -1,12 +1,14 @@
 import {
 	GET_PERK_DATA_ERROR,
 	GET_PERK_DATA_SUCCESS,
-	GET_PERK_DATA,
+	GET_PERK_DATA
+} from '../actions/perk'
 
+import {
 	CREATE_DEBIT,
 	CREATE_DEBIT_SUCCESS,
 	CREATE_DEBIT_ERROR
-} from '../actions'
+} from '../actions/transaction'
 
 import { merge } from 'lodash'
 

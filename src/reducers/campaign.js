@@ -2,7 +2,7 @@ import {
 	GET_CAMPAIGN_DATA_ERROR,
 	GET_CAMPAIGN_DATA_SUCCESS,
 	GET_CAMPAIGN_DATA
-} from '../actions'
+} from '../actions/campaign'
 
 import { merge } from 'lodash'
 

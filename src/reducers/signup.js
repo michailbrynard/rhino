@@ -2,7 +2,7 @@ import {
 	SIGNUP_ERROR,
 	SIGNUP_SUCCESS,
 	SIGNUP
-} from '../actions'
+} from '../actions/auth'
 
 import { merge } from 'lodash'
 

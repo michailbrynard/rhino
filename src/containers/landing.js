@@ -7,7 +7,7 @@ import Dialog from 'material-ui/Dialog';
 
 import { SmallLoader } from '../components/loader'
 
-import { signup, login } from '../actions'
+import { signup, login } from '../actions/auth'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 

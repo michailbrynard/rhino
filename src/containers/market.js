@@ -4,7 +4,8 @@ import Loader from '../components/loader'
 
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { getPerkData, createDebit } from '../actions'
+import { getPerkData } from '../actions/perk'
+import { createDebit } from '../actions/transaction'
 import { style } from '../style'
 
 const Market = ({ data, createDebit, debit_data }) => (

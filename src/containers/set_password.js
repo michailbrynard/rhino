@@ -5,7 +5,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 
 import { SmallLoader } from '../components/loader'
 
-import { setPassword } from '../actions'
+import { setPassword } from '../actions/auth'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 

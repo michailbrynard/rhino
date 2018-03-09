@@ -2,7 +2,7 @@ import {
 	SET_PASSWORD_ERROR,
 	SET_PASSWORD_SUCCESS,
 	SET_PASSWORD
-} from '../actions'
+} from '../actions/auth'
 
 import { merge } from 'lodash'
 

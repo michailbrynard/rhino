@@ -3,7 +3,7 @@ import AppBar from 'material-ui/AppBar';
 
 import { SmallLoader } from '../components/loader'
 
-import { getSignupCountData } from '../actions'
+import { getSignupCountData } from '../actions/count'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 

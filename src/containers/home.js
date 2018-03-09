@@ -3,7 +3,7 @@ import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
 import FontIcon from 'material-ui/FontIcon'
 import Snackbar from 'material-ui/Snackbar';
-import { getWalletData } from '../actions'
+import { getWalletData } from '../actions/wallet'
 
 
 import { connect } from 'react-redux'

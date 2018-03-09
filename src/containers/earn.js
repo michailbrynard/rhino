@@ -4,7 +4,7 @@ import Paper from 'material-ui/Paper';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-import { getCampaignData } from '../actions'
+import { getCampaignData } from '../actions/campaign'
 import Loader from '../components/loader'
 import { style } from '../style'
 

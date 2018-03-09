@@ -2,7 +2,7 @@ import {
 	GET_SIGNUP_COUNT_DATA_ERROR,
 	GET_SIGNUP_COUNT_DATA_SUCCESS,
 	GET_SIGNUP_COUNT_DATA
-} from '../actions'
+} from '../actions/count'
 
 import { merge } from 'lodash'
 

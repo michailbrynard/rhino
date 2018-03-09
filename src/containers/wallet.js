@@ -3,7 +3,7 @@ import Paper from 'material-ui/Paper';
 import { RaisedButton, Dialog, FlatButton } from 'material-ui';
 import moment from 'moment'
 
-import { getWalletData } from '../actions'
+import { getWalletData } from '../actions/wallet'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import Loader from '../components/loader'

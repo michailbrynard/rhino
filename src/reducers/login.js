@@ -3,7 +3,7 @@ import {
 	LOGIN_SUCCESS,
 	LOGIN,
 	LOGOUT
-} from '../actions'
+} from '../actions/auth'
 
 import { merge } from 'lodash'
 
