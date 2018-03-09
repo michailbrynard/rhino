@@ -2,18 +2,34 @@ export const SIGNUP = "SIGNUP"
 export const SIGNUP_SUCCESS = "SIGNUP_SUCCESS"
 export const SIGNUP_ERROR = "SIGNUP_ERROR"
 
+const callApi = (method, route, token, data) => {
+
+	let headers = {
+		'Accept': 'application/json',
+		'Content-Type': 'application/json'
+	}
+
+	if (token) { headers['Authorization'] = `Token ${token}` }
+
+	let config = {
+		// credentials: 'include',
+		method,
+		mode: 'cors',
+		headers
+	}
+
+	if (data) { config['body'] = JSON.stringify(data) }
+
+
+	return fetch(route, config)
+}
+
 export const signup = (signup_email) => (
 	dispatch => {
 		dispatch({ type: SIGNUP })
-		fetch(process.env.REACT_APP_API_URL + '/user/join/', {
-			method: 'POST',
-			headers: {
-				'Accept': 'application/json',
-				'Content-Type': 'application/json',
-			},
-			mode: 'cors',
-			body: JSON.stringify({ signup_email, company: 'launcher_test', referral_id: "1234" })
-		})
+		const route = process.env.REACT_APP_API_URL + '/user/join/'
+
+		callApi('POST', route, null, { signup_email, company: 'launcher_test', referral_id: "1234" })
 		.then(response => {
 			return response.json()
 		})
@@ -348,20 +364,20 @@ export const getWalletData = (company, reward_type) => {
 		const token = localStorage.getItem('token')
 		dispatch({ type: GET_WALLET_DATA })
 		getBalanceData(token)
-			.then(r => {
-				getTransactionData(token)
-					.then(tr => {
-						dispatch({ 
-							type: GET_WALLET_DATA_SUCCESS, 
-							data: { 
-								balance: r.data && r.data.results && r.data.results[0] && r.data.results[0].currencies && r.data.results[0].currencies[0] ? r.data.results[0].currencies[0] : 0, 
-								transactions: tr && tr.data && tr.data.results ? tr.data.results : []
-							} 
-						})
+		.then(r => {
+			getTransactionData(token)
+				.then(tr => {
+					dispatch({ 
+						type: GET_WALLET_DATA_SUCCESS, 
+						data: { 
+							balance: r.data && r.data.results && r.data.results[0] && r.data.results[0].currencies && r.data.results[0].currencies[0] ? r.data.results[0].currencies[0] : 0, 
+							transactions: tr && tr.data && tr.data.results ? tr.data.results : []
+						} 
 					})
-			})
-			.catch(err => {
-				dispatch({ type: GET_WALLET_DATA_ERROR })
-			})
+				})
+		})
+		.catch(err => {
+			dispatch({ type: GET_WALLET_DATA_ERROR })
+		})
 	}
 }
