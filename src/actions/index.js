@@ -20,7 +20,6 @@ const callApi = (method, route, token, data) => {
 
 	if (data) { config['body'] = JSON.stringify(data) }
 
-
 	return fetch(route, config)
 }
 
@@ -28,7 +27,6 @@ export const signup = (signup_email) => (
 	dispatch => {
 		dispatch({ type: SIGNUP })
 		const route = process.env.REACT_APP_API_URL + '/user/join/'
-
 		callApi('POST', route, null, { signup_email, company: 'launcher_test', referral_id: "1234" })
 		.then(response => {
 			return response.json()
@@ -53,30 +51,22 @@ export const CREATE_DEBIT_ERROR = "CREATE_DEBIT_ERROR"
 export const createDebit = (currency, amount) => (
 	dispatch => {
 		dispatch({ type: CREATE_DEBIT })
+		const route = process.env.REACT_APP_REHIVE_API_URL + '/transactions/debit/'
 		const token = localStorage.getItem('token')
-		fetch(process.env.REACT_APP_REHIVE_API_URL + '/transactions/debit/', {
-			method: 'POST',
-			headers: {
-				'Accept': 'application/json',
-				'Content-Type': 'application/json',
-				'Authorization': `Token ${token}`
-			},
-			mode: 'cors',
-			body: JSON.stringify({ currency, amount })
+		callApi('POST', route, token, { currency, amount })
+		.then(response => {
+			return response.json()
 		})
-			.then(response => {
-				return response.json()
-			})
-			.then(json => {
-				if (json.status === 'success') {
-					dispatch({ type: CREATE_DEBIT_SUCCESS, data: json.data })
-				} else {
-					dispatch({ type: CREATE_DEBIT_ERROR, err: json.message })
-				}
-			})
-			.catch(err => {
-				dispatch({ type: CREATE_DEBIT_ERROR })
-			})
+		.then(json => {
+			if (json.status === 'success') {
+				dispatch({ type: CREATE_DEBIT_SUCCESS, data: json.data })
+			} else {
+				dispatch({ type: CREATE_DEBIT_ERROR, err: json.message })
+			}
+		})
+		.catch(err => {
+			dispatch({ type: CREATE_DEBIT_ERROR })
+		})
 	}
 )
 
@@ -316,39 +306,21 @@ const setStellarUsername = (signup_email, token) => (
 )
 
 const getBalanceData = (token) => {
-	return fetch(process.env.REACT_APP_REHIVE_API_URL + '/accounts/', {
-		method: 'GET',
-		headers: {
-			'Accept': 'application/json',
-			'Content-Type': 'application/json',
-			'Authorization': `Token ${token}`
-		},
-		mode: 'cors'
+	const route = process.env.REACT_APP_REHIVE_API_URL + '/accounts/'
+	return callApi('GET', route, token)
+	.then(response => {
+		return response.json()
 	})
-		.then(response => {
-			return response.json()
-		})
-		.catch(err => {
-			return err
-		})
+	.catch(err => err)
 }
 
 const getTransactionData = (token) => {
-	return fetch(process.env.REACT_APP_REHIVE_API_URL + '/transactions/', {
-		method: 'GET',
-		headers: {
-			'Accept': 'application/json',
-			'Content-Type': 'application/json',
-			'Authorization': `Token ${token}`
-		},
-		mode: 'cors'
+	const route = process.env.REACT_APP_REHIVE_API_URL + '/transactions/'
+	return callApi('GET', route, token)
+	.then(response => {
+		return response.json()
 	})
-		.then(response => {
-			return response.json()
-		})
-		.catch(err => {
-			return err
-		})
+	.catch(err => err)
 }
 
 
