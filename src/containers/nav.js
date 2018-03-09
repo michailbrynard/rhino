@@ -1,11 +1,9 @@
 import React, { Component } from 'react'
 import { FlatButton } from 'material-ui'
-import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import { List, ListItem } from 'material-ui/List'
 import FontIcon from 'material-ui/FontIcon'
-import { yellow600, grey600, blue300, blue700, white } from 'material-ui/styles/colors';
 
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'

@@ -29,7 +29,7 @@ class Landing extends Component {
 	};
 
 	render() {
-		const { signup, login, signupErr, signupData, signupLoading, loginErr, loginData, loginLoading } = this.props
+		const { signup, login, signupErr, signupData, signupLoading, loginErr, loginLoading } = this.props
 
 		return (
 			<div>
@@ -104,8 +104,8 @@ class Landing extends Component {
 								<h1 className='title'>Rehive fintech platform</h1>
 								<p className='subtitle'>Welcome to the Rehive supporter platform! Sign up for exciting rewards and updates on everything Rehive!</p>
 								{
-									//signupErr ?
-									//	<p>Error: {signupErr}</p> : null
+									signupErr ?
+										<p>Error: {signupErr}</p> : null
 								}
 								<form onSubmit={(e) => {
 									e.preventDefault()

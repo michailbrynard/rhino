@@ -30,7 +30,7 @@ const Market = ({ data, createDebit, debit_data }) => (
 									<div key={index} className='col-12'>
 										<Paper onClick={() => createDebit("HIVE", item.perk_amount)} style={style.card} zDepth={3}>
 											<div style={style.card_left}>
-												<img style={style.card_left_img} src='logo.png' />
+												<img style={style.card_left_img} alt='logo' src='logo.png' />
 											</div>
 											<div style={style.card_right} className='right'>
 												<h3>{item.perk_name}</h3>

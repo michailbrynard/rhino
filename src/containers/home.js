@@ -42,99 +42,105 @@ class Home extends Component {
 				{
 					loading ?
 					<Loader/> :
-						<div className='row'>
-							<Snackbar
-								open={this.state.snackbar_open}
-								message="Notification Dismissed"
-								autoHideDuration={3000}
-								onRequestClose={this.handleSnackbarClose}
-							/>
-							<br />
-							{
-								this.state.notifications.map((item, index) => (
-									<div key={index} className='col-12'>
-										<Paper style={style.card} zDepth={3}>
-											<FontIcon onClick={() => {
-												this.state.notifications.splice(index, 1)
-												this.state.snackbar_open = true
-												this.setState(this.state)
-											}} style={{
-												fontSize: 40,
-												position: 'absolute',
-												top: 10,
-												right: 10
-											}} className="material-icons">close</FontIcon>
-											<div className='container'>
-												<div className='row'>
-													<div className='col-12 right'>
-														<h3>{item.title}</h3>
-														<p>{item.text}</p>
+						(
+							err ?
+							<h3>{err}</h3> :
+								<div className='row'>
+									<Snackbar
+										open={this.state.snackbar_open}
+										message="Notification Dismissed"
+										autoHideDuration={3000}
+										onRequestClose={this.handleSnackbarClose}
+									/>
+									<br />
+									{
+										this.state.notifications.map((item, index) => (
+											<div key={index} className='col-12'>
+												<Paper style={style.card} zDepth={3}>
+													<FontIcon onClick={() => {
+														this.state.notifications.splice(index, 1)
+														this.setState({
+															notifications: this.state.notifications,
+															snackbar_open: true
+														})
+													}} style={{
+														fontSize: 40,
+														position: 'absolute',
+														top: 10,
+														right: 10
+													}} className="material-icons">close</FontIcon>
+													<div className='container'>
+														<div className='row'>
+															<div className='col-12 right'>
+																<h3>{item.title}</h3>
+																<p>{item.text}</p>
+															</div>
+														</div>
 													</div>
-												</div>
+												</Paper>
+												<br />
+											</div>
+										))
+									}
+									<div className='col-12'>
+										<Paper style={style.card} zDepth={3}>
+											<div style={style.card_left}>
+												<img style={style.card_left_img} src='rehive-logo1.svg' alt='logo' />
+											</div>
+											<div style={style.card_right} className='right'>
+												<h3>Rehive</h3>
+												<p className='cardtext'>From ideas to production, Rehive partners with start ups, enterprises and governments to accelerate fintech innovation and build amazing fintech products.</p>
+												<a href="https://rehive.com" rel="noopener noreferrer" target="_blank"><RaisedButton label="Visit Site" secondary={true} /></a>
 											</div>
 										</Paper>
 										<br />
 									</div>
-								))
-							}
-							<div className='col-12'>
-								<Paper style={style.card} zDepth={3}>
-									<div style={style.card_left}>
-										<img style={style.card_left_img} src='rehive-logo1.svg' />
-									</div>
-									<div style={style.card_right} className='right'>
-										<h3>Rehive</h3>
-										<p className='cardtext'>From ideas to production, Rehive partners with start ups, enterprises and governments to accelerate fintech innovation and build amazing fintech products.</p>
-										<a href="https://rehive.com" target="_blank"><RaisedButton label="Visit Site" secondary={true} /></a>
-									</div>
-								</Paper>
-								<br />
-							</div>
-							<div className='col-12'>
-								<Paper style={style.card} zDepth={3}>
-									<div style={style.card_left}>
+									<div className='col-12'>
+										<Paper style={style.card} zDepth={3}>
+											<div style={style.card_left}>
+												<br />
+												<h1 className='card-heading'>
+													{data && data.balance && data.balance.balance}
+													<br />
+													{data && data.balance && data.balance.currency && data.balance.currency.code}
+												</h1>
+											</div>
+											<div style={{ width: '200px' }} className='right'>
+												<h3 className='card-heading'>Balance</h3>
+												<br /><br />
+												<RaisedButton onClick={() => history.push('/wallet')} label="Wallet" secondary={true} />
+											</div>
+										</Paper>
 										<br />
-										<h1 className='card-heading'>
-											{data && data.balance && data.balance.balance }
-											<br/>
-											{data && data.balance && data.balance.currency && data.balance.currency.code}
-										</h1>
 									</div>
-									<div style={{ width: '200px' }} className='right'>
-										<h3 className='card-heading'>Balance</h3>
-										<br /><br />
-										<RaisedButton onClick={() => history.push('/wallet')} label="Wallet" secondary={true} />
+									<div className='col-12'>
+										<Paper style={style.card} zDepth={3}>
+											<div style={style.card_left}>
+												<img style={style.card_left_img} src='coins.png' alt='coins' />
+											</div>
+											<div style={style.card_right} className='right'>
+												<h3 className='card-heading'>Earn Tokens</h3>
+												<br /><br />
+												<RaisedButton onClick={() => history.push('/earn')} label="Rewards" secondary={true} />
+											</div>
+										</Paper>
+										<br />
 									</div>
-								</Paper>
-								<br />
-							</div>
-							<div className='col-12'>
-								<Paper style={style.card} zDepth={3}>
-									<div style={style.card_left}>
-										<img style={style.card_left_img} src='coins.png' />
+									<div className='col-12'>
+										<Paper style={style.card} zDepth={3}>
+											<div style={style.card_left}>
+												<img style={style.card_left_img} src='trading.png' alt='market' />
+											</div>
+											<div style={style.card_right} className='right'>
+												<h3 className='card-heading'>Redeem Tokens</h3>
+												<br /><br />
+												<RaisedButton onClick={() => history.push('/market')} label="Perks" secondary={true} />
+											</div>
+										</Paper>
+										<br />
 									</div>
-									<div style={style.card_right} className='right'>
-										<h3 className='card-heading'>Earn Tokens</h3>
-										<br /><br />
-										<RaisedButton onClick={() => history.push('/earn')} label="Rewards" secondary={true} />
-									</div>
-								</Paper>
-								<br />
-							</div>
-							<div className='col-12'>
-								<Paper style={style.card} zDepth={3}>
-									<div style={style.card_left}>
-										<img style={style.card_left_img} src='trading.png' />
-									</div>
-									<div style={style.card_right} className='right'>
-										<h3 className='card-heading'>Redeem Tokens</h3>
-										<br /><br />
-										<RaisedButton onClick={() => history.push('/market')} label="Perks" secondary={true} />
-									</div>
-								</Paper>
-								<br />
-							</div>
-						</div>
+								</div>
+						)
 				}
 			</div>
 		)

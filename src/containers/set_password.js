@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 import AppBar from 'material-ui/AppBar';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
-import FlatButton from 'material-ui/FlatButton';
-import Dialog from 'material-ui/Dialog';
 
 import { SmallLoader } from '../components/loader'
 
@@ -21,8 +19,7 @@ class Landing extends Component {
 
 	render() {
 		const { history, setPassword, setPasswordErr, setPasswordLoading, data } = this.props
-
-		data === 'success' ? history.push('/') : null
+		if (data === 'success') history.push('/') 
 
 		return (
 			<div>
