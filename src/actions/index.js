@@ -172,28 +172,21 @@ export const GET_PERK_DATA_ERROR = "GET_PERK_DATA_ERROR"
 
 export const getPerkData = (company) => {
 	return dispatch => {
-		const token = localStorage.getItem('token')
 		dispatch({ type: GET_PERK_DATA })
-		fetch(process.env.REACT_APP_API_URL + '/user/perk/' + company, {
-			// credentials: 'include',
-			mode: 'cors',
-			headers: {
-				'Accept': 'application/json',
-				'Content-Type': 'application/json',
-				// 'Authorization': 'Token ${token}'
+		const token = localStorage.getItem('token')
+		const route = process.env.REACT_APP_API_URL + '/user/perk/' + company
+		return callApi('GET', route)
+		.then(response => response.json())
+		.then(json => {
+			if (json.status === 'success') {
+				dispatch({ type: GET_PERK_DATA_SUCCESS, data: json.data.results })
+			} else {
+				dispatch({ type: GET_PERK_DATA_ERROR, err: json.message })
 			}
 		})
-			.then(response => response.json())
-			.then(json => {
-				if (json.status === 'success') {
-					dispatch({ type: GET_PERK_DATA_SUCCESS, data: json.data.results })
-				} else {
-					dispatch({ type: GET_PERK_DATA_ERROR, err: json.message })
-				}
-			})
-			.catch(err => {
-				dispatch({ type: GET_PERK_DATA_ERROR, err })
-			})
+		.catch(err => {
+			dispatch({ type: GET_PERK_DATA_ERROR, err })
+		})
 	}
 }
 
