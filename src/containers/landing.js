@@ -91,7 +91,7 @@ class Landing extends Component {
 				<div className='row'>
 					<div className='col-6 center'>
 						<br />
-						<img alt='logo' className='landing-img' src='./logo.png' />
+						<img alt='logo' className='landing-img' src='./logo.3.png' />
 					</div>
 					{
 						signupData ?
@@ -102,7 +102,8 @@ class Landing extends Component {
 							</div> :
 							<div className='col-6  landing-row'>
 								<h1 className='title'>SHAPE </h1>
-								<p className='subtitle'>Welcome to the Rehive supporter platform! Sign up for exciting rewards and updates on everything Rehive!</p>
+								<p className='subtitle'>Welcome to the Shape launcher! </p>
+								<p>Sign up to help shape the future of loyalty and support! </p>
 								{
 									signupErr ?
 										<p>Error: {signupErr}</p> : null
