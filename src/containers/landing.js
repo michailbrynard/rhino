@@ -34,7 +34,7 @@ class Landing extends Component {
 		return (
 			<div>
 				<AppBar
-					title={<img alt='logo' className='header-img' src='./logo.svg' />}
+					title={<img alt='logo' className='header-img' src='./logo.2.png' />}
 					showMenuIconButton={false}
 					iconElementRight={<FlatButton onClick={this.handleOpen} label="Login" />}
 				/>
@@ -91,7 +91,7 @@ class Landing extends Component {
 				<div className='row'>
 					<div className='col-6 center'>
 						<br />
-						<img alt='logo' className='landing-img' src='./rehive-logo1.svg' />
+						<img alt='logo' className='landing-img' src='./logo.png' />
 					</div>
 					{
 						signupData ?
@@ -101,7 +101,7 @@ class Landing extends Component {
 
 							</div> :
 							<div className='col-6  landing-row'>
-								<h1 className='title'>Rehive fintech platform</h1>
+								<h1 className='title'>SHAPE </h1>
 								<p className='subtitle'>Welcome to the Rehive supporter platform! Sign up for exciting rewards and updates on everything Rehive!</p>
 								{
 									signupErr ?

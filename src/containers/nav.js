@@ -24,7 +24,7 @@ class Nav extends Component {
 		const user_data = JSON.parse(localStorage.getItem('user'))
 
 		const drawer_contents = [
-			<img style={style.drawer_logo} key={0} alt='logo' className='nav-img' src='./logo.1.svg' />,
+			<img style={style.drawer_logo} key={0} alt='logo' className='nav-img' src='./logo.1.png' />,
 			<MenuItem
 				key={1}
 				style={style.drawer_link_highlight(path, '/')}

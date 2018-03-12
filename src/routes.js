@@ -18,15 +18,15 @@ import Settings from './containers/settings'
 import Count from './containers/count'
 
 import { configureStore } from './store'
-import { yellow700, grey200, blue800, grey600, } from 'material-ui/styles/colors';
+import { yellow700, grey200, purpleA700, blue800, grey600, cyanA200, purpleA200, lightBlue700, white } from 'material-ui/styles/colors';
 
 const muiTheme = getMuiTheme({
 	palette: {
-		primary1Color: yellow700,
+		primary1Color: purpleA700,
 		primary2Color: grey600,
 		primary3Color: blue800,
-		canvasColor: grey200,
-		accent1Color: yellow700,
+		canvasColor: white,
+		accent1Color: purpleA700,
 		accent2Color: grey600,
 		accent3Color: blue800,
 	},

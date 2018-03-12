@@ -1,4 +1,4 @@
-import { yellow600, white } from 'material-ui/styles/colors';
+import { cyanA200, purpleA700, purpleA200, white } from 'material-ui/styles/colors';
 
 export const style = {
 	card: {
@@ -54,10 +54,10 @@ export const style = {
 		left: '60%'
 	},
 	drawer_link_highlight: (path, route) => ({
-		backgroundColor: path === route ? yellow600 : null
+		backgroundColor: path === route ? purpleA700 : null
 	}),
 	drawer_link_icon: (path, route) => ({ 
-		color: path === route ? white : yellow600, 
+		color: path === route ? white : cyanA200,
 		position: 'absolute', 
 		left: '40%' 
 	}),
@@ -69,7 +69,7 @@ export const style = {
 	},
 	logout_btn: {
 		float: 'right',
-		color: 'white',
+		color: 'black',
 		zIndex: 104
 	}
 };

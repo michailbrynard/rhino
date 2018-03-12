@@ -85,11 +85,11 @@ class Home extends Component {
 									<div className='col-12'>
 										<Paper style={style.card} zDepth={3}>
 											<div style={style.card_left}>
-												<img style={style.card_left_img} src='rehive-logo1.svg' alt='logo' />
+												<img style={style.card_left_img} src='logo.png' alt='logo' />
 											</div>
 											<div style={style.card_right} className='right'>
-												<h3>Rehive</h3>
-												<p className='cardtext'>From ideas to production, Rehive partners with start ups, enterprises and governments to accelerate fintech innovation and build amazing fintech products.</p>
+												<h3>Shape Launcher</h3>
+												<p className='cardtext'>Shape launcher is an out-of-the-box, open source tool built on Rehive and Stellar to connect and reward your supporters! Add reward campaigns to reward users for helping you shape your product and add perks that can be exchanged for custom tokens!  </p>
 												<a href="https://rehive.com" rel="noopener noreferrer" target="_blank"><RaisedButton label="Visit Site" secondary={true} /></a>
 											</div>
 										</Paper>

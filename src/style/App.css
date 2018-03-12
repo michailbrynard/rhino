@@ -1,5 +1,5 @@
 body {
-	background: url("../img/bg-01.svg");
+	background-color: white;
 	background-size: cover;
 	background-position: center center;
 	background-repeat:  no-repeat;
@@ -13,12 +13,12 @@ body {
 
 .title {
 	font-size: 60px;
-	color: white;
+	color: black;
 }
 
 .subtitle {
 	font-size: 20px;
-	color: white;
+	color: black;
 
 }
 
@@ -64,6 +64,7 @@ body {
 
 .cardtext {
     font-size: 12px;
+
 }
 
 .card-heading {
