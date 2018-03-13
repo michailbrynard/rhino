@@ -34,7 +34,6 @@ class Landing extends Component {
 		return (
 			<div>
 				<AppBar
-					title={<img alt='logo' className='header-img' src='./logo.2.png' />}
 					showMenuIconButton={false}
 					iconElementRight={<FlatButton onClick={this.handleOpen} label="Login" />}
 				/>
@@ -89,10 +88,7 @@ class Landing extends Component {
 
 				<div className='spacer'></div>
 				<div className='row'>
-					<div className='col-6 center'>
-						<br />
-						<img alt='logo' className='landing-img' src='./logo.3.png' />
-					</div>
+
 					{
 						signupData ?
 							<div className='col-6 center row'>
@@ -100,7 +96,7 @@ class Landing extends Component {
 								<p className='subtitle'>Check your email for the link to create your password and login</p>
 
 							</div> :
-							<div className='col-6  landing-row'>
+							<div className='col-6 cneter landing-row'>
 								<h1 className='title'>SHAPE </h1>
 								<p className='subtitle'>Welcome to the Shape launcher! </p>
 								<p>Sign up to help shape the future of loyalty and support! </p>
@@ -113,7 +109,7 @@ class Landing extends Component {
 									signup(this.state.email)
 								}}>
 									<TextField
-										inputStyle={{ color: "white" }}
+										inputStyle={{ color: "black" }}
 										hintStyle={{ color: "#999" }}
 										value={this.state.email}
 										onChange={e => this.setState({ email: e.target.value })}

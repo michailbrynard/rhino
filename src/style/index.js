@@ -6,7 +6,7 @@ export const style = {
 		position: 'relative',
 		padding: '30px 40px 25px',
 		flexDirection: 'row',
-		borderRadius: '10px',
+		borderRadius: '0px',
 		maxWidth: '500px',
 		alignItems: 'center'
 	},
@@ -25,14 +25,14 @@ export const style = {
 	},
 	balance_card: {
 		textAlign: 'center',
-		borderRadius: '10px',
+		borderRadius: '0px',
 		alignItems: 'center',
 		padding: '30px 15px 25px',
 		position: 'relative',
 		maxWidth: '500px'
 	},
 	transaction_card: {
-		borderRadius: '10px',
+		borderRadius: '0px',
 	  maxWidth: '500px',
 	  alignItems: 'center',
 		padding: '30px 40px',
@@ -54,7 +54,8 @@ export const style = {
 		left: '60%'
 	},
 	drawer_link_highlight: (path, route) => ({
-		backgroundColor: path === route ? purpleA700 : null
+		backgroundColor: path === route ? purpleA700 : null,
+		color: path === route ? white : null,
 	}),
 	drawer_link_icon: (path, route) => ({ 
 		color: path === route ? white : cyanA200,

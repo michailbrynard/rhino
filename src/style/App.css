@@ -1,5 +1,5 @@
 body {
-	background-color: white;
+	background: url("../img/bg-02.svg");
 	background-size: cover;
 	background-position: center center;
 	background-repeat:  no-repeat;
@@ -8,7 +8,7 @@ body {
 }
 
 .spacer {
-	height: 15vh;
+	height: 10vh;
 }
 
 .title {
@@ -41,6 +41,15 @@ body {
     display: block;
     margin-left: auto;
     margin-right: auto;
+    text-align: left;
+}
+
+.cneter {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+    padding-left: 200px;
 }
 
 .row-logo {

@@ -85,7 +85,7 @@ class Home extends Component {
 									<div className='col-12'>
 										<Paper style={style.card} zDepth={3}>
 											<div style={style.card_left}>
-												<img style={style.card_left_img} src='logo.png' alt='logo' />
+												<img style={style.card_left_img} src='logo1.svg' alt='logo' />
 											</div>
 											<div style={style.card_right} className='right'>
 												<h3>Shape Launcher</h3>
@@ -107,6 +107,7 @@ class Home extends Component {
 											</div>
 											<div style={{ width: '200px' }} className='right'>
 												<h3 className='card-heading'>Balance</h3>
+												<p className='cardtext'> View your token balance and transaction history in your wallet. </p>
 												<br /><br />
 												<RaisedButton onClick={() => history.push('/wallet')} label="Wallet" secondary={true} />
 											</div>
@@ -116,10 +117,11 @@ class Home extends Component {
 									<div className='col-12'>
 										<Paper style={style.card} zDepth={3}>
 											<div style={style.card_left}>
-												<img style={style.card_left_img} src='coins.png' alt='coins' />
+												<img style={style.card_left_img} src='coins1.svg' alt='coins' />
 											</div>
 											<div style={style.card_right} className='right'>
 												<h3 className='card-heading'>Earn Tokens</h3>
+												<p className='cardtext'> Earn tokens by completing rewards! </p>
 												<br /><br />
 												<RaisedButton onClick={() => history.push('/earn')} label="Rewards" secondary={true} />
 											</div>
@@ -129,10 +131,11 @@ class Home extends Component {
 									<div className='col-12'>
 										<Paper style={style.card} zDepth={3}>
 											<div style={style.card_left}>
-												<img style={style.card_left_img} src='trading.png' alt='market' />
+												<img style={style.card_left_img} src='trading1.svg' alt='market' />
 											</div>
 											<div style={style.card_right} className='right'>
-												<h3 className='card-heading'>Redeem Tokens</h3>
+												<h3 className='card-heading'>Redeem Perks</h3>
+												<p className='cardtext'> Use tokens to purchase exclusive perks on the Marketplace.  </p>
 												<br /><br />
 												<RaisedButton onClick={() => history.push('/market')} label="Perks" secondary={true} />
 											</div>
