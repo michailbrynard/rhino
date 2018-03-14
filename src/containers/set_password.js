@@ -44,11 +44,11 @@ class Landing extends Component {
 							const params = new URLSearchParams(this.props.location.search);
 							const uid = params.get('uid');
 							const paramtoken = params.get('token');
+							const email = params.get('email');
 							const { password, passwordConf } = this.state
-							setPassword(password, passwordConf, uid, paramtoken)
+							setPassword(password, passwordConf, uid, paramtoken, email)
 						}}>
 							<TextField
-								inputStyle={{ color: "white" }}
 								hintStyle={{ color: "#999" }}
 								value={this.state.password}
 								type="password"
@@ -56,7 +56,6 @@ class Landing extends Component {
 								hintText="Password"
 							/><br />
 							<TextField
-								inputStyle={{ color: "white" }}
 								hintStyle={{ color: "#999" }}
 								value={this.state.passwordConf}
 								type="password"

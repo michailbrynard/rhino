@@ -17,7 +17,7 @@ export default (state = { loading: false }, action) => {
 			// NOTE: Storing token in localStorage for now
 			localStorage.setItem('token', action.data.token)
 			localStorage.setItem('user', JSON.stringify(action.data.user))
-			window.location.reload()
+			window.location = '/'
 			return merge({}, {
 				loading: false
 			})
