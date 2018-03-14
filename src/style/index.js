@@ -63,7 +63,7 @@ export const style = {
 		left: '40%' 
 	}),
 	nav_menu_icon: { 
-		color: white, 
+		color: purpleA700, 
 		position: 'absolute', 
 		left: 20, 
 		paddingTop: '5px' 

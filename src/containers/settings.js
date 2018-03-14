@@ -1,6 +1,7 @@
 import React from 'react'
 import Paper from 'material-ui/Paper';
 import { style } from '../style/'
+import TextField from 'material-ui/TextField/TextField';
 
 export default () => (
 	<div className='container'>
@@ -11,7 +12,14 @@ export default () => (
 					<div className='container'>
 						<br/>
 						<h3>Settings</h3>
-						<p>This is the settings component</p>
+						<h5>Company Info</h5>
+						<TextField floatingLabelText="Display Name"></TextField>
+						<TextField
+							hintText="Subtitle"
+							floatingLabelText="Subtitle"
+							multiLine={true}
+							rows={2}
+						/><br />
 						<br/>
 					</div>
 				</Paper>

@@ -8,7 +8,7 @@ export const signup = (signup_email) => (
 	dispatch => {
 		dispatch({ type: SIGNUP })
 		const route = process.env.REACT_APP_API_URL + '/user/join/'
-		callApi('POST', route, null, { signup_email, company: 'test_company_1', referral_id: "1234" })
+		callApi('POST', route, null, { signup_email, company: 'shape', referral_id: "1234" })
 		.then(json => {
 			if (json.status === 'success') {
 				dispatch({ type: SIGNUP_SUCCESS, data: json.data })
@@ -36,7 +36,7 @@ export const setPassword = (new_password1, new_password2, uid, token, email) => 
 				if (json.status === 'success') {
 					dispatch({ type: LOGIN })
 					const route = process.env.REACT_APP_REHIVE_API_URL + '/auth/login/'
-					callApi('POST', route, null, { user: email, password: new_password1, company: 'test_company_1' })
+					callApi('POST', route, null, { user: email, password: new_password1, company: 'shape' })
 						.then(json => {
 							if (json.status === 'success') {
 								dispatch({ type: LOGIN_SUCCESS, data: json.data })
@@ -66,7 +66,7 @@ export const login = (user, password) => (
 		dispatch({ type: LOGIN })
 		const route = process.env.REACT_APP_REHIVE_API_URL + '/auth/login/'
 		// TODO: using hardcoded company here
-		callApi('POST', route, null, { user, password, company: 'test_company_1' })
+		callApi('POST', route, null, { user, password, company: 'shape' })
 			.then(json => {
 				if (json.status === 'success') {
 						dispatch({ type: LOGIN_SUCCESS, data: json.data })
