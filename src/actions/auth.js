@@ -39,18 +39,7 @@ export const setPassword = (new_password1, new_password2, uid, token, email) => 
 					callApi('POST', route, null, { user: email, password: new_password1, company: 'test_company_1' })
 						.then(json => {
 							if (json.status === 'success') {
-								triggerReward({
-									data: {
-										currency: json.data.user.currency,
-											email
-										},
-										company: "test_company_1",
-										event: "user.create"
-									})
-									.then(triggerRewardRes => {
-										console.log("TRIGGER TOKEN REWARD RESULT", triggerRewardRes);
-										dispatch({ type: LOGIN_SUCCESS, data: json.data })
-									})
+								dispatch({ type: LOGIN_SUCCESS, data: json.data })
 							} else {
 								dispatch({ type: LOGIN_ERROR, err: json.message })
 							}
@@ -98,28 +87,3 @@ export const logout = () => (
 		dispatch({ type: LOGOUT })
 	}
 )
-
-const triggerReward = (data) => {
-	const route = process.env.REACT_APP_API_URL + '/admin/webhook/'
-	// TODO: Using hardcoded auth secret here. This must be changed/removed
-	let headers = {
-		'Accept': 'application/json',
-		'Content-Type': 'application/json',
-		'Authorization': 'secret fa3e1a21-e6f2-428f-94ea-3b9b4017c3c2'
-	}
-
-	let config = {
-		// credentials: 'include',
-		method: 'POST',
-		mode: 'cors',
-		headers
-	}
-
-	if (data) { config['body'] = JSON.stringify(data) }
-
-	return Promise.resolve(
-		fetch(route, config)
-			.then(response => response.json())
-			.catch(err => err)
-	)
-}
