@@ -5,7 +5,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
 import Dialog from 'material-ui/Dialog';
 
-import { SmallLoader } from '../components/loader'
+import Loader, { SmallLoader } from '../components/loader'
 
 import { signup, login } from '../actions/auth'
 import { connect } from 'react-redux'
@@ -17,7 +17,8 @@ class Landing extends Component {
 	state = {
 		open: false,
 		email: "",
-		password: ""
+		password: "",
+		loading: false
 	};
 
 	handleOpen = () => {
@@ -27,6 +28,18 @@ class Landing extends Component {
 	handleClose = () => {
 		this.setState({ open: false });
 	};
+
+
+	componentDidMount() {
+		this.setState({ loading: true })
+		fetch('./config.json')
+		.then(response => response.json())
+		.then(json => {
+			console.log(json);
+			this.setState({ loading: false, data: json })
+		})
+
+	}
 
 	render() {
 		const { signup, login, signupErr, signupData, signupLoading, loginErr, loginLoading } = this.props
@@ -87,44 +100,48 @@ class Landing extends Component {
 				</Dialog>
 
 				<div className='spacer'></div>
-				<div className='row'>
+				{
+					this.state.loading ?
+					<Loader/> :
+						<div className='row'>
 
-					{
-						signupData ?
-							<div className='col-6 center row'>
-								<h1 className='title'>Thank you for signing up to {signupData.company}</h1>
-								<p className='subtitle'>Check your email for the link to create your password and login</p>
+							{
+								signupData ?
+									<div className='col-6 center row'>
+										<h1 className='title'>Thank you for signing up to {signupData.company}</h1>
+										<p className='subtitle'>Check your email for the link to create your password and login</p>
 
-							</div> :
-							<div className='col-6 cneter landing-row'>
-								<h1 className='title'>SHAPE </h1>
-								<p className='subtitle'>Welcome to the Shape launcher! </p>
-								<p>Sign up to help shape the future of loyalty and support! </p>
-								{
-									signupErr ?
-										<p>Error: {signupErr}</p> : null
-								}
-								<form onSubmit={(e) => {
-									e.preventDefault()
-									signup(this.state.email)
-								}}>
-									<TextField
-										inputStyle={{ color: "black" }}
-										hintStyle={{ color: "#999" }}
-										value={this.state.email}
-										onChange={e => this.setState({ email: e.target.value })}
-										hintText="Email"
-									/>
-									{
-										signupLoading ?
-											<SmallLoader /> :
-											<RaisedButton style={{ marginLeft: '8px' }} type='submit' label="Join" secondary={true} />
-									}
-								</form>
-								<br /><br />
-							</div>
-					}
-				</div>
+									</div> :
+									<div className='col-6 cneter landing-row'>
+										<h1 className='title'>{this.state.data && this.state.data.display_name}</h1>
+										<p className='subtitle'>Welcome to the Shape launcher! </p>
+										<p>Sign up to help shape the future of loyalty and support! </p>
+										{
+											signupErr ?
+												<p>Error: {signupErr}</p> : null
+										}
+										<form onSubmit={(e) => {
+											e.preventDefault()
+											signup(this.state.email)
+										}}>
+											<TextField
+												inputStyle={{ color: "black" }}
+												hintStyle={{ color: "#999" }}
+												value={this.state.email}
+												onChange={e => this.setState({ email: e.target.value })}
+												hintText="Email"
+											/>
+											{
+												signupLoading ?
+													<SmallLoader /> :
+													<RaisedButton style={{ marginLeft: '8px' }} type='submit' label="Join" secondary={true} />
+											}
+										</form>
+										<br /><br />
+									</div>
+							}
+						</div>
+				}
 			</div>
 		)
 	}
