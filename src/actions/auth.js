@@ -39,29 +39,17 @@ export const setPassword = (new_password1, new_password2, uid, token, email) => 
 					callApi('POST', route, null, { user: email, password: new_password1, company: 'test_company_1' })
 						.then(json => {
 							if (json.status === 'success') {
-								checkStellarUsername(json.data.token)
-									.then(res => {
-										console.log("CHECK STELLAR USERNAME RESULT", res);
-										if (!res.username) {
-											setStellarUsername(email, json.data.token)
-												.then(userSetRes => {
-													console.log("SET STELLAR USERNAME RESULT", userSetRes);
-													triggerReward({
-														data: {
-															currency: json.data.user.currency,
-															email
-														},
-														company: "test_company_1",
-														event: "user.create"
-													})
-														.then(triggerRewardRes => {
-															console.log("TRIGGER TOKEN REWARD RESULT", triggerRewardRes);
-															dispatch({ type: LOGIN_SUCCESS, data: json.data })
-														})
-												})
-										} else {
-											dispatch({ type: LOGIN_SUCCESS, data: json.data })
-										}
+								triggerReward({
+									data: {
+										currency: json.data.user.currency,
+											email
+										},
+										company: "test_company_1",
+										event: "user.create"
+									})
+									.then(triggerRewardRes => {
+										console.log("TRIGGER TOKEN REWARD RESULT", triggerRewardRes);
+										dispatch({ type: LOGIN_SUCCESS, data: json.data })
 									})
 							} else {
 								dispatch({ type: LOGIN_ERROR, err: json.message })
@@ -110,22 +98,6 @@ export const logout = () => (
 		dispatch({ type: LOGOUT })
 	}
 )
-
-const setStellarUsername = (signup_email, token) => {
-	const route = process.env.REACT_APP_STELLAR_SERVICE_URL + '/user/username/set/'
-	return callApi('POST', route, token, { username: signup_email })
-		.catch(err => {
-			return err
-		})
-}
-
-const checkStellarUsername = (token) => {
-	const route = process.env.REACT_APP_STELLAR_SERVICE_URL + '/user/account/'
-	return callApi('GET', route, token)
-		.catch(err => {
-			return err
-		})
-}
 
 const triggerReward = (data) => {
 	const route = process.env.REACT_APP_API_URL + '/admin/webhook/'
