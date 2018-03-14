@@ -1,4 +1,4 @@
-import { cyanA200, purpleA700, purpleA200, white } from 'material-ui/styles/colors';
+import { cyanA200, purpleA700, white } from 'material-ui/styles/colors';
 
 export const style = {
 	card: {

@@ -18,7 +18,7 @@ import Settings from './containers/settings'
 import Count from './containers/count'
 
 import { configureStore } from './store'
-import { yellow700, grey200, purpleA700, blue800, grey600, cyanA200, purpleA200, lightBlue700, white } from 'material-ui/styles/colors';
+import { purpleA700, blue800, grey600, white } from 'material-ui/styles/colors';
 
 const muiTheme = getMuiTheme({
 	palette: {
