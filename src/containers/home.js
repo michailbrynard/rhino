@@ -151,7 +151,7 @@ class Home extends Component {
 												<h3 className='card-heading'>Redeem Perks</h3>
 												<p className='cardtext'> Use tokens to purchase exclusive perks on the Marketplace.  </p>
 												<br /><br />
-												<RaisedButton onClick={() => history.push('/market')} label="Perks" secondary={true} />
+												<RaisedButton onClick={() => history.push('/perks')} label="Perks" secondary={true} />
 											</div>
 										</Paper>
 										<br />

@@ -55,7 +55,7 @@ export default () => {
 									<Route exact path='/' component={Home} />
 									<Route exact path='/wallet' component={Wallet} />
 									<Route exact path='/earn' component={Earn} />
-									<Route exact path='/market' component={Market} />
+									<Route exact path='/perks' component={Market} />
 									<Route exact path='/settings' component={Settings} />
 								</div> :
 								<div>
