@@ -14,6 +14,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 import company_data from './config.json'
+import { callApi } from '../utils';
 class Settings extends Component {
 	constructor(props) {
 		super(props)
@@ -62,7 +63,12 @@ class PerksRewards extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			addtype: false
+			addtype: false,
+			name: "",
+			amount: "",
+			enabled: false,
+			user_limit: "",
+			volume_limit: "'"
 		}
 	}
 	render() {
@@ -81,35 +87,60 @@ class PerksRewards extends Component {
 						<h3>Add {this.state.addtype}</h3>
 						<form onSubmit={(e) => {
 							e.preventDefault()
-							console.log("DATA FOR SUBMIT");
+							
+							let route 
+							let data = {
+								company: process.env.REACT_APP_COMPANY_IDENTIFIER,
+								start_date: '2018-03-01',
+								end_date: '2018-04-01',
+								reward_type: this.state.name,
+								reward_amount: this.state.amount,
+								status: 'true',
+								volume_limit: this.state.volume_limit,
+								user_limit: this.state.user_limit
+							}
+							console.log("DATA FOR SUBMIT", data);
+							if (this.state.addtype === "Reward") {
+								route = 'campaign/'
+							}
+
+							// TODO: Move this to redux action. 
+							const token = localStorage.getItem('token')
+							callApi('POST', process.env.REACT_APP_API_URL + '/admin/' + route, token, data)
+							.then(result => {
+								console.log("RESULT FROM POST");
+								
+							})
+
 						}}>
 							<TextField
-								value={this.state.email}
+								value={this.state.name}
 								onChange={e => this.setState({ name: e.target.value })}
 								hintText={this.state.addtype + " Name"}
 								type='text'
 							/><br />
 							<TextField
-								value={this.state.password}
+								value={this.state.amount}
 								onChange={e => this.setState({ amount: e.target.value })}
 								hintText="Amount"
 								type='number'
 							/><br />
 							<TextField
-								value={this.state.password}
-								onChange={e => this.setState({ amount: e.target.value })}
+								value={this.state.volume_limit}
+								onChange={e => this.setState({ volume_limit: e.target.value })}
 								hintText="Volume Limit"
 								type='number'
 							/><br />
 							<TextField
-								value={this.state.password}
-								onChange={e => this.setState({ amount: e.target.value })}
+								value={this.state.user_limit}
+								onChange={e => this.setState({ user_limit: e.target.value })}
 								hintText="User Limit"
 								type='number'
 							/><br />
 							<Toggle
 								label="Enabled"
-								value={false}
+								value={this.state.enabled}
+								onChange={() => this.setState({ enabled: !this.state.enabled })}
 							/>
 							<FlatButton
 								label="Cancel"
@@ -125,12 +156,12 @@ class PerksRewards extends Component {
 						</form>
 					</div>
 				</Dialog>
-				<br />
-				
+				<br/>
 				<div className='row'>
 					<h3 className='f-left card-heading'>Rewards</h3>
 					<RaisedButton className='f-right' onClick={() => this.setState({ addtype: "Reward" })} label="Add" />
 				</div>
+				<br/>
 				{
 					reward_data && reward_data.length > 0 ?
 					reward_data.map((item, index) => (
@@ -148,10 +179,12 @@ class PerksRewards extends Component {
 					)) :
 					<h5>No Rewards</h5>
 				}
+				<br/><br/>
 				<div className='row'>
 					<h3 className='f-left card-heading'>Perks</h3>
 					<RaisedButton className='f-right' onClick={() => this.setState({ addtype: "Perk" })} label="Add" />
 				</div>
+				<br/>
 				{
 					perk_data && perk_data.length > 0 ?
 						perk_data.map((item, index) => (
