@@ -48,7 +48,7 @@ export default () => {
 							token ?
 								<div className='main'>
 									{
-										['/', '/wallet', '/earn', '/market', '/settings'].map((route, index) => (
+										['/', '/wallet', '/earn', '/perks', '/settings'].map((route, index) => (
 											<Route key={index} exact path={route} component={Nav} />
 										))
 									}
