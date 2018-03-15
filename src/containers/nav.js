@@ -67,6 +67,11 @@ class Nav extends Component {
 
 			<List key={6} style={style.user_nav_view}>
 				<ListItem
+					className='center'
+					onClick={() => window.open('https://rehive.com', '_blank')}
+					secondaryText="Powered by Rehive"
+				/>
+				<ListItem
 					disabled
 					className='center'
 					onClick={() => history.push('/')}
