@@ -23,7 +23,8 @@ class Home extends Component {
 				// 	text: "This is a test notification"
 				// }
 			],
-			snackbar_open: false
+			snackbar_open: false,
+			loading: false
 		}
 	}
 
@@ -33,14 +34,27 @@ class Home extends Component {
 		});
 	};
 
+	componentDidMount() {
+		this.setState({ loading: true })
+		fetch('./config.json')
+			.then(response => response.json())
+			.then(json => {
+				console.log(json);
+				this.setState({ loading: false, company_data: json })
+			})
+
+	}
+
 	render() {
 
 		const { history, loading, err, data } = this.props
 
+		const { company_data } = this.state
+
 		return (
 			<div className='container'>
 				{
-					loading ?
+					loading || this.state.loading ?
 					<Loader/> :
 						(
 							err ?
@@ -88,8 +102,8 @@ class Home extends Component {
 												<img style={style.card_left_img} src='logo1.svg' alt='logo' />
 											</div>
 											<div style={style.card_right} className='right'>
-												<h3>Shape Launcher</h3>
-												<p className='cardtext'>Shape launcher is an out-of-the-box, open source tool built on Rehive and Stellar to connect and reward your supporters! Add reward campaigns to reward users for helping you shape your product and add perks that can be exchanged for custom tokens!  </p>
+												<h3>{ company_data && company_data.card_display_name }</h3>
+												<p className='cardtext'>{ company_data && company_data.description }</p>
 												<a href="https://rehive.com" rel="noopener noreferrer" target="_blank"><RaisedButton label="Visit Site" secondary={true} /></a>
 											</div>
 										</Paper>

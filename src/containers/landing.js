@@ -114,7 +114,7 @@ class Landing extends Component {
 									</div> :
 									<div className='col-6 cneter landing-row'>
 										<h1 className='title'>{this.state.data && this.state.data.display_name}</h1>
-										<p className='subtitle'>Welcome to the Shape launcher! </p>
+										<p className='subtitle'>{this.state.data && this.state.data.subtitle}</p>
 										<p>Sign up to help shape the future of loyalty and support! </p>
 										{
 											signupErr ?
