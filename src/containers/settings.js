@@ -65,10 +65,10 @@ class PerksRewards extends Component {
 		this.state = {
 			addtype: false,
 			name: "",
-			amount: "",
+			amount: '',
 			enabled: false,
-			user_limit: "",
-			volume_limit: "'"
+			user_limit: '',
+			volume_limit: ''
 		}
 	}
 	render() {
@@ -108,8 +108,7 @@ class PerksRewards extends Component {
 							const token = localStorage.getItem('token')
 							callApi('POST', process.env.REACT_APP_API_URL + '/admin/' + route, token, data)
 							.then(result => {
-								console.log("RESULT FROM POST");
-								
+								window.location.reload()
 							})
 
 						}}>
