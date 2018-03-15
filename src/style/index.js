@@ -68,6 +68,13 @@ export const style = {
 		left: 20, 
 		paddingTop: '5px' 
 	},
+	settings_card: {
+		borderRadius: '0px',
+		maxWidth: '500px',
+		alignItems: 'center',
+		padding: '0 0 30px',
+		position: 'relative'
+	},
 	logout_btn: {
 		float: 'right',
 		color: 'black',
