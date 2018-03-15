@@ -8,7 +8,7 @@ import { getCampaignData } from '../actions/campaign'
 import Loader from '../components/loader'
 import { style } from '../style/'
 
-const Earn = ({ data }) => (
+const Earn = ({ data, currency }) => (
 	<div className='container'>
 		<div className='row'>
 		<br/>
@@ -22,7 +22,7 @@ const Earn = ({ data }) => (
 								</div>
 								<div style={style.card_right} className='right'>
 									<h3>{item.reward_type.toUpperCase()}</h3>
-									<h1>{item.reward_amount} HIVE</h1>
+									<h1>{item.reward_amount} {currency}</h1>
 								</div>
 							</Paper>
 							<br />
@@ -53,13 +53,14 @@ class EarnContainer extends Component {
 
 	render() {
 		const { data, loading } = this.props
+		const user_data = JSON.parse(localStorage.getItem('user'))
 		
 		return (
 			<div>
 				{
 					loading ?
 					<Loader/> :
-						<Earn data={data} />
+						<Earn data={data} currency={user_data && user_data.currency && user_data.currency.code} />
 				}
 			</div>
 		)

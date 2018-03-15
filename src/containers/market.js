@@ -76,7 +76,7 @@ class Market extends Component {
 													</div>
 													<div style={style.card_right} className='right'>
 														<h3>{item.perk_name}</h3>
-														<h1>{item.perk_amount} HIVE</h1>
+														<h1>{item.perk_amount} {user_data && user_data.currency && user_data.currency.code}</h1>
 													</div>
 												</Paper>
 												<br />
