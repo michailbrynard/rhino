@@ -32,7 +32,7 @@ class Market extends Component {
 					onRequestClose={() => this.setState({ perk_amount: ''})}
 				>
 					<div className='container center'>
-						<h3>Are you syre you want to purchase this perk?</h3>
+						<h3>Are you sure you want to purchase this perk?</h3>
 						<form onSubmit={(e) => {
 							e.preventDefault()
 							createDebit(user_data && user_data.currency && user_data.currency.code, this.state.perk_amount)
