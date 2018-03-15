@@ -87,21 +87,28 @@ class PerksRewards extends Component {
 						<h3>Add {this.state.addtype}</h3>
 						<form onSubmit={(e) => {
 							e.preventDefault()
-							
 							let route 
-							let data = {
-								company: process.env.REACT_APP_COMPANY_IDENTIFIER,
-								start_date: '2018-03-01',
-								end_date: '2018-04-01',
-								reward_type: this.state.name,
-								reward_amount: this.state.amount,
-								status: 'true',
-								volume_limit: this.state.volume_limit,
-								user_limit: this.state.user_limit
-							}
-							console.log("DATA FOR SUBMIT", data);
+							let data
+
 							if (this.state.addtype === "Reward") {
 								route = 'campaign/'
+								data = {
+									company: process.env.REACT_APP_COMPANY_IDENTIFIER,
+									start_date: '2018-03-01',
+									end_date: '2018-04-01',
+									reward_type: this.state.name,
+									reward_amount: this.state.amount,
+									status: 'true',
+									volume_limit: this.state.volume_limit,
+									user_limit: this.state.user_limit
+								}
+							} else {
+								route = 'perk/'
+								data = { 
+									company: process.env.REACT_APP_COMPANY_IDENTIFIER,
+									perk_name: this.state.name, 
+									perk_amount: this.state.amount
+								}
 							}
 
 							// TODO: Move this to redux action. 
@@ -124,23 +131,28 @@ class PerksRewards extends Component {
 								hintText="Amount"
 								type='number'
 							/><br />
-							<TextField
-								value={this.state.volume_limit}
-								onChange={e => this.setState({ volume_limit: e.target.value })}
-								hintText="Volume Limit"
-								type='number'
-							/><br />
-							<TextField
-								value={this.state.user_limit}
-								onChange={e => this.setState({ user_limit: e.target.value })}
-								hintText="User Limit"
-								type='number'
-							/><br />
-							<Toggle
-								label="Enabled"
-								value={this.state.enabled}
-								onChange={() => this.setState({ enabled: !this.state.enabled })}
-							/>
+							{
+								this.state.addtype === "Reward" ?
+								<div>
+									<TextField
+										value={this.state.volume_limit}
+										onChange={e => this.setState({ volume_limit: e.target.value })}
+										hintText="Volume Limit"
+										type='number'
+									/><br />
+									<TextField
+										value={this.state.user_limit}
+										onChange={e => this.setState({ user_limit: e.target.value })}
+										hintText="User Limit"
+										type='number'
+									/><br />
+									<Toggle
+										label="Enabled"
+										value={this.state.enabled}
+										onChange={() => this.setState({ enabled: !this.state.enabled })}
+									/>
+								</div> : null
+							}
 							<FlatButton
 								label="Cancel"
 								primary={true}
@@ -191,10 +203,12 @@ class PerksRewards extends Component {
 								<div className="container">
 									<h5 className='f-right'>{item.perk_amount}</h5>
 									<h5 className='f-left'>{item.perk_name}</h5>
-									<Toggle
+									{/*
+										<Toggle
 										label={item.status ? "Enabled" : "Disabled"}
 										value={item.status}
 									/>
+									*/}
 								</div>
 								<br />
 							</Paper>

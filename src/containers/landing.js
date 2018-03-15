@@ -112,7 +112,7 @@ class Landing extends Component {
 										<p className='subtitle'>Check your email for the link to create your password and login</p>
 
 									</div> :
-									<div className='col-6 cneter landing-row'>
+									<div className='col-6 center landing-row'>
 										<h1 className='title'>{this.state.data && this.state.data.display_name}</h1>
 										<p className='subtitle'>{this.state.data && this.state.data.subtitle}</p>
 										<p>Sign up to help shape the future of loyalty and support! </p>
