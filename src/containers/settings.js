@@ -6,6 +6,7 @@ import Loader from '../components/loader'
 import { RaisedButton } from 'material-ui';
 import { Tabs, Tab } from 'material-ui/Tabs'
 import { getCampaignData } from '../actions/campaign'
+import Toggle from 'material-ui/Toggle';
 import { getPerkData } from '../actions/perk'
 
 import { bindActionCreators } from 'redux'
@@ -59,7 +60,6 @@ class PerksRewards extends Component {
 	render() {
 
 		const { reward_data, perk_data } = this.props
-		console.log("PERK DATA", perk_data);
 		return (
 			<div className='container'>
 				<br />
@@ -67,10 +67,17 @@ class PerksRewards extends Component {
 				{
 					reward_data && reward_data.length > 0 ?
 					reward_data.map((item, index) => (
-							<div key={index} className='row'>
-								<h5 className='f-right'>{item.reward_amount}</h5>
-								<h5 className='f-left'>{item.reward_type}</h5>
-							</div>
+							<Paper key={index} className='row'>
+								<div className="container">
+									<h5 className='f-right'>{item.reward_amount}</h5>
+									<h5 className='f-left'>{item.reward_type.toUpperCase()}</h5>
+									<Toggle
+										label={item.status ? "Enabled" : "Disabled"}
+										value={item.status}
+									/>
+								</div>
+								<br/>
+							</Paper>
 					)) :
 					<h5>No Rewards</h5>
 				}
@@ -78,12 +85,19 @@ class PerksRewards extends Component {
 				{
 					perk_data && perk_data.length > 0 ?
 						perk_data.map((item, index) => (
-							<div key={index} className='row'>
-								<h5 className='f-right'>{item.perk_amount}</h5>
-								<h5 className='f-left'>{item.perk_name}</h5>
-							</div>
+							<Paper key={index} className='row'>
+								<div className="container">
+									<h5 className='f-right'>{item.perk_amount}</h5>
+									<h5 className='f-left'>{item.perk_name}</h5>
+									<Toggle
+										label={item.status ? "Enabled" : "Disabled"}
+										value={item.status}
+									/>
+								</div>
+								<br />
+							</Paper>
 						)) :
-						<h5>No Rewards</h5>
+						<h5>No Perks</h5>
 				}
 				<RaisedButton onClick={this.submit} label="Submit" />
 			</div>
