@@ -2,12 +2,13 @@ import React, { Component } from 'react'
 import Paper from 'material-ui/Paper';
 import { style } from '../style/'
 import TextField from 'material-ui/TextField/TextField';
-import Loader from '../components/loader'
-import { RaisedButton } from 'material-ui';
+import Loader, { SmallLoader } from '../components/loader'
+import { RaisedButton, FlatButton } from 'material-ui';
 import { Tabs, Tab } from 'material-ui/Tabs'
 import { getCampaignData } from '../actions/campaign'
 import Toggle from 'material-ui/Toggle';
 import { getPerkData } from '../actions/perk'
+import Dialog from 'material-ui/Dialog'
 
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
@@ -57,13 +58,67 @@ class Settings extends Component {
 }
 
 class PerksRewards extends Component {
+
+	constructor(props) {
+		super(props)
+		this.state = {
+			open: false
+		}
+	}
 	render() {
 
 		const { reward_data, perk_data } = this.props
 		return (
 			<div className='container'>
+				<Dialog
+					contentStyle={{ maxWidth: "360px" }}
+					autoDetectWindowHeight={true}
+					modal={false}
+					open={this.state.open}
+					onRequestClose={this.handleClose}
+				>
+					<div className='container center'>
+						<h3>Add</h3>
+						<form onSubmit={(e) => {
+							e.preventDefault()
+							console.log("DATA FOR SUBMIT");
+						}}>
+							<TextField
+								value={this.state.email}
+								onChange={e => this.setState({ name: e.target.value })}
+								hintText="Perk Name"
+								type='text'
+							/><br />
+							<TextField
+								value={this.state.password}
+								onChange={e => this.setState({ amount: e.target.value })}
+								hintText="Amount"
+								type='number'
+							/><br />
+							<Toggle
+								label="Enabled"
+								value={false}
+							/>
+							<FlatButton
+								label="Cancel"
+								primary={true}
+								onClick={() => this.setState({ open: false })}
+							/>
+							<FlatButton
+								label="Add"
+								primary={true}
+								keyboardFocused={true}
+								type='submit'
+							/>
+						</form>
+					</div>
+				</Dialog>
 				<br />
-				<h3>Rewards</h3>
+				
+				<div className='row'>
+					<h3 className='f-left card-heading'>Rewards</h3>
+					<RaisedButton className='f-right' onClick={() => this.setState({ open: true })} label="Add" />
+				</div>
 				{
 					reward_data && reward_data.length > 0 ?
 					reward_data.map((item, index) => (
@@ -81,7 +136,10 @@ class PerksRewards extends Component {
 					)) :
 					<h5>No Rewards</h5>
 				}
-				<h3>Perks</h3>
+				<div className='row'>
+					<h3 className='f-left card-heading'>Perks</h3>
+					<RaisedButton className='f-right' onClick={() => this.setState({ open: true })} label="Add" />
+				</div>
 				{
 					perk_data && perk_data.length > 0 ?
 						perk_data.map((item, index) => (
@@ -99,7 +157,6 @@ class PerksRewards extends Component {
 						)) :
 						<h5>No Perks</h5>
 				}
-				<RaisedButton onClick={this.submit} label="Submit" />
 			</div>
 		)
 	}
