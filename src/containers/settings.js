@@ -62,7 +62,7 @@ class PerksRewards extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			open: false
+			addtype: false
 		}
 	}
 	render() {
@@ -74,11 +74,11 @@ class PerksRewards extends Component {
 					contentStyle={{ maxWidth: "360px" }}
 					autoDetectWindowHeight={true}
 					modal={false}
-					open={this.state.open}
-					onRequestClose={this.handleClose}
+					open={this.state.addtype ? true : false}
+					onRequestClose={() => this.setState({ addtype: null })}
 				>
 					<div className='container center'>
-						<h3>Add</h3>
+						<h3>Add {this.state.addtype}</h3>
 						<form onSubmit={(e) => {
 							e.preventDefault()
 							console.log("DATA FOR SUBMIT");
@@ -86,13 +86,25 @@ class PerksRewards extends Component {
 							<TextField
 								value={this.state.email}
 								onChange={e => this.setState({ name: e.target.value })}
-								hintText="Perk Name"
+								hintText={this.state.addtype + " Name"}
 								type='text'
 							/><br />
 							<TextField
 								value={this.state.password}
 								onChange={e => this.setState({ amount: e.target.value })}
 								hintText="Amount"
+								type='number'
+							/><br />
+							<TextField
+								value={this.state.password}
+								onChange={e => this.setState({ amount: e.target.value })}
+								hintText="Volume Limit"
+								type='number'
+							/><br />
+							<TextField
+								value={this.state.password}
+								onChange={e => this.setState({ amount: e.target.value })}
+								hintText="User Limit"
 								type='number'
 							/><br />
 							<Toggle
@@ -102,7 +114,7 @@ class PerksRewards extends Component {
 							<FlatButton
 								label="Cancel"
 								primary={true}
-								onClick={() => this.setState({ open: false })}
+								onClick={() => this.setState({ addtype: null })}
 							/>
 							<FlatButton
 								label="Add"
@@ -117,7 +129,7 @@ class PerksRewards extends Component {
 				
 				<div className='row'>
 					<h3 className='f-left card-heading'>Rewards</h3>
-					<RaisedButton className='f-right' onClick={() => this.setState({ open: true })} label="Add" />
+					<RaisedButton className='f-right' onClick={() => this.setState({ addtype: "Reward" })} label="Add" />
 				</div>
 				{
 					reward_data && reward_data.length > 0 ?
@@ -138,7 +150,7 @@ class PerksRewards extends Component {
 				}
 				<div className='row'>
 					<h3 className='f-left card-heading'>Perks</h3>
-					<RaisedButton className='f-right' onClick={() => this.setState({ open: true })} label="Add" />
+					<RaisedButton className='f-right' onClick={() => this.setState({ addtype: "Perk" })} label="Add" />
 				</div>
 				{
 					perk_data && perk_data.length > 0 ?
