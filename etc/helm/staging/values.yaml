@@ -20,12 +20,14 @@ ingress:
   enabled: true
   hosts:
     - hive.s.shapelaunch.com
+    - s.shapelaunch.com
   annotations:
     kubernetes.io/ingress.class: "nginx"
     kubernetes.io/tls-acme: "true"
   tls:
     - hosts:
       - hive.s.shapelaunch.com
+      - s.shapelaunch.com
       secretName: launcher-dashboard-tls
 management:
   enabled: false
