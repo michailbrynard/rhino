@@ -6,6 +6,7 @@ import Loader from '../components/loader'
 import { RaisedButton } from 'material-ui';
 import { Tabs, Tab } from 'material-ui/Tabs'
 import { getCampaignData } from '../actions/campaign'
+import { getPerkData } from '../actions/perk'
 
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
@@ -57,22 +58,32 @@ class Settings extends Component {
 class PerksRewards extends Component {
 	render() {
 
-		const { data } = this.props
-
-		console.log("DATA IN PERKS", data);
+		const { reward_data, perk_data } = this.props
+		console.log("PERK DATA", perk_data);
 		return (
 			<div className='container'>
 				<br />
 				<h3>Rewards</h3>
 				{
-					data && data.length > 0 ?
-					data.map((item, index) => (
+					reward_data && reward_data.length > 0 ?
+					reward_data.map((item, index) => (
 							<div key={index} className='row'>
 								<h5 className='f-right'>{item.reward_amount}</h5>
 								<h5 className='f-left'>{item.reward_type}</h5>
 							</div>
 					)) :
 					<h5>No Rewards</h5>
+				}
+				<h3>Perks</h3>
+				{
+					perk_data && perk_data.length > 0 ?
+						perk_data.map((item, index) => (
+							<div key={index} className='row'>
+								<h5 className='f-right'>{item.perk_amount}</h5>
+								<h5 className='f-left'>{item.perk_name}</h5>
+							</div>
+						)) :
+						<h5>No Rewards</h5>
 				}
 				<RaisedButton onClick={this.submit} label="Submit" />
 			</div>
@@ -85,15 +96,16 @@ class SettingsContainer extends Component {
 	componentDidMount() {
 		const user_data = JSON.parse(localStorage.getItem('user'))
 		this.props.getCampaignData(user_data.company)
+		this.props.getPerkData(user_data.company)
 	}
 
 	render() {
-		const { data, loading } = this.props
+		const { data, loading, loading_perks, perk_data } = this.props
 
 		return (
 			<div>
 				{
-					loading ?
+					loading || loading_perks ?
 						<Loader /> :
 						<div className='container'>
 							<div className='row'>
@@ -105,7 +117,7 @@ class SettingsContainer extends Component {
 												<Settings />
 											</Tab>
 											<Tab label="Perks/Rewards">
-												<PerksRewards data={data} />
+												<PerksRewards perk_data={perk_data} reward_data={data} />
 											</Tab>
 										</Tabs>
 									</Paper>
@@ -118,16 +130,20 @@ class SettingsContainer extends Component {
 		)
 	}
 }
+
 function mapStateToProps(state) {
 	const { data, loading } = state.campaign
 	return {
 		data,
+		perk_data: state.perk.data,
+		loading_perks: state.perk.loading,
 		loading
 	}
 }
 
 function mapDispatchToProps(dispatch) {
 	return {
+		getPerkData: bindActionCreators(getPerkData, dispatch),
 		getCampaignData: bindActionCreators(getCampaignData, dispatch)
 	}
 }
