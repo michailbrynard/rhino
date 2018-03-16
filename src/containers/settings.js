@@ -226,29 +226,34 @@ class SettingsContainer extends Component {
 
 	render() {
 		const { data, loading, loading_perks, perk_data } = this.props
-
+		const user_data = JSON.parse(localStorage.getItem('user'))
+		const isAdmin = user_data.groups.filter(i => i.name ===  'admin').length > 0;
 		return (
 			<div>
 				{
 					loading || loading_perks ?
 						<Loader /> :
 						<div className='container'>
-							<div className='row'>
-								<br />
-								<div className='col-12'>
-									<Paper style={style.settings_card} zDepth={3}>
-										<Tabs>
-											<Tab label="Company">
-												<Settings />
-											</Tab>
-											<Tab label="Perks/Rewards">
-												<PerksRewards perk_data={perk_data} reward_data={data} />
-											</Tab>
-										</Tabs>
-									</Paper>
-									<br />
-								</div>
-							</div>
+							{
+								isAdmin ?
+									<div className='row'>
+										<br />
+										<div className='col-12'>
+											<Paper style={style.settings_card} zDepth={3}>
+												<Tabs>
+													<Tab label="Company">
+														<Settings />
+													</Tab>
+													<Tab label="Perks/Rewards">
+														<PerksRewards perk_data={perk_data} reward_data={data} />
+													</Tab>
+												</Tabs>
+											</Paper>
+											<br />
+										</div>
+									</div> :
+									<h3>Sorry, no settings to show</h3>
+							}
 						</div>
 				}
 			</div>
