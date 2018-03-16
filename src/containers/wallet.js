@@ -39,7 +39,7 @@ class Wallet extends Component {
 										<Paper style={style.balance_card} zDepth={3}>
 											<div className='container'>
 												<p>Balance</p>
-												<h1>{data && data.balance && data.balance.balance + ' ' + data.balance.currency.code} </h1>
+												<h1>{data && data.balance && (data.balance.balance / 10000000)+ ' ' + data.balance.currency.code} </h1>
 											</div>
 											<div className='row'>
 												<div className='col-6-sm'>

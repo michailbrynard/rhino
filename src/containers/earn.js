@@ -14,21 +14,23 @@ const Earn = ({ data, currency }) => (
 		<br/>
 			{
 				data && data.length > 0 ?
-				data.map((item, index) => (
+				data.map((item, index) => {
+					const reward_amount = item.reward_amount / 10000000
+					return (
 						<div key={index} className='col-12'>
 							<Paper style={style.card} zDepth={3}>
 								<div style={style.card_left}>
-									<img style={style.card_left_img} src='logo.png' alt='earn'/>
+									<img style={style.card_left_img} src='logo.png' alt='earn' />
 								</div>
 								<div style={style.card_right} className='right'>
 									<h3>{item.reward_type.toUpperCase()}</h3>
-									<h1>{item.reward_amount} {currency}</h1>
+									<h1>{reward_amount} {currency}</h1>
 								</div>
 							</Paper>
 							<br />
 						</div>
-
-				)) : 
+					)
+				}) : 
 					<div className='col-12'>
 						<Paper style={style.transaction_card} zDepth={3}>
 							<div className='container center'>
@@ -54,7 +56,7 @@ class EarnContainer extends Component {
 	render() {
 		const { data, loading } = this.props
 		const user_data = JSON.parse(localStorage.getItem('user'))
-		
+
 		return (
 			<div>
 				{

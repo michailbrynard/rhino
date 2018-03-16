@@ -68,21 +68,23 @@ class Market extends Component {
 							<div className='row'>
 								{
 									data && data.length > 0 ?
-										data.map((item, index) => (
-											<div key={index} className='col-12'>
-												<Paper onClick={() => this.setState({ perk_amount: item.perk_amount })} style={style.card} zDepth={3}>
-													<div style={style.card_left}>
-														<img style={style.card_left_img} alt='logo' src='logo.png' />
-													</div>
-													<div style={style.card_right} className='right'>
-														<h3>{item.perk_name}</h3>
-														<h1>{item.perk_amount} {user_data && user_data.currency && user_data.currency.code}</h1>
-													</div>
-												</Paper>
-												<br />
-											</div>
-
-										)) :
+										data.map((item, index) => {
+											const perk_amount = item.perk_amount / 10000000
+											return (
+												<div key={index} className='col-12'>
+													<Paper onClick={() => this.setState({ perk_amount: perk_amount })} style={style.card} zDepth={3}>
+														<div style={style.card_left}>
+															<img style={style.card_left_img} alt='logo' src='logo.png' />
+														</div>
+														<div style={style.card_right} className='right'>
+															<h3>{item.perk_name}</h3>
+															<h1>{perk_amount} {user_data && user_data.currency && user_data.currency.code}</h1>
+														</div>
+													</Paper>
+													<br />
+												</div>
+											)
+										}) :
 										<div className='col-12'>
 											<Paper style={style.transaction_card} zDepth={3}>
 												<div className='container center'>
