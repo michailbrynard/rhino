@@ -22,3 +22,30 @@ export const createDebit = (currency, amount) => (
 			})
 	}
 )
+
+export const CREATE_SEND = "CREATE_SEND"
+export const CREATE_SEND_SUCCESS = "CREATE_SEND_SUCCESS"
+export const CREATE_SEND_ERROR = "CREATE_SEND_ERROR"
+
+export const  createSend = (data) => (
+	dispatch => {
+		dispatch({ type: CREATE_SEND })
+		const route = process.env.REACT_APP_STELLAR_SERVICE_URL + '/transactions/send/'
+		const token = localStorage.getItem('token')
+
+		callApi('POST', route, token, data)
+			.then(json => {
+				if (json.status === 'success') {
+					// TEMPORARY
+					window.location.reload()
+					dispatch({ type: CREATE_SEND_SUCCESS, data: json.data })
+				} else {
+					dispatch({ type: CREATE_SEND_ERROR, err: json.message })
+				}
+			})
+			.catch(err => {
+				dispatch({ type: CREATE_SEND_ERROR })
+			})
+
+	}
+)

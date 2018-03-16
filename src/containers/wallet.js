@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import Paper from 'material-ui/Paper';
-import { RaisedButton, Dialog, FlatButton } from 'material-ui';
+import { RaisedButton, Dialog, FlatButton, TextField } from 'material-ui';
 import moment from 'moment'
 
 import { getWalletData } from '../actions/wallet'
+import { createSend } from '../actions/transaction'
+
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import Loader from '../components/loader'
@@ -12,6 +14,9 @@ import { style } from '../style/'
 class Wallet extends Component {
 	state = {
 		token_dialog_msg: "",
+		recipient: '',
+		memo: '',
+		amount: ''
 	};
 
 	handleToken_dialog_msg = (msg) => {
@@ -24,7 +29,7 @@ class Wallet extends Component {
 
 	render() {
 
-		const { data, loading, err } = this.props
+		const { data, loading, err, createSend } = this.props
 		return (
 			<div className='container'>
 				{
@@ -84,19 +89,56 @@ class Wallet extends Component {
 							label="Close"
 							primary={true}
 							onClick={this.handleClose}
+						/>,
+						<FlatButton
+							label="Submit"
+							primary={true}
+							onClick={() => {
+								const data = {
+									recipient: this.state.recipient,
+									amount: this.state.amount * 10000000,
+									memo: this.state.memo
+								}
+								console.log("DATA FOR TRANSACTION", data);
+								createSend(data)
+							}}
 						/>
 					]}
 					modal={false}
 					open={this.state.token_dialog_msg ? true : false}
 					onRequestClose={this.handleClose}
+					style={{ textAlign: 'center' }}
 				>
-					Dialog for {this.state.token_dialog_msg}
+					{this.state.token_dialog_msg}
 					{
 						this.state.token_dialog_msg === "Receive Tokens" ?
 							<img style={{
 								height: 300,
 								width: 300
-							}} src="qr.jpg" alt='qr' /> : null
+							}} src="qr.jpg" alt='qr' /> : (
+								<div className="center">
+									<TextField 
+										value={this.state.recipient} 
+										type="text" 
+										hintText="Recipient" 
+										onChange={e => this.setState({ recipient: e.target.value })}
+									/>
+									<br/>
+									<TextField 
+										value={this.state.amount} 
+										type="number"
+										onChange={e => this.setState({ amount: e.target.value })}
+										hintText="Amount" 
+									/>
+									<br/>
+									<TextField 
+										value={this.state.memo} 
+										type="text" 
+										onChange={e => this.setState({ memo: e.target.value })}
+										hintText="Memo" 
+									/>
+								</div>
+							)
 					}
 				</Dialog>
 			</div>
@@ -110,9 +152,9 @@ class WalletContainer extends Component {
 	}
 
 	render() {
-		const { data, loading, err } = this.props
+		const { data, loading, err, createSend } = this.props
 		return (
-			<Wallet data={data} loading={loading} err={err}/>
+			<Wallet data={data} loading={loading} createSend={createSend} err={err}/>
 		)
 	}
 }
@@ -127,7 +169,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
 	return {
-		getWalletData: bindActionCreators(getWalletData, dispatch)
+		getWalletData: bindActionCreators(getWalletData, dispatch),
+		createSend: bindActionCreators(createSend, dispatch)
 	}
 }
 

@@ -114,7 +114,7 @@ class Home extends Component {
 											<div style={style.card_left}>
 												<br />
 												<h1 className='card-heading'>
-													{data && data.balance && data.balance.balance}
+													{data && data.balance && data.balance.balance / 10000000}
 													<br />
 													{data && data.balance && data.balance.currency && data.balance.currency.code}
 												</h1>

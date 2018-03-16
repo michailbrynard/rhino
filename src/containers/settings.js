@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Paper from 'material-ui/Paper';
 import { style } from '../style/'
 import TextField from 'material-ui/TextField/TextField';
-import Loader, { SmallLoader } from '../components/loader'
+import Loader from '../components/loader'
 import { RaisedButton, FlatButton } from 'material-ui';
 import { Tabs, Tab } from 'material-ui/Tabs'
 import { getCampaignData } from '../actions/campaign'
@@ -16,10 +16,6 @@ import { connect } from 'react-redux'
 import company_data from './config.json'
 import { callApi } from '../utils';
 class Settings extends Component {
-	constructor(props) {
-		super(props)
-	}
-
 	render() {
 		return (
 			<div className='container'>
