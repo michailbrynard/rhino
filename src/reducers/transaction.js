@@ -18,6 +18,7 @@ export default (state = { loading: false }, action) => {
 			})
 		case CREATE_SEND_SUCCESS:
 		case CREATE_DEBIT_SUCCESS:
+		window.location.reload()
 			return merge({}, {
 				loading: false,
 				data: action.data

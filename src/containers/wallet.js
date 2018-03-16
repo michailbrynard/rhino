@@ -68,7 +68,7 @@ class Wallet extends Component {
 													data && data.transactions && data.transactions.length > 0 ?
 														data.transactions.map((t, index) => (
 															<div key={index} className='row'>
-																<h5 className='f-right'>{t.amount}</h5>
+																<h5 className='f-right'>{t.amount / 10000000}</h5>
 																<h5 className='f-left'>{moment(t.created).fromNow()} ({t.status})</h5>
 															</div>
 														)) :
