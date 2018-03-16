@@ -36,7 +36,6 @@ export const  createSend = (data) => (
 		callApi('POST', route, token, data)
 			.then(json => {
 				if (json.status === 'success') {
-					// TEMPORARY
 					window.location.reload()
 					dispatch({ type: CREATE_SEND_SUCCESS, data: json.data })
 				} else {

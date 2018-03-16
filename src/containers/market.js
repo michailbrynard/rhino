@@ -19,9 +19,9 @@ class Market extends Component {
 	}
 
 	render() {
-		const { data, createDebit, debit_data } = this.props
+		const { data, createDebit, debit_data, debit_loading, debit_error } = this.props
 		const user_data = JSON.parse(localStorage.getItem('user'))
-
+		console.log("DEBIT ERROR", debit_error);
 		return (
 			<div className='container'>
 				<Dialog
@@ -33,6 +33,10 @@ class Market extends Component {
 				>
 					<div className='container center'>
 						<h3>Are you sure you want to purchase this perk?</h3>
+						{
+							debit_error ?
+								<h3>{debit_error}</h3> : null
+						}
 						<form onSubmit={(e) => {
 							e.preventDefault()
 							createDebit(user_data && user_data.currency && user_data.currency.code, this.state.perk_amount)
@@ -54,49 +58,55 @@ class Market extends Component {
 				<div >
 					<br />
 					{
-						debit_data ?
-							<div className='col-12'>
-								<Paper style={style.transaction_card} zDepth={3}>
-									<div className='container center'>
-										<br />
-										<h3>Successfully Bought</h3>
-										<br />
-									</div>
-								</Paper>
-								<br />
-							</div> :
-							<div className='row'>
+						debit_loading ?
+						<Loader/> :
+						<div>
 								{
-									data && data.length > 0 ?
-										data.map((item, index) => {
-											const perk_amount = item.perk_amount / 10000000
-											return (
-												<div key={index} className='col-12'>
-													<Paper onClick={() => this.setState({ perk_amount: perk_amount })} style={style.card} zDepth={3}>
-														<div style={style.card_left}>
-															<img style={style.card_left_img} alt='logo' src='logo.png' />
-														</div>
-														<div style={style.card_right} className='right'>
-															<h3>{item.perk_name}</h3>
-															<h1>{perk_amount} {user_data && user_data.currency && user_data.currency.code}</h1>
-														</div>
-													</Paper>
-													<br />
-												</div>
-											)
-										}) :
+									debit_data ?
 										<div className='col-12'>
 											<Paper style={style.transaction_card} zDepth={3}>
 												<div className='container center'>
 													<br />
-													<h3>No perks</h3>
+													<h3>Successfully Bought</h3>
 													<br />
 												</div>
 											</Paper>
 											<br />
+										</div> :
+										<div className='row'>
+											{
+												data && data.length > 0 ?
+													data.map((item, index) => {
+														const perk_amount = item.perk_amount / 10000000
+														return (
+															<div key={index} className='col-12'>
+																<Paper onClick={() => this.setState({ perk_amount: perk_amount })} style={style.card} zDepth={3}>
+																	<div style={style.card_left}>
+																		<img style={style.card_left_img} alt='logo' src='logo.png' />
+																	</div>
+																	<div style={style.card_right} className='right'>
+																		<h3>{item.perk_name}</h3>
+																		<h1>{perk_amount} {user_data && user_data.currency && user_data.currency.code}</h1>
+																	</div>
+																</Paper>
+																<br />
+															</div>
+														)
+													}) :
+													<div className='col-12'>
+														<Paper style={style.transaction_card} zDepth={3}>
+															<div className='container center'>
+																<br />
+																<h3>No perks</h3>
+																<br />
+															</div>
+														</Paper>
+														<br />
+													</div>
+											}
 										</div>
 								}
-							</div>
+						</div>
 					}
 				</div>
 			</div>
@@ -111,13 +121,13 @@ class MarketContainer extends Component {
 	}
 
 	render() {
-		const { loading, data, createDebit, debit_data } = this.props
+		const { loading, data, createDebit, debit_data, debit_loading, debit_error } = this.props
 		return (
 			<div>
 				{
 					loading ?
 					<Loader/> :
-					<Market debit_data={debit_data} createDebit={createDebit} data={data}/>
+					<Market debit_data={debit_data} debit_loading={debit_loading} debit_error={debit_error} createDebit={createDebit} data={data}/>
 				}
 			</div>
 		)
@@ -125,11 +135,13 @@ class MarketContainer extends Component {
 }
 
 function mapStateToProps(state) {
-	const { data, loading, debit_data } = state.perk
+	const { data, loading } = state.perk
 	return {
 		data,
 		loading,
-		debit_data
+		debit_data: state.transaction.data,
+		debit_loading: state.transaction.loading,
+		debit_error: state.transaction.err
 	}
 }
 
