@@ -95,7 +95,8 @@ class Wallet extends Component {
 							primary={true}
 							onClick={() => {
 								const data = {
-									recipient: this.state.recipient,
+									reference: this.state.recipient,
+									currency: 'SHAPE',
 									amount: this.state.amount * 10000000,
 									memo: this.state.memo
 								}
