@@ -80,7 +80,7 @@ class PerksRewards extends Component {
 					onRequestClose={() => this.setState({ addtype: null })}
 				>
 					<div className='container center'>
-						<h3>{this.state.addtype === "Delete" ? "Delete" : "Add " + this.state.addtype}</h3>
+						<h3>{this.state.addtype === "Delete Perk" ? "Delete Perk" : this.state.addtype === "Delete Reward" ? "Delete Reward" : "Add " + this.state.addtype }</h3>
 						<form onSubmit={(e) => {
 							e.preventDefault()
 							let route 
@@ -108,8 +108,11 @@ class PerksRewards extends Component {
 									perk_amount: this.state.amount
 								}
 								method = 'POST'
-							} else {
+							} else if (this.state.addtype === "Delete Perk") {
 								route = 'perk/' + this.state.deleteName + '/'
+								method = 'DELETE'
+							} else {
+								route = 'campaign/' + this.state.deleteName + '/'
 								method = 'DELETE'
 							}
 
@@ -122,7 +125,7 @@ class PerksRewards extends Component {
 
 						}}>
 							{
-								this.state.addtype !== "Delete" ?
+								this.state.addtype !== "Delete Perk" && this.state.addtype !== "Delete Reward" ?
 								<div>
 										<TextField
 											value={this.state.name}
@@ -159,15 +162,15 @@ class PerksRewards extends Component {
 												</div> : null
 										}
 								</div> :
-								<h5>Are you sure you want to delete this perk?</h5>
+								<h5>Are you sure you want to {this.state.addtype}?</h5>
 							}
 							<FlatButton
 								label="Cancel"
 								primary={true}
-								onClick={() => this.setState({ addtype: null })}
+								onClick={() => this.setState({ addtype: null, deleteName: null })}
 							/>
 							<FlatButton
-								label={this.state.addtype === "Delete" ? "Delete" : "Add"}
+								label={this.state.addtype === "Delete Perk" || this.state.addtype === "Delete Reward" ? "Delete" : "Add"}
 								primary={true}
 								keyboardFocused={true}
 								type='submit'
@@ -186,8 +189,10 @@ class PerksRewards extends Component {
 					reward_data.map((item, index) => (
 							<Paper key={index} className='row'>
 								<div className="container">
-									<h5 className='f-right'>{item.reward_amount}</h5>
-									<h5 className='f-left'>{item.reward_type.toUpperCase()}</h5>
+									<br/>
+									<span>{item.reward_type.toUpperCase()} - {item.reward_amount}</span>
+									<i style={style.settings_close} onClick={() => this.setState({ addtype: "Delete Reward", deleteName: item.reward_type })} className="material-icons f-right">close</i>
+									<br/><br/>
 									<Toggle
 										label={item.status ? "Enabled" : "Disabled"}
 										value={item.status}
@@ -212,7 +217,7 @@ class PerksRewards extends Component {
 									<br/>
 									<span>
 										<span>{item.perk_name} - {item.perk_amount}</span>
-										<i onClick={() => this.setState({ addtype: "Delete", deleteName: item.perk_name }) } className="material-icons f-right">close</i>
+										<i style={style.settings_close} onClick={() => this.setState({ addtype: "Delete Perk", deleteName: item.perk_name }) } className="material-icons f-right">close</i>
 									</span>
 									<br/>
 								</div>

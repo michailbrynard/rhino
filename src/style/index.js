@@ -75,6 +75,11 @@ export const style = {
 		padding: '0 0 30px',
 		position: 'relative'
 	},
+	settings_close: {
+		position: 'absolute',
+		right: '12%', 
+		top: 15
+	},
 	logout_btn: {
 		float: 'right',
 		color: 'black',
