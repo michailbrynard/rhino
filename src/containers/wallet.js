@@ -118,7 +118,6 @@ class Wallet extends Component {
 					onRequestClose={this.handleClose}
 					style={{ textAlign: 'center' }}
 				>
-					{this.state.token_dialog_msg}
 					{
 						this.state.token_dialog_msg === "Receive Tokens" ?
 							<img style={{
@@ -126,10 +125,13 @@ class Wallet extends Component {
 								width: 300
 							}} src="qr.jpg" alt='qr' /> : (
 								<div className="center">
+									<p><b>Add a trustline in the receiving wallet before sending:</b><br />
+									Asset: SHAPE<br />
+									Issuer: BPRS63VQIKJP5VNNEV3TQEH6FCVMTZ6ZHK4CJFPLKKPXLBVYFZ62HJP</p>
 									<TextField 
 										value={this.state.recipient} 
 										type="text" 
-										hintText="Recipient" 
+										hintText="Email or stellar address" 
 										onChange={e => this.setState({ recipient: e.target.value })}
 									/>
 									<br/>
