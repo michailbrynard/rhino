@@ -80,11 +80,12 @@ class PerksRewards extends Component {
 					onRequestClose={() => this.setState({ addtype: null })}
 				>
 					<div className='container center'>
-						<h3>Add {this.state.addtype}</h3>
+						<h3>{this.state.addtype === "Delete" ? "Delete" : "Add " + this.state.addtype}</h3>
 						<form onSubmit={(e) => {
 							e.preventDefault()
 							let route 
 							let data
+							let method
 
 							if (this.state.addtype === "Reward") {
 								route = 'campaign/'
@@ -98,56 +99,67 @@ class PerksRewards extends Component {
 									volume_limit: this.state.volume_limit,
 									user_limit: this.state.user_limit
 								}
-							} else {
+								method = 'POST'
+							} else if (this.state.addtype === "Perk") {
 								route = 'perk/'
 								data = { 
 									company: process.env.REACT_APP_COMPANY_IDENTIFIER,
 									perk_name: this.state.name, 
 									perk_amount: this.state.amount
 								}
+								method = 'POST'
+							} else {
+								route = 'perk/' + this.state.deleteName + '/'
+								method = 'DELETE'
 							}
 
 							// TODO: Move this to redux action. 
 							const token = localStorage.getItem('token')
-							callApi('POST', process.env.REACT_APP_API_URL + '/admin/' + route, token, data)
+							callApi(method, process.env.REACT_APP_API_URL + '/admin/' + route, token, data)
 							.then(result => {
 								window.location.reload()
 							})
 
 						}}>
-							<TextField
-								value={this.state.name}
-								onChange={e => this.setState({ name: e.target.value })}
-								hintText={this.state.addtype + " Name"}
-								type='text'
-							/><br />
-							<TextField
-								value={this.state.amount}
-								onChange={e => this.setState({ amount: e.target.value })}
-								hintText="Amount"
-								type='number'
-							/><br />
 							{
-								this.state.addtype === "Reward" ?
+								this.state.addtype !== "Delete" ?
 								<div>
-									<TextField
-										value={this.state.volume_limit}
-										onChange={e => this.setState({ volume_limit: e.target.value })}
-										hintText="Volume Limit"
-										type='number'
-									/><br />
-									<TextField
-										value={this.state.user_limit}
-										onChange={e => this.setState({ user_limit: e.target.value })}
-										hintText="User Limit"
-										type='number'
-									/><br />
-									<Toggle
-										label="Enabled"
-										value={this.state.enabled}
-										onChange={() => this.setState({ enabled: !this.state.enabled })}
-									/>
-								</div> : null
+										<TextField
+											value={this.state.name}
+											onChange={e => this.setState({ name: e.target.value })}
+											hintText={this.state.addtype + " Name"}
+											type='text'
+										/><br />
+										<TextField
+											value={this.state.amount}
+											onChange={e => this.setState({ amount: e.target.value })}
+											hintText="Amount"
+											type='number'
+										/><br />
+										{
+											this.state.addtype === "Reward" ?
+												<div>
+													<TextField
+														value={this.state.volume_limit}
+														onChange={e => this.setState({ volume_limit: e.target.value })}
+														hintText="Volume Limit"
+														type='number'
+													/><br />
+													<TextField
+														value={this.state.user_limit}
+														onChange={e => this.setState({ user_limit: e.target.value })}
+														hintText="User Limit"
+														type='number'
+													/><br />
+													<Toggle
+														label="Enabled"
+														value={this.state.enabled}
+														onChange={() => this.setState({ enabled: !this.state.enabled })}
+													/>
+												</div> : null
+										}
+								</div> :
+								<h5>Are you sure you want to delete this perk?</h5>
 							}
 							<FlatButton
 								label="Cancel"
@@ -155,7 +167,7 @@ class PerksRewards extends Component {
 								onClick={() => this.setState({ addtype: null })}
 							/>
 							<FlatButton
-								label="Add"
+								label={this.state.addtype === "Delete" ? "Delete" : "Add"}
 								primary={true}
 								keyboardFocused={true}
 								type='submit'
@@ -197,14 +209,12 @@ class PerksRewards extends Component {
 						perk_data.map((item, index) => (
 							<Paper key={index} className='row'>
 								<div className="container">
-									<h5 className='f-right'>{item.perk_amount}</h5>
-									<h5 className='f-left'>{item.perk_name}</h5>
-									{/*
-										<Toggle
-										label={item.status ? "Enabled" : "Disabled"}
-										value={item.status}
-									/>
-									*/}
+									<br/>
+									<span>
+										<span>{item.perk_name} - {item.perk_amount}</span>
+										<i onClick={() => this.setState({ addtype: "Delete", deleteName: item.perk_name }) } className="material-icons f-right">close</i>
+									</span>
+									<br/>
 								</div>
 								<br />
 							</Paper>
