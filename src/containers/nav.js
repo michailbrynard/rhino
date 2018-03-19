@@ -51,8 +51,8 @@ class Nav extends Component {
 
 			<MenuItem
 				key={4}
-				style={style.drawer_link_highlight(path, '/market')}
-				leftIcon={<FontIcon style={style.drawer_link_icon(path, '/market')} className="material-icons">crop_7_5</FontIcon>}
+				style={style.drawer_link_highlight(path, '/perks')}
+				leftIcon={<FontIcon style={style.drawer_link_icon(path, '/perks')} className="material-icons">crop_7_5</FontIcon>}
 				onClick={() => history.push('/perks')}>
 				<span style={style.drawer_link}>Perks</span>
 			</MenuItem>,

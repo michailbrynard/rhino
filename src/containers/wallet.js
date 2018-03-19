@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Paper from 'material-ui/Paper';
 import { RaisedButton, Dialog, FlatButton, TextField } from 'material-ui';
 import moment from 'moment'
-
+import { BigNumber } from 'bignumber.js'
 import { getWalletData } from '../actions/wallet'
 import { createSend } from '../actions/transaction'
 
@@ -30,6 +30,10 @@ class Wallet extends Component {
 	render() {
 
 		const { data, loading, err, createSend } = this.props
+
+		const x = data && data.balance && new BigNumber(data.balance.balance)
+		const balance = x && x.dividedBy(1000000).toString() + ' ' + data.balance.currency.code
+		
 		return (
 			<div className='container'>
 				{
@@ -44,7 +48,7 @@ class Wallet extends Component {
 										<Paper style={style.balance_card} zDepth={3}>
 											<div className='container'>
 												<p>Balance</p>
-												<h1>{data && data.balance && (data.balance.balance / 10000000)+ ' ' + data.balance.currency.code} </h1>
+												<h1>{ balance } </h1>
 											</div>
 											<div className='row'>
 												<div className='col-6-sm'>
@@ -66,12 +70,16 @@ class Wallet extends Component {
 												</div>
 												{
 													data && data.transactions && data.transactions.length > 0 ?
-														data.transactions.map((t, index) => (
-															<div key={index} className='row'>
-																<h5 className='f-right'>{t.amount / 10000000}</h5>
-																<h5 className='f-left'>{moment(t.created).fromNow()} ({t.status})</h5>
-															</div>
-														)) :
+														data.transactions.map((t, index) => {
+															const x = new BigNumber(t.amount)
+															const amount = x.dividedBy(10000000).toString()
+															return (
+																<div key={index} className='row'>
+																	<h5 className='f-right'>{amount}</h5>
+																	<h5 className='f-left'>{moment(t.created).fromNow()} ({t.status})</h5>
+																</div>
+															)
+														}) :
 														<div className='row'>
 															<h5 className='f-left'>No Transactions</h5>
 														</div>

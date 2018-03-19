@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Paper from 'material-ui/Paper';
-
+import { BigNumber } from 'bignumber.js' 
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
@@ -15,7 +15,8 @@ const Earn = ({ data, currency }) => (
 			{
 				data && data.length > 0 ?
 				data.map((item, index) => {
-					const reward_amount = item.reward_amount / 10000000
+					const x = new BigNumber(item.reward_amount)
+					const reward_amount = x.dividedBy(10000000).toString()
 					return (
 						<div key={index} className='col-12'>
 							<Paper style={style.card} zDepth={3}>

@@ -4,7 +4,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import FontIcon from 'material-ui/FontIcon'
 import Snackbar from 'material-ui/Snackbar';
 import { getWalletData } from '../actions/wallet'
-
+import { BigNumber } from 'bignumber.js' 
 
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -50,6 +50,9 @@ class Home extends Component {
 		const { history, loading, err, data } = this.props
 
 		const { company_data } = this.state
+
+		const x = data && data.balance && new BigNumber(data.balance.balance)
+		const balance = x && x.dividedBy(10000000).toString()
 
 		return (
 			<div className='container'>
@@ -114,7 +117,7 @@ class Home extends Component {
 											<div style={style.card_left}>
 												<br />
 												<h1 className='card-heading'>
-													{data && data.balance && data.balance.balance / 10000000}
+													{balance}
 													<br />
 													{data && data.balance && data.balance.currency && data.balance.currency.code}
 												</h1>

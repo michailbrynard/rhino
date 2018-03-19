@@ -3,6 +3,7 @@ import Paper from 'material-ui/Paper';
 import Dialog from 'material-ui/Dialog'
 import FlatButton from 'material-ui/FlatButton'
 import Loader from '../components/loader'
+import { BigNumber } from 'bignumber.js' 
 
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -21,7 +22,6 @@ class Market extends Component {
 	render() {
 		const { data, createDebit, debit_data, debit_loading, debit_error } = this.props
 		const user_data = JSON.parse(localStorage.getItem('user'))
-		console.log("DEBIT ERROR", debit_error);
 		return (
 			<div className='container'>
 				<Dialog
@@ -77,7 +77,8 @@ class Market extends Component {
 											{
 												data && data.length > 0 ?
 													data.map((item, index) => {
-														const perk_amount = item.perk_amount / 10000000
+														const x = new BigNumber(item.perk_amount)
+														const perk_amount = x.dividedBy(10000000).toString()
 														return (
 															<div key={index} className='col-12'>
 																<Paper onClick={() => this.setState({ perk_amount: perk_amount })} style={style.card} zDepth={3}>
