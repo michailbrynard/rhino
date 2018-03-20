@@ -7,8 +7,15 @@ body {
 	background-size:  cover;
 }
 
+.landing-row {
+	width: 100%;
+	max-width: 600px;
+	display: block;
+	margin: auto;
+}
+
 .spacer {
-	height: 10vh;
+	height: 9vh;
 }
 
 .title {

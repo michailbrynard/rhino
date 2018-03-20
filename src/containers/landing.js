@@ -112,32 +112,34 @@ class Landing extends Component {
 										<p className='subtitle'>Check your email for the link to create your password and login</p>
 
 									</div> :
-									<div className='col-6 center landing-row'>
-										<h1 className='title'>{this.state.data && this.state.data.display_name}</h1>
-										<p className='subtitle'>{this.state.data && this.state.data.subtitle}</p>
-										<p>Sign up to help shape the future of loyalty and support! </p>
-										{
-											signupErr ?
-												<p>Error: {signupErr}</p> : null
-										}
-										<form onSubmit={(e) => {
-											e.preventDefault()
-											signup(this.state.email)
-										}}>
-											<TextField
-												inputStyle={{ color: "black" }}
-												hintStyle={{ color: "#999" }}
-												value={this.state.email}
-												onChange={e => this.setState({ email: e.target.value })}
-												hintText="Email"
-											/>
+									<div className='landing-row'>
+										<div className='container'>
+											<h1 className='title'>{this.state.data && this.state.data.display_name}</h1>
+											<p className='subtitle'>{this.state.data && this.state.data.subtitle}</p>
+											<p>Sign up to help shape the future of loyalty and support! </p>
 											{
-												signupLoading ?
-													<SmallLoader /> :
-													<RaisedButton style={{ marginLeft: '8px' }} type='submit' label="Join" secondary={true} />
+												signupErr ?
+													<p>Error: {signupErr}</p> : null
 											}
-										</form>
-										<br /><br />
+											<form onSubmit={(e) => {
+												e.preventDefault()
+												signup(this.state.email)
+											}}>
+												<TextField
+													inputStyle={{ color: "black" }}
+													hintStyle={{ color: "#999" }}
+													value={this.state.email}
+													onChange={e => this.setState({ email: e.target.value })}
+													hintText="Email"
+												/>
+												{
+													signupLoading ?
+														<SmallLoader /> :
+														<RaisedButton style={{ marginLeft: '8px' }} type='submit' label="Join" secondary={true} />
+												}
+											</form>
+											<br /><br />
+										</div>
 									</div>
 							}
 						</div>
