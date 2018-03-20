@@ -86,7 +86,7 @@ class Market extends Component {
 															<div key={index} className='col-12'>
 																<Paper onClick={() => this.setState({ perk_amount: perk_amount })} style={style.card} zDepth={3}>
 																	<div style={style.card_left}>
-																		<img style={style.card_left_img} alt='logo' src='logo.png' />
+																		<img style={style.card_left_img} alt='logo' src='trading1.svg' />
 																	</div>
 																	<div style={style.card_right} className='right'>
 																		<h3>{item.perk_name}</h3>

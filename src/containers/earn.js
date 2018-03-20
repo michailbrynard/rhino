@@ -21,7 +21,7 @@ const Earn = ({ data, currency }) => (
 						<div key={index} className='col-12'>
 							<Paper style={style.card} zDepth={3}>
 								<div style={style.card_left}>
-									<img style={style.card_left_img} src='logo.png' alt='earn' />
+									<img style={style.card_left_img} src='coins1.svg' alt='earn' />
 								</div>
 								<div style={style.card_right} className='right'>
 									<h3>{item.reward_type.toUpperCase()}</h3>
