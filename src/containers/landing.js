@@ -43,6 +43,11 @@ class Landing extends Component {
 
 	render() {
 		const { signup, login, signupErr, signupData, signupLoading, loginErr, loginLoading } = this.props
+		
+		var pattern = '\\+'
+		var reg = new RegExp(pattern, '');
+
+		const notAllowedEmail = this.state.email.search(reg) > -1 ? true : false
 
 		return (
 			<div>
@@ -120,7 +125,8 @@ class Landing extends Component {
 											<p>Sign up to help shape the future of loyalty and support! </p>
 											{
 												signupErr ?
-													<p>Error: {signupErr}</p> : null
+													<p>Error: {signupErr}</p> : 
+													notAllowedEmail ? <span style={{color: 'red'}}>Email with '+' not allowed</span> : null
 											}
 											<form onSubmit={(e) => {
 												e.preventDefault()
@@ -136,7 +142,7 @@ class Landing extends Component {
 												{
 													signupLoading ?
 														<SmallLoader /> :
-														<RaisedButton style={{ marginLeft: '8px' }} type='submit' label="Join" secondary={true} />
+														<RaisedButton disabled={notAllowedEmail} style={{ marginLeft: '8px' }} type='submit' label="Join" secondary={true} />
 												}
 											</form>
 											<br /><br />
