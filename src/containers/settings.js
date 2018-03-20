@@ -79,7 +79,10 @@ class PerksRewards extends Component {
 					open={this.state.addtype ? true : false}
 					onRequestClose={() => this.setState({ addtype: null })}
 				>
-					<div className='container center'>
+					<div style={{
+						alignContent: 'center',
+						textAlign: 'center',
+					}}>
 						<h3>{this.state.addtype === "Delete Perk" ? "Delete Perk" : this.state.addtype === "Delete Reward" ? "Delete Reward" : "Add " + this.state.addtype }</h3>
 						<form onSubmit={(e) => {
 							e.preventDefault()

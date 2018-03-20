@@ -31,7 +31,10 @@ class Market extends Component {
 					open={this.state.perk_amount ? true : false}
 					onRequestClose={() => this.setState({ perk_amount: ''})}
 				>
-					<div className='container center'>
+					<div style={{
+						alignContent: 'center',
+						textAlign: 'center',
+					}}>
 						<h3>Are you sure you want to purchase this perk?</h3>
 						{
 							debit_error ?

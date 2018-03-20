@@ -58,45 +58,46 @@ class Landing extends Component {
 					open={this.state.open}
 					onRequestClose={this.handleClose}
 				>
-					<div className='container center'>
-						<h3>Login</h3>
-						{
-							loginErr ?
-								<p>Error: {loginErr}</p> : null
-						}
-						{
-							loginLoading ?
-								<SmallLoader /> :
-								<form onSubmit={(e) => {
-									e.preventDefault()
-									login(this.state.email, this.state.password)
-								}}>
-									<TextField
-										value={this.state.email}
-										onChange={e => this.setState({ email: e.target.value })}
-										hintText="Email"
-										type='email'
-									/><br />
-									<TextField
-										value={this.state.password}
-										onChange={e => this.setState({ password: e.target.value })}
-										hintText="Password"
-										type='password'
-									/><br />
-									<FlatButton
-										label="Cancel"
-										primary={true}
-										onClick={this.handleClose}
-									/>
-									<FlatButton
-										label="Login"
-										primary={true}
-										keyboardFocused={true}
-										type='submit'
-									/>
-								</form>
-						}
-					</div>
+					{
+						loginLoading ?
+							<SmallLoader /> :
+							<form style={{
+								alignContent: 'center',
+								textAlign: 'center',
+							}} onSubmit={(e) => {
+								e.preventDefault()
+								login(this.state.email, this.state.password)
+							}}>
+								<h3>Login</h3>
+								{
+									loginErr ?
+										<p>Error: {loginErr}</p> : null
+								}
+								<TextField
+									value={this.state.email}
+									onChange={e => this.setState({ email: e.target.value })}
+									hintText="Email"
+									type='email'
+								/><br />
+								<TextField
+									value={this.state.password}
+									onChange={e => this.setState({ password: e.target.value })}
+									hintText="Password"
+									type='password'
+								/><br />
+								<FlatButton
+									label="Cancel"
+									primary={true}
+									onClick={this.handleClose}
+								/>
+								<FlatButton
+									label="Login"
+									primary={true}
+									keyboardFocused={true}
+									type='submit'
+								/>
+							</form>
+					}
 				</Dialog>
 
 				<div className='spacer'></div>
