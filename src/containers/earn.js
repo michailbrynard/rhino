@@ -12,6 +12,18 @@ const Earn = ({ data, currency }) => (
 	<div className='container'>
 		<div className='row'>
 		<br/>
+			<div className='col-12'>
+				<Paper style={style.card} zDepth={3}>
+					<div style={style.card_left}>
+						<img style={style.card_left_img} src='coins1.svg' alt='earn' />
+					</div>
+					<div style={style.card_right} className='right'>
+						<h3>Earn Rewards</h3>
+						<p>Check how to claim rewards for accomplishing different goals</p>
+					</div>
+				</Paper>
+				<br />
+			</div>
 			{
 				data && data.length > 0 ?
 				data.map((item, index) => {

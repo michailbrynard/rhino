@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Paper from 'material-ui/Paper';
 import Dialog from 'material-ui/Dialog'
 import FlatButton from 'material-ui/FlatButton'
+import RaisedButton from 'material-ui/RaisedButton'
 import Loader from '../components/loader'
 import { BigNumber } from 'bignumber.js' 
 
@@ -77,6 +78,18 @@ class Market extends Component {
 											<br />
 										</div> :
 										<div className='row'>
+											<div className='col-12'>
+												<Paper style={style.card} zDepth={3}>
+													<div style={style.card_left}>
+														<img style={style.card_left_img} src='trading1.svg' alt='earn' />
+													</div>
+													<div style={style.card_right} className='right'>
+														<h3>Purchase Perks</h3>
+														<p>Use your tokens to purchase perks</p>
+													</div>
+												</Paper>
+												<br />
+											</div>
 											{
 												data && data.length > 0 ?
 													data.map((item, index) => {
@@ -84,13 +97,14 @@ class Market extends Component {
 														const perk_amount = x.dividedBy(10000000).toString()
 														return (
 															<div key={index} className='col-12'>
-																<Paper onClick={() => this.setState({ perk_amount: perk_amount })} style={style.card} zDepth={3}>
+																<Paper style={style.card} zDepth={3}>
 																	<div style={style.card_left}>
 																		<img style={style.card_left_img} alt='logo' src='trading1.svg' />
 																	</div>
 																	<div style={style.card_right} className='right'>
 																		<h3>{item.perk_name}</h3>
 																		<h1>{perk_amount} {user_data && user_data.currency && user_data.currency.code}</h1>
+																		<RaisedButton onClick={() => this.setState({ perk_amount: perk_amount })} className="f-right" primary={true} label="Buy"/>
 																	</div>
 																</Paper>
 																<br />
