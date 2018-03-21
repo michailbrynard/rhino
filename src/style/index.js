@@ -1,4 +1,4 @@
-import { cyanA200, purpleA700, white } from 'material-ui/styles/colors';
+import { cyanA200, purpleA700, white, purple50 } from 'material-ui/styles/colors';
 
 export const style = {
 	card: {
@@ -9,6 +9,16 @@ export const style = {
 		borderRadius: '0px',
 		maxWidth: '500px',
 		alignItems: 'center'
+	},
+	card_header: {
+		display: 'flex',
+		position: 'relative',
+		padding: '10px 10px 10px',
+		flexDirection: 'row',
+		borderRadius: '0px',
+		maxWidth: '500px',
+		alignItems: 'center',
+		backgroundColor: purple50
 	},
 	card_right: {
 		width: '200px',

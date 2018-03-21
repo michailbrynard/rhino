@@ -79,13 +79,13 @@ class Market extends Component {
 										</div> :
 										<div className='row'>
 											<div className='col-12'>
-												<Paper style={style.card} zDepth={3}>
+												<Paper style={style.card_header} zDepth={3}>
 													<div style={style.card_left}>
 														<img style={style.card_left_img} src='trading1.svg' alt='earn' />
 													</div>
 													<div style={style.card_right} className='right'>
 														<h3>Purchase Perks</h3>
-														<p>Use your tokens to purchase perks</p>
+														<p>Use your tokens to buy Supporter perks!</p>
 													</div>
 												</Paper>
 												<br />

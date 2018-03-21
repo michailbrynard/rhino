@@ -13,13 +13,13 @@ const Earn = ({ data, currency }) => (
 		<div className='row'>
 		<br/>
 			<div className='col-12'>
-				<Paper style={style.card} zDepth={3}>
+				<Paper style={style.card_header} zDepth={3}>
 					<div style={style.card_left}>
 						<img style={style.card_left_img} src='coins1.svg' alt='earn' />
 					</div>
 					<div style={style.card_right} className='right'>
-						<h3>Earn Rewards</h3>
-						<p>Check how to claim rewards for accomplishing different goals</p>
+						<h3>Earn Rewards!</h3>
+						<p>When completing tasks or achieving goals you are awarded tokens!</p>
 					</div>
 				</Paper>
 				<br />
