@@ -8,7 +8,7 @@ import { Tabs, Tab } from 'material-ui/Tabs'
 import { getCampaignData } from '../actions/campaign'
 import Toggle from 'material-ui/Toggle';
 import { getPerkData } from '../actions/perk'
-import { addPerkData, addRewardData, deletePerkData } from '../actions/admin'
+import { addPerkData, addRewardData, deletePerkData, deleteRewardData } from '../actions/admin'
 import Dialog from 'material-ui/Dialog'
 import { BigNumber } from 'bignumber.js'
 import { bindActionCreators } from 'redux'
@@ -71,7 +71,7 @@ class PerksRewards extends Component {
 	}
 	render() {
 
-		const { reward_data, perk_data, addPerkData, addRewardData, deletePerkData } = this.props
+		const { reward_data, perk_data, addPerkData, addRewardData, deletePerkData, deleteRewardData } = this.props
 		return (
 			<div className='container'>
 				<Dialog
@@ -115,13 +115,7 @@ class PerksRewards extends Component {
 							} else if (this.state.addtype === "Delete Perk") {
 								deletePerkData(this.state.deleteName, token)
 							} else {
-								// route = 'campaign/' + this.state.deleteName + '/'
-								// method = 'DELETE'
-								// const token = localStorage.getItem('token')
-								// callApi(method, process.env.REACT_APP_API_URL + '/admin/' + route, token)
-								// 	.then(result => {
-								// 		window.location.reload()
-								// 	})
+								deleteRewardData(this.state.deleteName, token)
 							}
 
 
@@ -258,11 +252,9 @@ class SettingsContainer extends Component {
 	}
 
 	render() {
-		const { data, loading, loading_perks, perk_data, addPerkData, addRewardData, add_loading, deletePerkData, add_result } = this.props
+		const { data, loading, loading_perks, perk_data, addPerkData, addRewardData, add_loading, deletePerkData, deleteRewardData, add_result } = this.props
 		const user_data = JSON.parse(localStorage.getItem('user'))
 		const isAdmin = user_data.groups.filter(i => i.name ===  'admin').length > 0;
-		
-		console.log("DB RESULT IN SETTINGS", add_result);
 
 		if (add_result) {
 			window.location.reload()
@@ -284,7 +276,7 @@ class SettingsContainer extends Component {
 														<Settings />
 													</Tab>
 													<Tab label="Perks/Rewards">
-														<PerksRewards perk_data={perk_data} reward_data={data} addPerkData={addPerkData} addRewardData={addRewardData} deletePerkData={deletePerkData} />
+														<PerksRewards perk_data={perk_data} reward_data={data} addPerkData={addPerkData} addRewardData={addRewardData} deletePerkData={deletePerkData} deleteRewardData={deleteRewardData} />
 													</Tab>
 												</Tabs>
 											</Paper>
@@ -319,7 +311,8 @@ function mapDispatchToProps(dispatch) {
 		getCampaignData: bindActionCreators(getCampaignData, dispatch),
 		addPerkData: bindActionCreators(addPerkData, dispatch),
 		addRewardData: bindActionCreators(addRewardData, dispatch),
-		deletePerkData: bindActionCreators(deletePerkData, dispatch)
+		deletePerkData: bindActionCreators(deletePerkData, dispatch),
+		deleteRewardData: bindActionCreators(deleteRewardData, dispatch)
 	}
 }
 
