@@ -4,8 +4,7 @@ export const callApi = (method, route, token, data) => {
 		'Accept': 'application/json',
 		'Content-Type': 'application/json'
 	}
-	console.log("ROUTE COMING IN", route.search('accounts/'));
-	
+
 	if (token) { 
 		if (route.search('accounts/') > -1 || route.search('transactions/') > -1) {
 			headers['Authorization'] = `Token ${token}`
