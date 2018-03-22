@@ -257,9 +257,14 @@ class SettingsContainer extends Component {
 	}
 
 	render() {
-		const { data, loading, loading_perks, perk_data, addPerkData } = this.props
+		const { data, loading, loading_perks, perk_data, addPerkData, add_perk_result } = this.props
 		const user_data = JSON.parse(localStorage.getItem('user'))
 		const isAdmin = user_data.groups.filter(i => i.name ===  'admin').length > 0;
+
+		if (add_perk_result) {
+			window.location.reload()
+		}
+		
 		return (
 			<div>
 				{
@@ -299,7 +304,9 @@ function mapStateToProps(state) {
 		data,
 		perk_data: state.perk.data,
 		loading_perks: state.perk.loading,
-		loading
+		loading,
+		add_perk_result: state.admin && state.admin.data,
+		add_perk_loading: state.admin && state.admin.loading
 	}
 }
 

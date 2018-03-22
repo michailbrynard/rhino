@@ -21,3 +21,9 @@ export const addPerkData = (data, token) => {
 			})
 	}
 }
+
+
+
+export const ADD_REWARD_DATA = "ADD_REWARD_DATA"
+export const ADD_REWARD_DATA_SUCCESS = "ADD_REWARD_DATA_SUCCESS"
+export const ADD_REWARD_DATA_ERROR = "ADD_REWARD_DATA_ERROR"

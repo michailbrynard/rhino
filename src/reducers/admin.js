@@ -5,7 +5,7 @@ import {
 	ADD_REWARD_DATA_ERROR,
 	ADD_REWARD_DATA_SUCCESS,
 	ADD_REWARD_DATA
-} from '../actions/transaction'
+} from '../actions/admin'
 
 import { merge } from 'lodash'
 
