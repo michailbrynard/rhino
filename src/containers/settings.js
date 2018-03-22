@@ -10,7 +10,7 @@ import Toggle from 'material-ui/Toggle';
 import { getPerkData } from '../actions/perk'
 import { addPerkData, addRewardData } from '../actions/admin'
 import Dialog from 'material-ui/Dialog'
-
+import { BigNumber } from 'bignumber.js'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
@@ -118,7 +118,7 @@ class PerksRewards extends Component {
 								route = 'perk/' + this.state.deleteName + '/'
 								method = 'DELETE'
 								const token = localStorage.getItem('token')
-								callApi(method, process.env.REACT_APP_API_URL + '/admin/' + route, token, data)
+								callApi(method, process.env.REACT_APP_API_URL + '/admin/' + route, token)
 									.then(result => {
 										window.location.reload()
 									})
@@ -126,7 +126,7 @@ class PerksRewards extends Component {
 								route = 'campaign/' + this.state.deleteName + '/'
 								method = 'DELETE'
 								const token = localStorage.getItem('token')
-								callApi(method, process.env.REACT_APP_API_URL + '/admin/' + route, token, data)
+								callApi(method, process.env.REACT_APP_API_URL + '/admin/' + route, token)
 									.then(result => {
 										window.location.reload()
 									})
@@ -202,21 +202,26 @@ class PerksRewards extends Component {
 				<br/>
 				{
 					reward_data && reward_data.length > 0 ?
-					reward_data.map((item, index) => (
-							<Paper key={index} className='row'>
-								<div className="container">
-									<br/>
-									<span>{item.reward_type.toUpperCase()} - {item.reward_amount}</span>
-									<i style={style.settings_close} onClick={() => this.setState({ addtype: "Delete Reward", deleteName: item.reward_type })} className="material-icons f-right">close</i>
-									<br/><br/>
-									<Toggle
-										label={item.status ? "Enabled" : "Disabled"}
-										value={item.status}
-									/>
-								</div>
-								<br/>
-							</Paper>
-					)) :
+					reward_data.map((item, index) => {
+							const x = new BigNumber(item.reward_amount)
+							const reward_amount = x.dividedBy(10000000).toString()
+							return (
+								<Paper key={index} className='row'>
+									<div className="container">
+										<br />
+										<span>{item.reward_type.toUpperCase()} - {reward_amount}</span>
+										<i style={style.settings_close} onClick={() => this.setState({ addtype: "Delete Reward", deleteName: item.reward_type })} className="material-icons f-right">close</i>
+										<br /><br />
+										<Toggle
+											label={item.status ? "Enabled" : "Disabled"}
+											value={item.status}
+										/>
+									</div>
+									<br />
+								</Paper>
+								)
+					}
+					) :
 					<h5>No Rewards</h5>
 				}
 				<br/><br/>
@@ -227,19 +232,24 @@ class PerksRewards extends Component {
 				<br/>
 				{
 					perk_data && perk_data.length > 0 ?
-						perk_data.map((item, index) => (
-							<Paper key={index} className='row'>
-								<div className="container">
-									<br/>
-									<span>
-										<span>{item.perk_name} - {item.perk_amount}</span>
-										<i style={style.settings_close} onClick={() => this.setState({ addtype: "Delete Perk", deleteName: item.perk_name }) } className="material-icons f-right">close</i>
-									</span>
-									<br/>
-								</div>
-								<br />
-							</Paper>
-						)) :
+						perk_data.map((item, index) => {
+							const x = new BigNumber(item.perk_amount)
+							const perk_amount = x.dividedBy(10000000).toString()
+							return (
+								<Paper key={index} className='row'>
+									<div className="container">
+										<br />
+										<span>
+											<span>{item.perk_name} - {perk_amount}</span>
+											<i style={style.settings_close} onClick={() => this.setState({ addtype: "Delete Perk", deleteName: item.perk_name })} className="material-icons f-right">close</i>
+										</span>
+										<br />
+									</div>
+									<br />
+								</Paper>
+								)
+						}
+					) :
 						<h5>No Perks</h5>
 				}
 			</div>

@@ -6,7 +6,11 @@ export const callApi = (method, route, token, data) => {
 	}
 
 	if (token) { 
-		if (route.search('accounts/') > -1 || route.search('transactions/') > -1) {
+		if (
+			route.search('accounts/') > -1 || 
+			route.search('transactions/') > -1 ||
+			route.search('admin/') > -1
+		) {
 			headers['Authorization'] = `Token ${token}`
 		} else {
 			headers['Authorization'] = `Bearer ${token}`

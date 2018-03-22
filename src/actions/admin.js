@@ -45,3 +45,26 @@ export const addRewardData = (data, token) => {
 			})
 	}
 }
+
+
+export const DELETE_REWARD_DATA = "DELETE_REWARD_DATA"
+export const DELETE_REWARD_DATA_SUCCESS = "DELETE_REWARD_DATA_SUCCESS"
+export const DELETE_REWARD_DATA_ERROR = "DELETE_REWARD_DATA_ERROR"
+
+export const deleteRewardData = (data, token) => {
+	return dispatch => {
+		dispatch({ type: DELETE_REWARD_DATA })
+		const route = process.env.REACT_APP_API_URL + '/admin/campaign/'
+		return callApi('POST', route, token, data)
+			.then(json => {
+				if (json.status === 'success') {
+					dispatch({ type: DELETE_REWARD_DATA_SUCCESS, data: json.data.results })
+				} else {
+					dispatch({ type: DELETE_REWARD_DATA_ERROR, err: json.message })
+				}
+			})
+			.catch(err => {
+				dispatch({ type: DELETE_REWARD_DATA_ERROR, err })
+			})
+	}
+}
