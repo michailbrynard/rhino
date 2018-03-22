@@ -8,14 +8,14 @@ import { Tabs, Tab } from 'material-ui/Tabs'
 import { getCampaignData } from '../actions/campaign'
 import Toggle from 'material-ui/Toggle';
 import { getPerkData } from '../actions/perk'
-import { addPerkData, addRewardData } from '../actions/admin'
+import { addPerkData, addRewardData, deletePerkData } from '../actions/admin'
 import Dialog from 'material-ui/Dialog'
 import { BigNumber } from 'bignumber.js'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 import company_data from './config.json'
-import { callApi } from '../utils';
+
 class Settings extends Component {
 	render() {
 		return (
@@ -71,7 +71,7 @@ class PerksRewards extends Component {
 	}
 	render() {
 
-		const { reward_data, perk_data, addPerkData, addRewardData } = this.props
+		const { reward_data, perk_data, addPerkData, addRewardData, deletePerkData } = this.props
 		return (
 			<div className='container'>
 				<Dialog
@@ -88,9 +88,7 @@ class PerksRewards extends Component {
 						<h3>{this.state.addtype === "Delete Perk" ? "Delete Perk" : this.state.addtype === "Delete Reward" ? "Delete Reward" : "Add " + this.state.addtype }</h3>
 						<form onSubmit={(e) => {
 							e.preventDefault()
-							let route 
 							let data
-							let method
 							const token = localStorage.getItem('token')
 
 							if (this.state.addtype === "Reward") {
@@ -115,21 +113,15 @@ class PerksRewards extends Component {
 								}
 								addPerkData(data, token)
 							} else if (this.state.addtype === "Delete Perk") {
-								route = 'perk/' + this.state.deleteName + '/'
-								method = 'DELETE'
-								const token = localStorage.getItem('token')
-								callApi(method, process.env.REACT_APP_API_URL + '/admin/' + route, token)
-									.then(result => {
-										window.location.reload()
-									})
+								deletePerkData(this.state.deleteName, token)
 							} else {
-								route = 'campaign/' + this.state.deleteName + '/'
-								method = 'DELETE'
-								const token = localStorage.getItem('token')
-								callApi(method, process.env.REACT_APP_API_URL + '/admin/' + route, token)
-									.then(result => {
-										window.location.reload()
-									})
+								// route = 'campaign/' + this.state.deleteName + '/'
+								// method = 'DELETE'
+								// const token = localStorage.getItem('token')
+								// callApi(method, process.env.REACT_APP_API_URL + '/admin/' + route, token)
+								// 	.then(result => {
+								// 		window.location.reload()
+								// 	})
 							}
 
 
@@ -266,10 +258,15 @@ class SettingsContainer extends Component {
 	}
 
 	render() {
-		const { data, loading, loading_perks, perk_data, addPerkData, addRewardData, add_loading } = this.props
+		const { data, loading, loading_perks, perk_data, addPerkData, addRewardData, add_loading, deletePerkData, add_result } = this.props
 		const user_data = JSON.parse(localStorage.getItem('user'))
 		const isAdmin = user_data.groups.filter(i => i.name ===  'admin').length > 0;
 		
+		console.log("DB RESULT IN SETTINGS", add_result);
+
+		if (add_result) {
+			window.location.reload()
+		}
 		return (
 			<div>
 				{
@@ -287,7 +284,7 @@ class SettingsContainer extends Component {
 														<Settings />
 													</Tab>
 													<Tab label="Perks/Rewards">
-														<PerksRewards perk_data={perk_data} reward_data={data} addPerkData={addPerkData} addRewardData={addRewardData} />
+														<PerksRewards perk_data={perk_data} reward_data={data} addPerkData={addPerkData} addRewardData={addRewardData} deletePerkData={deletePerkData} />
 													</Tab>
 												</Tabs>
 											</Paper>
@@ -321,7 +318,8 @@ function mapDispatchToProps(dispatch) {
 		getPerkData: bindActionCreators(getPerkData, dispatch),
 		getCampaignData: bindActionCreators(getCampaignData, dispatch),
 		addPerkData: bindActionCreators(addPerkData, dispatch),
-		addRewardData: bindActionCreators(addRewardData, dispatch)
+		addRewardData: bindActionCreators(addRewardData, dispatch),
+		deletePerkData: bindActionCreators(deletePerkData, dispatch)
 	}
 }
 

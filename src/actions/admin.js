@@ -11,7 +11,7 @@ export const addPerkData = (data, token) => {
 		return callApi('POST', route, token, data)
 			.then(json => {
 				if (json.status === 'success') {
-					dispatch({ type: ADD_PERK_DATA_SUCCESS, data: json.data.results })
+					dispatch({ type: ADD_PERK_DATA_SUCCESS, data: json.status })
 				} else {
 					dispatch({ type: ADD_PERK_DATA_ERROR, err: json.message })
 				}
@@ -35,7 +35,7 @@ export const addRewardData = (data, token) => {
 		return callApi('POST', route, token, data)
 			.then(json => {
 				if (json.status === 'success') {
-					dispatch({ type: ADD_REWARD_DATA_SUCCESS, data: json.data.results })
+					dispatch({ type: ADD_REWARD_DATA_SUCCESS, data: json.status })
 				} else {
 					dispatch({ type: ADD_REWARD_DATA_ERROR, err: json.message })
 				}
@@ -57,7 +57,7 @@ export const deletePerkData = (item, token) => {
 		return callApi('DELETE', route, token)
 			.then(json => {
 				if (json.status === 'success') {
-					dispatch({ type: DELETE_PERK_DATA_SUCCESS, data: json.data.results })
+					dispatch({ type: DELETE_PERK_DATA_SUCCESS, data: json.status })
 				} else {
 					dispatch({ type: DELETE_PERK_DATA_ERROR, err: json.message })
 				}
@@ -79,7 +79,7 @@ export const deleteRewardData = (item, token) => {
 		return callApi('DELETE', route, token)
 			.then(json => {
 				if (json.status === 'success') {
-					dispatch({ type: DELETE_REWARD_DATA_SUCCESS, data: json.data.results })
+					dispatch({ type: DELETE_REWARD_DATA_SUCCESS, data: json.status })
 				} else {
 					dispatch({ type: DELETE_REWARD_DATA_ERROR, err: json.message })
 				}
