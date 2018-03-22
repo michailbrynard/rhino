@@ -23,7 +23,7 @@ class RewardRequests extends Component {
 	render() {
 		const { data, debit_loading, err } = this.props
 		const user_data = JSON.parse(localStorage.getItem('user'))
-
+		
 		return (
 			<div className='container'>
 				<Dialog
@@ -72,8 +72,8 @@ class RewardRequests extends Component {
 											<img style={style.card_left_img} src='trading1.svg' alt='earn' />
 										</div>
 										<div style={style.card_right} className='right'>
-											<h3>Purchase Perks</h3>
-											<p>Use your tokens to buy Supporter perks!</p>
+											<h3>Reward Requests</h3>
+											<p>Approve reward claim requests</p>
 										</div>
 									</Paper>
 									<br />
@@ -81,8 +81,6 @@ class RewardRequests extends Component {
 								{
 									data && data.length > 0 ?
 										data.map((item, index) => {
-											const x = new BigNumber(item.reward_amount)
-											const reward_amount = x.dividedBy(10000000).toString()
 											return (
 												<div key={index} className='col-12'>
 													<Paper style={style.card} zDepth={3}>
@@ -91,9 +89,8 @@ class RewardRequests extends Component {
 														</div>
 														<div style={style.card_right} className='right'>
 															<h3>{item.reward_type}</h3>
-															<p>{item.description}</p>
-															<h1>{reward_amount} {user_data && user_data.currency && user_data.currency.code}</h1>
-															<RaisedButton onClick={() => this.setState({ reward_amount: reward_amount })} className="f-right" primary={true} label="Approve" />
+															<p>{item.user}</p>
+															<RaisedButton onClick={() => this.setState({ reward_amount: index })} className="f-right" primary={true} label="Approve" />
 														</div>
 													</Paper>
 													<br />
