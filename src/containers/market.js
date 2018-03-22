@@ -23,6 +23,7 @@ class Market extends Component {
 	render() {
 		const { data, createDebit, debit_data, debit_loading, debit_error } = this.props
 		const user_data = JSON.parse(localStorage.getItem('user'))
+		
 		return (
 			<div className='container'>
 				<Dialog
@@ -103,6 +104,7 @@ class Market extends Component {
 																	</div>
 																	<div style={style.card_right} className='right'>
 																		<h3>{item.perk_name}</h3>
+																		<p>{item.description}</p>
 																		<h1>{perk_amount} {user_data && user_data.currency && user_data.currency.code}</h1>
 																		<RaisedButton onClick={() => this.setState({ perk_amount: perk_amount })} className="f-right" primary={true} label="Buy"/>
 																	</div>

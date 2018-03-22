@@ -61,6 +61,7 @@ class PerksRewards extends Component {
 		this.state = {
 			addtype: false,
 			name: "",
+			description: "",
 			amount: '',
 			enabled: false,
 			user_limit: '',
@@ -97,6 +98,7 @@ class PerksRewards extends Component {
 									start_date: '2018-03-01',
 									end_date: '2018-04-01',
 									reward_type: this.state.name,
+									description: this.state.description,
 									reward_amount: this.state.amount,
 									status: 'true',
 									volume_limit: this.state.volume_limit,
@@ -108,6 +110,7 @@ class PerksRewards extends Component {
 								data = { 
 									company: process.env.REACT_APP_COMPANY_IDENTIFIER,
 									perk_name: this.state.name, 
+									description: this.state.description,
 									perk_amount: this.state.amount
 								}
 								method = 'POST'
@@ -134,6 +137,12 @@ class PerksRewards extends Component {
 											value={this.state.name}
 											onChange={e => this.setState({ name: e.target.value })}
 											hintText={this.state.addtype + " Name"}
+											type='text'
+										/><br />
+										<TextField
+											value={this.state.description}
+											onChange={e => this.setState({ description: e.target.value })}
+											hintText={this.state.addtype + " Description"}
 											type='text'
 										/><br />
 										<TextField

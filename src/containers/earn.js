@@ -37,6 +37,7 @@ const Earn = ({ data, currency }) => (
 								</div>
 								<div style={style.card_right} className='right'>
 									<h3>{item.reward_type.toUpperCase()}</h3>
+									<p>{item.description}</p>
 									<h1>{reward_amount} {currency}</h1>
 								</div>
 							</Paper>
