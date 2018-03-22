@@ -32,7 +32,7 @@ class Wallet extends Component {
 		const { data, loading, err, createSend } = this.props
 
 		const x = data && data.balance && new BigNumber(data.balance.balance)
-		const balance = x && x.dividedBy(1000000).toString() + ' ' + data.balance.currency.code
+		const balance = x && x.dividedBy(10000000).toString() + ' ' + data.balance.currency.code
 		
 		return (
 			<div className='container'>
