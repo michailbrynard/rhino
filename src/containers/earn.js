@@ -49,7 +49,7 @@ const Earn = ({ data, currency, postClaimReward }) => (
 											user: user_data.email
 										}
 										postClaimReward(data)
-									}} className="f-right" primary={true} label="Buy" />
+									}} className="f-right" primary={true} label="Claim" />
 								</div>
 							</Paper>
 							<br />

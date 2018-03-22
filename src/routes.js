@@ -16,6 +16,7 @@ import Landing from './containers/landing'
 import SetPassword from './containers/set_password'
 import Settings from './containers/settings'
 import Count from './containers/count'
+import RewardRequests from './containers/reward_requests'
 
 import { configureStore } from './store'
 import { purpleA700, blue800, grey600, white } from 'material-ui/styles/colors';
@@ -39,6 +40,15 @@ const store = configureStore()
 export default () => {
 
 	const token = localStorage.getItem('token')
+
+	const user_data = JSON.parse(localStorage.getItem('user'))
+	const isAdmin = user_data.groups.filter(i => i.name === 'admin').length > 0;
+
+	const nav_routes = ['/', '/wallet', '/earn', '/perks', '/settings']
+
+	if (isAdmin) { nav_routes.push('/reward_requests') }
+
+
 	return (
 		<Provider store={store}>
 			<MuiThemeProvider muiTheme={muiTheme}>
@@ -48,7 +58,7 @@ export default () => {
 							token ?
 								<div className='main'>
 									{
-										['/', '/wallet', '/earn', '/perks', '/settings'].map((route, index) => (
+										nav_routes.map((route, index) => (
 											<Route key={index} exact path={route} component={Nav} />
 										))
 									}
@@ -57,6 +67,11 @@ export default () => {
 									<Route exact path='/earn' component={Earn} />
 									<Route exact path='/perks' component={Market} />
 									<Route exact path='/settings' component={Settings} />
+									{
+										isAdmin ? 
+											<Route exact path='/reward_requests' component={RewardRequests}/> :
+											null
+									}
 								</div> :
 								<div>
 									<Route exact path='/' component={Landing} />

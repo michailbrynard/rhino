@@ -23,6 +23,8 @@ class Nav extends Component {
 		const { path } = match
 		const user_data = JSON.parse(localStorage.getItem('user'))
 
+		const isAdmin = user_data.groups.filter(i => i.name === 'admin').length > 0;
+
 		const drawer_contents = [
 			<img style={style.drawer_logo} key={0} alt='logo' className='nav-img' src='./logo.1.png' />,
 			<MenuItem
@@ -55,17 +57,33 @@ class Nav extends Component {
 				leftIcon={<FontIcon style={style.drawer_link_icon(path, '/perks')} className="material-icons">crop_7_5</FontIcon>}
 				onClick={() => history.push('/perks')}>
 				<span style={style.drawer_link}>Perks</span>
-			</MenuItem>,
+			</MenuItem>
+		]
 
+		if (isAdmin) {
+			drawer_contents.push(
+				<MenuItem
+					key={5}
+					style={style.drawer_link_highlight(path, '/reward_requests')}
+					leftIcon={<FontIcon style={style.drawer_link_icon(path, '/reward_requests')} className="material-icons">chat_bubble_outline</FontIcon>}
+					onClick={() => history.push('/reward_requests')}>
+					<span style={style.drawer_link}>Requests</span>
+				</MenuItem>,
+			)
+		}
+
+		drawer_contents.push(
 			<MenuItem
-				key={5}
+				key={drawer_contents.length + 1}
 				style={style.drawer_link_highlight(path, '/settings')}
 				leftIcon={<FontIcon style={style.drawer_link_icon(path, '/settings')} className="material-icons">details</FontIcon>}
 				onClick={() => history.push('/settings')}>
 				<span style={style.drawer_link}>Settings</span>
-			</MenuItem>,
+			</MenuItem>
+		)
 
-			<List key={6} style={style.user_nav_view}>
+		drawer_contents.push(
+			<List key={drawer_contents.length + 1} style={style.user_nav_view}>
 				<ListItem
 					className='center'
 					onClick={() => window.open('https://rehive.com', '_blank')}
@@ -79,7 +97,7 @@ class Nav extends Component {
 					secondaryText={user_data.email}
 				/>
 			</List>
-		]
+		)
 
 		return (
 			<div>
