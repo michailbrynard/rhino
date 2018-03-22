@@ -42,7 +42,7 @@ export default () => {
 	const token = localStorage.getItem('token')
 
 	const user_data = JSON.parse(localStorage.getItem('user'))
-	const isAdmin = user_data.groups.filter(i => i.name === 'admin').length > 0;
+	const isAdmin = user_data && user_data.groups.filter(i => i.name === 'admin').length > 0;
 
 	const nav_routes = ['/', '/wallet', '/earn', '/perks', '/settings']
 

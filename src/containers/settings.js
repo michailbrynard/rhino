@@ -254,7 +254,7 @@ class SettingsContainer extends Component {
 	render() {
 		const { data, loading, loading_perks, perk_data, addPerkData, addRewardData, add_loading, deletePerkData, deleteRewardData, add_result } = this.props
 		const user_data = JSON.parse(localStorage.getItem('user'))
-		const isAdmin = user_data.groups.filter(i => i.name ===  'admin').length > 0;
+		const isAdmin = user_data && user_data.groups.filter(i => i.name ===  'admin').length > 0;
 
 		if (add_result) {
 			window.location.reload()
