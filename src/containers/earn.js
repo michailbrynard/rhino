@@ -1,14 +1,15 @@
 import React, { Component } from 'react'
 import Paper from 'material-ui/Paper';
+import RaisedButton from 'material-ui/RaisedButton'
 import { BigNumber } from 'bignumber.js' 
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-import { getCampaignData } from '../actions/campaign'
+import { getCampaignData, postClaimReward } from '../actions/campaign'
 import Loader from '../components/loader'
 import { style } from '../style/'
 
-const Earn = ({ data, currency }) => (
+const Earn = ({ data, currency, postClaimReward }) => (
 	<div className='container'>
 		<div className='row'>
 		<br/>
@@ -39,6 +40,15 @@ const Earn = ({ data, currency }) => (
 									<h3>{item.reward_type.toUpperCase()}</h3>
 									<p>{item.description}</p>
 									<h1>{reward_amount} {currency}</h1>
+									<RaisedButton onClick={() => { 
+										const user_data = JSON.parse(localStorage.getItem('user'))
+
+										let data = {
+											company: user_data.company,
+											reward_type: item.reward_type
+										}
+										postClaimReward(data)
+									}} className="f-right" primary={true} label="Buy" />
 								</div>
 							</Paper>
 							<br />
@@ -68,7 +78,7 @@ class EarnContainer extends Component {
 	}
 
 	render() {
-		const { data, loading } = this.props
+		const { data, loading, postClaimReward } = this.props
 		const user_data = JSON.parse(localStorage.getItem('user'))
 
 		return (
@@ -76,7 +86,7 @@ class EarnContainer extends Component {
 				{
 					loading ?
 					<Loader/> :
-						<Earn data={data} currency={user_data && user_data.currency && user_data.currency.code} />
+						<Earn postClaimReward={postClaimReward} data={data} currency={user_data && user_data.currency && user_data.currency.code} />
 				}
 			</div>
 		)
@@ -95,7 +105,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
 	return {
-		getCampaignData: bindActionCreators(getCampaignData, dispatch)
+		getCampaignData: bindActionCreators(getCampaignData, dispatch),
+		postClaimReward: bindActionCreators(postClaimReward, dispatch)
 	}
 }
 

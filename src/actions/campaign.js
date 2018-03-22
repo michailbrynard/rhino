@@ -22,3 +22,30 @@ export const getCampaignData = (company) => {
 			})
 	}
 }
+
+
+export const CLAIM_REWARD_REQ = "CLAIM_REWARD_REQ"
+export const CLAIM_REWARD_REQ_SUCCESS = "CLAIM_REWARD_REQ_SUCCESS"
+export const CLAIM_REWARD_REQ_ERROR = "CLAIM_REWARD_REQ_ERROR"
+
+export const postClaimReward = (data) => (
+	dispatch => {
+		dispatch({ type: CLAIM_REWARD_REQ })
+		const route = process.env.REACT_APP_API_URL + '/user/campaign/reward/request/'
+		const token = localStorage.getItem('token')
+
+		callApi('POST', route, token)
+			.then(json => {
+				if (json.status === 'success') {
+					window.location.reload()
+					dispatch({ type: CLAIM_REWARD_REQ_SUCCESS, data: json.data })
+				} else {
+					dispatch({ type: CLAIM_REWARD_REQ_ERROR, err: json.message })
+				}
+			})
+			.catch(err => {
+				dispatch({ type: CLAIM_REWARD_REQ_ERROR })
+			})
+
+	}
+)
