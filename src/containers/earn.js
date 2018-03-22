@@ -45,7 +45,8 @@ const Earn = ({ data, currency, postClaimReward }) => (
 
 										let data = {
 											company: user_data.company,
-											reward_type: item.reward_type
+											reward_type: item.reward_type,
+											user: user_data.email
 										}
 										postClaimReward(data)
 									}} className="f-right" primary={true} label="Buy" />

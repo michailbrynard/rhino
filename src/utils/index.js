@@ -9,7 +9,8 @@ export const callApi = (method, route, token, data) => {
 		if (
 			route.search('accounts/') > -1 || 
 			route.search('transactions/') > -1 ||
-			route.search('admin/') > -1
+			route.search('admin/') > -1 ||
+			route.search('request/') > -1
 		) {
 			headers['Authorization'] = `Token ${token}`
 		} else {

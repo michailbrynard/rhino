@@ -34,7 +34,7 @@ export const postClaimReward = (data) => (
 		const route = process.env.REACT_APP_API_URL + '/user/campaign/reward/request/'
 		const token = localStorage.getItem('token')
 
-		callApi('POST', route, token)
+		callApi('POST', route, token, data)
 			.then(json => {
 				if (json.status === 'success') {
 					window.location.reload()
