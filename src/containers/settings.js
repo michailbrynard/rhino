@@ -8,6 +8,7 @@ import { Tabs, Tab } from 'material-ui/Tabs'
 import { getCampaignData } from '../actions/campaign'
 import Toggle from 'material-ui/Toggle';
 import { getPerkData } from '../actions/perk'
+import { addPerkData } from '../actions/admin'
 import Dialog from 'material-ui/Dialog'
 
 import { bindActionCreators } from 'redux'
@@ -70,7 +71,7 @@ class PerksRewards extends Component {
 	}
 	render() {
 
-		const { reward_data, perk_data } = this.props
+		const { reward_data, perk_data, addPerkData } = this.props
 		return (
 			<div className='container'>
 				<Dialog
@@ -106,28 +107,32 @@ class PerksRewards extends Component {
 								}
 								method = 'POST'
 							} else if (this.state.addtype === "Perk") {
-								route = 'perk/'
 								data = { 
 									company: process.env.REACT_APP_COMPANY_IDENTIFIER,
 									perk_name: this.state.name, 
 									description: this.state.description,
 									perk_amount: this.state.amount
 								}
-								method = 'POST'
+								const token = localStorage.getItem('token')
+								addPerkData(data, token)
 							} else if (this.state.addtype === "Delete Perk") {
 								route = 'perk/' + this.state.deleteName + '/'
 								method = 'DELETE'
+								const token = localStorage.getItem('token')
+								callApi(method, process.env.REACT_APP_API_URL + '/admin/' + route, token, data)
+									.then(result => {
+										window.location.reload()
+									})
 							} else {
 								route = 'campaign/' + this.state.deleteName + '/'
 								method = 'DELETE'
+								const token = localStorage.getItem('token')
+								callApi(method, process.env.REACT_APP_API_URL + '/admin/' + route, token, data)
+									.then(result => {
+										window.location.reload()
+									})
 							}
 
-							// TODO: Move this to redux action. 
-							const token = localStorage.getItem('token')
-							callApi(method, process.env.REACT_APP_API_URL + '/admin/' + route, token, data)
-							.then(result => {
-								window.location.reload()
-							})
 
 						}}>
 							{
@@ -252,7 +257,7 @@ class SettingsContainer extends Component {
 	}
 
 	render() {
-		const { data, loading, loading_perks, perk_data } = this.props
+		const { data, loading, loading_perks, perk_data, addPerkData } = this.props
 		const user_data = JSON.parse(localStorage.getItem('user'))
 		const isAdmin = user_data.groups.filter(i => i.name ===  'admin').length > 0;
 		return (
@@ -272,7 +277,7 @@ class SettingsContainer extends Component {
 														<Settings />
 													</Tab>
 													<Tab label="Perks/Rewards">
-														<PerksRewards perk_data={perk_data} reward_data={data} />
+														<PerksRewards perk_data={perk_data} reward_data={data} addPerkData={addPerkData} />
 													</Tab>
 												</Tabs>
 											</Paper>
@@ -301,7 +306,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
 	return {
 		getPerkData: bindActionCreators(getPerkData, dispatch),
-		getCampaignData: bindActionCreators(getCampaignData, dispatch)
+		getCampaignData: bindActionCreators(getCampaignData, dispatch),
+		addPerkData: bindActionCreators(addPerkData, dispatch)
 	}
 }
 

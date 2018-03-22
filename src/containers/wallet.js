@@ -108,7 +108,6 @@ class Wallet extends Component {
 									amount: this.state.amount * 10000000,
 									memo: this.state.memo
 								}
-								console.log("DATA FOR TRANSACTION", data);
 								createSend(data)
 							}}
 						/>

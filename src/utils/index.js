@@ -4,8 +4,15 @@ export const callApi = (method, route, token, data) => {
 		'Accept': 'application/json',
 		'Content-Type': 'application/json'
 	}
-
-	if (token) { headers['Authorization'] = `Token ${token}` }
+	console.log("ROUTE COMING IN", route.search('accounts/'));
+	
+	if (token) { 
+		if (route.search('accounts/') > -1 || route.search('transactions/') > -1) {
+			headers['Authorization'] = `Token ${token}`
+		} else {
+			headers['Authorization'] = `Bearer ${token}`
+		}
+	}
 
 	let config = {
 		// credentials: 'include',
