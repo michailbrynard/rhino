@@ -16,12 +16,12 @@ class RewardRequests extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			reward_amount: false
+			reward_identifier: false
 		}
 	}
 
 	render() {
-		const { data, debit_loading, err } = this.props
+		const { data, err } = this.props
 		const user_data = JSON.parse(localStorage.getItem('user'))
 		
 		return (
@@ -30,8 +30,8 @@ class RewardRequests extends Component {
 					contentStyle={{ maxWidth: "360px" }}
 					autoDetectWindowHeight={true}
 					modal={false}
-					open={this.state.reward_amount ? true : false}
-					onRequestClose={() => this.setState({ reward_amount: '' })}
+					open={this.state.reward_identifier ? true : false}
+					onRequestClose={() => this.setState({ reward_identifier: '' })}
 				>
 					<div style={{
 						alignContent: 'center',
@@ -49,7 +49,7 @@ class RewardRequests extends Component {
 							<FlatButton
 								label="Cancel"
 								primary={true}
-								onClick={() => this.setState({ reward_amount: '' })}
+								onClick={() => this.setState({ reward_identifier: '' })}
 							/>
 							<FlatButton
 								label="Yes"
@@ -60,54 +60,47 @@ class RewardRequests extends Component {
 						</form>
 					</div>
 				</Dialog>
-				<div >
-					<br />
+				<div className='row'>
+					<div className='col-12'>
+						<Paper style={style.card_header} zDepth={3}>
+							<div style={style.card_left}>
+								<img style={style.card_left_img} src='trading1.svg' alt='earn' />
+							</div>
+							<div style={style.card_right} className='right'>
+								<h3>Reward Requests</h3>
+								<p>Approve reward claim requests</p>
+							</div>
+						</Paper>
+						<br />
+					</div>
 					{
-						debit_loading ?
-							<Loader /> :
-							<div className='row'>
-								<div className='col-12'>
-									<Paper style={style.card_header} zDepth={3}>
-										<div style={style.card_left}>
-											<img style={style.card_left_img} src='trading1.svg' alt='earn' />
-										</div>
-										<div style={style.card_right} className='right'>
-											<h3>Reward Requests</h3>
-											<p>Approve reward claim requests</p>
-										</div>
-									</Paper>
-									<br />
-								</div>
-								{
-									data && data.length > 0 ?
-										data.map((item, index) => {
-											return (
-												<div key={index} className='col-12'>
-													<Paper style={style.card} zDepth={3}>
-														<div style={style.card_left}>
-															<img style={style.card_left_img} alt='logo' src='trading1.svg' />
-														</div>
-														<div style={style.card_right} className='right'>
-															<h3>{item.reward_type}</h3>
-															<p>{item.user}</p>
-															<RaisedButton onClick={() => this.setState({ reward_amount: index })} className="f-right" primary={true} label="Approve" />
-														</div>
-													</Paper>
-													<br />
-												</div>
-											)
-										}) :
-										<div className='col-12'>
-											<Paper style={style.transaction_card} zDepth={3}>
-												<div className='container center'>
-													<br />
-													<h3>No perks</h3>
-													<br />
-												</div>
-											</Paper>
-											<br />
-										</div>
-								}
+						data && data.length > 0 ?
+							data.map((item, index) => {
+								return (
+									<div key={index} className='col-12'>
+										<Paper style={style.card} zDepth={3}>
+											<div style={style.card_left}>
+												<img style={style.card_left_img} alt='logo' src='trading1.svg' />
+											</div>
+											<div style={style.card_right} className='right'>
+												<h3>{item.reward_type}</h3>
+												<p>{item.user}</p>
+												<RaisedButton onClick={() => this.setState({ reward_identifier: item.identifier })} className="f-right" primary={true} label="Approve" />
+											</div>
+										</Paper>
+										<br />
+									</div>
+								)
+							}) :
+							<div className='col-12'>
+								<Paper style={style.transaction_card} zDepth={3}>
+									<div className='container center'>
+										<br />
+										<h3>No perks</h3>
+										<br />
+									</div>
+								</Paper>
+								<br />
 							</div>
 					}
 				</div>
@@ -123,13 +116,13 @@ class RewardRequestsContainer extends Component {
 	}
 
 	render() {
-		const { loading, data, debit_loading, err } = this.props
+		const { loading, data, err } = this.props
 		return (
 			<div>
 				{
 					loading ?
 						<Loader /> :
-						<RewardRequests debit_loading={debit_loading} err={err} data={data} />
+						<RewardRequests err={err} data={data} />
 				}
 			</div>
 		)
