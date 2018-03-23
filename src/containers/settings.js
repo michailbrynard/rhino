@@ -227,7 +227,7 @@ class PerksRewards extends Component {
 										<br />
 										<span>
 											<span>{item.perk_name} - {perk_amount}</span>
-											<i style={style.settings_close} onClick={() => this.setState({ addtype: "Delete Perk", deleteName: item.perk_name })} className="material-icons f-right">close</i>
+											<i style={style.settings_close} onClick={() => this.setState({ addtype: "Delete Perk", deleteName: item.identifier })} className="material-icons f-right">close</i>
 										</span>
 										<br />
 									</div>
