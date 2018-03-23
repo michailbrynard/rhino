@@ -44,7 +44,6 @@ class RewardRequests extends Component {
 						}
 						<form onSubmit={(e) => {
 							e.preventDefault()
-							console.log("SUBMITTING");
 							approveReward({ identifier: this.state.reward_identifier })
 						}}>
 							<FlatButton
@@ -76,7 +75,7 @@ class RewardRequests extends Component {
 					</div>
 					{
 						data && data.length > 0 ?
-							data.map((item, index) => {
+							data.filter(i => i.state === 'pending').map((item, index) => {
 								return (
 									<div key={index} className='col-12'>
 										<Paper style={style.card} zDepth={3}>
