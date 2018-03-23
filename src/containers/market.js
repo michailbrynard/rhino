@@ -5,11 +5,12 @@ import FlatButton from 'material-ui/FlatButton'
 import RaisedButton from 'material-ui/RaisedButton'
 import Loader from '../components/loader'
 import { BigNumber } from 'bignumber.js' 
+import company_data from './config.json'
 
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { getPerkData } from '../actions/perk'
-import { createDebit } from '../actions/transaction'
+import { createSend } from '../actions/transaction'
 import { style } from '../style/'
 
 class Market extends Component {
@@ -20,8 +21,9 @@ class Market extends Component {
 		}
 	}
 
+
 	render() {
-		const { data, createDebit, debit_data, debit_loading, debit_error } = this.props
+		const { data, createSend, debit_data, debit_loading, debit_error } = this.props
 		const user_data = JSON.parse(localStorage.getItem('user'))
 		
 		return (
@@ -44,7 +46,13 @@ class Market extends Component {
 						}
 						<form onSubmit={(e) => {
 							e.preventDefault()
-							createDebit(user_data && user_data.currency && user_data.currency.code, this.state.perk_amount)
+							const data = {
+								reference: company_data.admin_email,
+								currency: user_data && user_data.currency && user_data.currency.code,
+								amount: this.state.perk_amount
+							}
+
+							createSend(data)
 						}}>
 							<FlatButton
 								label="Cancel"
@@ -141,13 +149,13 @@ class MarketContainer extends Component {
 	}
 
 	render() {
-		const { loading, data, createDebit, debit_data, debit_loading, debit_error } = this.props
+		const { loading, data, createSend, debit_data, debit_loading, debit_error } = this.props
 		return (
 			<div>
 				{
 					loading ?
 					<Loader/> :
-					<Market debit_data={debit_data} debit_loading={debit_loading} debit_error={debit_error} createDebit={createDebit} data={data}/>
+					<Market debit_data={debit_data} debit_loading={debit_loading} debit_error={debit_error} createSend={createSend} data={data}/>
 				}
 			</div>
 		)
@@ -168,7 +176,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
 	return {
 		getPerkData: bindActionCreators(getPerkData, dispatch),
-		createDebit: bindActionCreators(createDebit, dispatch)
+		createSend: bindActionCreators(createSend, dispatch)
 	}
 }
 
