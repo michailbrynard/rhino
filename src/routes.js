@@ -44,9 +44,12 @@ export default () => {
 	const user_data = JSON.parse(localStorage.getItem('user'))
 	const isAdmin = user_data && user_data.groups.filter(i => i.name === 'admin').length > 0;
 
-	const nav_routes = ['/', '/wallet', '/earn', '/perks', '/settings']
+	const nav_routes = ['/', '/wallet', '/earn', '/perks']
 
-	if (isAdmin) { nav_routes.push('/reward_requests') }
+	if (isAdmin) { 
+		nav_routes.push('/reward_requests') 
+		nav_routes.push('/settings')
+	}
 
 
 	return (
@@ -66,10 +69,14 @@ export default () => {
 									<Route exact path='/wallet' component={Wallet} />
 									<Route exact path='/earn' component={Earn} />
 									<Route exact path='/perks' component={Market} />
-									<Route exact path='/settings' component={Settings} />
 									{
 										isAdmin ? 
 											<Route exact path='/reward_requests' component={RewardRequests}/> :
+											null
+									}
+									{
+										isAdmin ?
+											<Route exact path='/settings' component={Settings} /> :
 											null
 									}
 								</div> :

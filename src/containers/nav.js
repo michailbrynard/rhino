@@ -70,17 +70,17 @@ class Nav extends Component {
 					<span style={style.drawer_link}>Requests</span>
 				</MenuItem>,
 			)
-		}
 
-		drawer_contents.push(
-			<MenuItem
-				key={drawer_contents.length + 1}
-				style={style.drawer_link_highlight(path, '/settings')}
-				leftIcon={<FontIcon style={style.drawer_link_icon(path, '/settings')} className="material-icons">details</FontIcon>}
-				onClick={() => history.push('/settings')}>
-				<span style={style.drawer_link}>Settings</span>
-			</MenuItem>
-		)
+			drawer_contents.push(
+				<MenuItem
+					key={drawer_contents.length + 1}
+					style={style.drawer_link_highlight(path, '/settings')}
+					leftIcon={<FontIcon style={style.drawer_link_icon(path, '/settings')} className="material-icons">details</FontIcon>}
+					onClick={() => history.push('/settings')}>
+					<span style={style.drawer_link}>Settings</span>
+				</MenuItem>
+			)
+		}
 
 		drawer_contents.push(
 			<List key={drawer_contents.length + 1} style={style.user_nav_view}>
