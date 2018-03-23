@@ -106,7 +106,7 @@ class Market extends Component {
 																		<h3>{item.perk_name}</h3>
 																		<p>{item.description}</p>
 																		<h1>{perk_amount} {user_data && user_data.currency && user_data.currency.code}</h1>
-																		<RaisedButton onClick={() => this.setState({ perk_amount: perk_amount })} className="f-right" primary={true} label="Buy"/>
+																		<RaisedButton onClick={() => this.setState({ perk_amount: item.perk_amount })} className="f-right" primary={true} label="Buy"/>
 																	</div>
 																</Paper>
 																<br />
