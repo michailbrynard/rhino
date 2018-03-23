@@ -22,3 +22,26 @@ export const getRewardRequests = (company) => {
 			})
 	}
 }
+
+export const APPROVE_REWARD = "APPROVE_REWARD"
+export const APPROVE_REWARD_SUCCESS = "APPROVE_REWARD_SUCCESS"
+export const APPROVE_REWARD_ERROR = "APPROVE_REWARD_ERROR"
+
+export const approveReward = (data) => {
+	return dispatch => {
+		dispatch({ type: APPROVE_REWARD })
+		const route = process.env.REACT_APP_API_URL + '/admin/campaign/reward/approve/'
+		const token = localStorage.getItem('token')
+		return callApi('POST', route, token, data)
+			.then(json => {
+				if (json.status === 'success') {
+					dispatch({ type: APPROVE_REWARD_SUCCESS, data: json.status })
+				} else {
+					dispatch({ type: APPROVE_REWARD_ERROR, err: json.message })
+				}
+			})
+			.catch(err => {
+				dispatch({ type: APPROVE_REWARD_ERROR, err })
+			})
+	}
+}

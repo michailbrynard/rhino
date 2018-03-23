@@ -8,7 +8,7 @@ import { BigNumber } from 'bignumber.js'
 
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { getRewardRequests } from '../actions/reward_requests'
+import { getRewardRequests, approveReward } from '../actions/reward_requests'
 
 import { style } from '../style/'
 
@@ -21,7 +21,7 @@ class RewardRequests extends Component {
 	}
 
 	render() {
-		const { data, err } = this.props
+		const { data, err, approveReward } = this.props
 		const user_data = JSON.parse(localStorage.getItem('user'))
 		
 		return (
@@ -45,6 +45,7 @@ class RewardRequests extends Component {
 						<form onSubmit={(e) => {
 							e.preventDefault()
 							console.log("SUBMITTING");
+							approveReward({ identifier: this.state.reward_identifier })
 						}}>
 							<FlatButton
 								label="Cancel"
@@ -85,7 +86,11 @@ class RewardRequests extends Component {
 											<div style={style.card_right} className='right'>
 												<h3>{item.reward_type}</h3>
 												<p>{item.user}</p>
-												<RaisedButton onClick={() => this.setState({ reward_identifier: item.identifier })} className="f-right" primary={true} label="Approve" />
+												{
+													item.state === 'pending' ?
+														<RaisedButton onClick={() => this.setState({ reward_identifier: item.identifier })} className="f-right" primary={true} label="Approve" /> :
+														<RaisedButton className="f-right" disabled={true} label="Approved" />
+												}
 											</div>
 										</Paper>
 										<br />
@@ -96,7 +101,7 @@ class RewardRequests extends Component {
 								<Paper style={style.transaction_card} zDepth={3}>
 									<div className='container center'>
 										<br />
-										<h3>No perks</h3>
+										<h3>No Reward Requests</h3>
 										<br />
 									</div>
 								</Paper>
@@ -116,13 +121,17 @@ class RewardRequestsContainer extends Component {
 	}
 
 	render() {
-		const { loading, data, err } = this.props
+		const { loading, data, err, approveReward } = this.props
 		return (
 			<div>
 				{
 					loading ?
 						<Loader /> :
-						<RewardRequests err={err} data={data} />
+						err ?
+						<div className="container center">
+								<h3>An error occurred</h3>
+						</div> :
+							<RewardRequests err={err} data={data} approveReward={approveReward} />
 				}
 			</div>
 		)
@@ -130,17 +139,18 @@ class RewardRequestsContainer extends Component {
 }
 
 function mapStateToProps(state) {
-	const { data, loading } = state.reward_requests
+	const { data, loading, err } = state.reward_requests
 	return {
 		data,
-		loading
-
+		loading,
+		err
 	}
 }
 
 function mapDispatchToProps(dispatch) {
 	return {
-		getRewardRequests: bindActionCreators(getRewardRequests, dispatch)
+		getRewardRequests: bindActionCreators(getRewardRequests, dispatch),
+		approveReward: bindActionCreators(approveReward, dispatch)
 	}
 }
 
