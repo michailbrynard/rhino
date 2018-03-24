@@ -8,7 +8,7 @@ export const getCampaignData = (company) => {
 	return dispatch => {
 		const token = localStorage.getItem('token')
 		dispatch({ type: GET_CAMPAIGN_DATA })
-		const route = process.env.REACT_APP_API_URL + '/user/campaign/' + company
+		const route = process.env.REACT_APP_API_URL + '/user/campaign/' + company + '/'
 		return callApi('GET', route, token)
 			.then(json => {
 				if (json.status === 'success') {
