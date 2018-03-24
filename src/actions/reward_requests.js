@@ -8,7 +8,7 @@ export const getRewardRequests = (company) => {
 	return dispatch => {
 		const token = localStorage.getItem('token')
 		dispatch({ type: GET_REWARD_REQUESTS })
-		const route = process.env.REACT_APP_API_URL + '/admin/campaign/reward/' + company
+		const route = process.env.REACT_APP_API_URL + '/admin/campaign/reward/' + company + '/'
 		return callApi('GET', route, token)
 			.then(json => {
 				if (json.status === 'success') {

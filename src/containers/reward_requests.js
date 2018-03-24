@@ -80,7 +80,7 @@ class RewardRequests extends Component {
 						<br />
 					</div>
 					{
-						data && data.length > 0 ?
+						data && data.filter(i => i.state === 'pending').length > 0 ?
 							data.filter(i => i.state === 'pending').map((item, index) => {
 								return (
 									<div key={index} className='col-12'>

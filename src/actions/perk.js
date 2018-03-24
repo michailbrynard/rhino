@@ -8,7 +8,7 @@ export const getPerkData = (company) => {
 	return dispatch => {
 		const token = localStorage.getItem('token')
 		dispatch({ type: GET_PERK_DATA })
-		const route = process.env.REACT_APP_API_URL + '/user/perk/' + company
+		const route = process.env.REACT_APP_API_URL + '/user/perk/' + company + '/'
 		return callApi('GET', route, token)
 			.then(json => {
 				if (json.status === 'success') {
