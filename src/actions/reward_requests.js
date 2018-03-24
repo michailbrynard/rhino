@@ -45,3 +45,26 @@ export const approveReward = (data) => {
 			})
 	}
 }
+
+export const REJECT_REWARD = "REJECT_REWARD"
+export const REJECT_REWARD_SUCCESS = "REJECT_REWARD_SUCCESS"
+export const REJECT_REWARD_ERROR = "REJECT_REWARD_ERROR"
+
+export const rejectReward = (data) => {
+	return dispatch => {
+		dispatch({ type: REJECT_REWARD })
+		const route = process.env.REACT_APP_API_URL + '/admin/campaign/reward/reject/'
+		const token = localStorage.getItem('token')
+		return callApi('POST', route, token, data)
+			.then(json => {
+				if (json.status === 'success') {
+					dispatch({ type: REJECT_REWARD_SUCCESS, data: json.status })
+				} else {
+					dispatch({ type: REJECT_REWARD_ERROR, err: json.message })
+				}
+			})
+			.catch(err => {
+				dispatch({ type: REJECT_REWARD_ERROR, err })
+			})
+	}
+}
