@@ -8,7 +8,7 @@ import { BigNumber } from 'bignumber.js'
 
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { getRewardRequests, approveReward } from '../actions/reward_requests'
+import { getRewardRequests, approveReward, rejectReward } from '../actions/reward_requests'
 
 import { style } from '../style/'
 
@@ -21,7 +21,7 @@ class RewardRequests extends Component {
 	}
 
 	render() {
-		const { data, err, approveReward } = this.props
+		const { data, err, approveReward, rejectReward } = this.props
 		const user_data = JSON.parse(localStorage.getItem('user'))
 		
 		return (
@@ -37,19 +37,25 @@ class RewardRequests extends Component {
 						alignContent: 'center',
 						textAlign: 'center',
 					}}>
-						<h3>Are you sure you want to approve this request?</h3>
+						<h3>Are you sure you want to {
+							this.state.reject ? "reject" : "approve"
+						} this request?</h3>
 						{
 							err ?
 								<h3>{err}</h3> : null
 						}
 						<form onSubmit={(e) => {
 							e.preventDefault()
-							approveReward({ identifier: this.state.reward_identifier })
+							if (this.state.reject) {
+								rejectReward({ identifier: this.state.reward_identifier })
+							} else {
+								approveReward({ identifier: this.state.reward_identifier })
+							}
 						}}>
 							<FlatButton
 								label="Cancel"
 								primary={true}
-								onClick={() => this.setState({ reward_identifier: '' })}
+								onClick={() => this.setState({ reward_identifier: '', reject: null })}
 							/>
 							<FlatButton
 								label="Yes"
@@ -85,11 +91,21 @@ class RewardRequests extends Component {
 											<div style={style.card_right} className='right'>
 												<h3>{item.reward_type}</h3>
 												<p>{item.user}</p>
-												{
-													item.state === 'pending' ?
-														<RaisedButton onClick={() => this.setState({ reward_identifier: item.identifier })} className="f-right" primary={true} label="Approve" /> :
-														<RaisedButton className="f-right" disabled={true} label="Approved" />
-												}
+												<div>
+													{
+														item.state === 'pending' ?
+															<RaisedButton fullWidth={true} onClick={() => this.setState({ reward_identifier: item.identifier })} className="f-right" primary={true} label="Approve" /> :
+															<RaisedButton className="f-right" disabled={true} label="Approved" />
+													}
+												</div>
+													<br/><br/><br/>
+												<div>
+													{
+														item.state === 'pending' ?
+															<RaisedButton fullWidth={true} onClick={() => this.setState({ reward_identifier: item.identifier, reject: true })} className="f-right" primary={true} label="Reject" /> :
+															null
+													}
+												</div>
 											</div>
 										</Paper>
 										<br />
@@ -120,7 +136,7 @@ class RewardRequestsContainer extends Component {
 	}
 
 	render() {
-		const { loading, data, err, approveReward } = this.props
+		const { loading, data, err, approveReward, rejectReward } = this.props
 		return (
 			<div>
 				{
@@ -130,7 +146,7 @@ class RewardRequestsContainer extends Component {
 						<div className="container center">
 								<h3>An error occurred</h3>
 						</div> :
-							<RewardRequests err={err} data={data} approveReward={approveReward} />
+							<RewardRequests err={err} data={data} approveReward={approveReward} rejectReward={rejectReward} />
 				}
 			</div>
 		)
@@ -149,7 +165,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
 	return {
 		getRewardRequests: bindActionCreators(getRewardRequests, dispatch),
-		approveReward: bindActionCreators(approveReward, dispatch)
+		approveReward: bindActionCreators(approveReward, dispatch),
+		rejectReward: bindActionCreators(rejectReward, dispatch)
 	}
 }
 

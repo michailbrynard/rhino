@@ -5,7 +5,11 @@ import {
 
 	APPROVE_REWARD,
 	APPROVE_REWARD_ERROR,
-	APPROVE_REWARD_SUCCESS
+	APPROVE_REWARD_SUCCESS,
+
+	REJECT_REWARD,
+	REJECT_REWARD_ERROR,
+	REJECT_REWARD_SUCCESS
 } from '../actions/reward_requests'
 
 import { merge } from 'lodash'
@@ -14,6 +18,7 @@ export default (state = { loading: false }, action) => {
 	switch (action.type) {
 		case GET_REWARD_REQUESTS:
 		case APPROVE_REWARD:
+		case REJECT_REWARD:
 			return merge({}, {
 				loading: true
 			})
@@ -24,11 +29,13 @@ export default (state = { loading: false }, action) => {
 			})
 		case GET_REWARD_REQUESTS_ERROR:
 		case APPROVE_REWARD_ERROR:
+		case REJECT_REWARD_ERROR:
 			return merge({}, state, {
 				err: action.err,
 				loading: false
 			})
 		case APPROVE_REWARD_SUCCESS:
+		case REJECT_REWARD_SUCCESS:
 			window.location.reload()
 			return merge({}, state, {
 				loading: false
