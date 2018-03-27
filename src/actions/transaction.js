@@ -30,7 +30,7 @@ export const CREATE_SEND_ERROR = "CREATE_SEND_ERROR"
 export const  createSend = (data) => (
 	dispatch => {
 		dispatch({ type: CREATE_SEND })
-		const route = process.env.REACT_APP_STELLAR_SERVICE_URL + '/transactions/send/'
+		const route = process.env.REACT_APP_API_URL + '/transactions/send/'
 		const token = localStorage.getItem('token')
 
 		callApi('POST', route, token, data)

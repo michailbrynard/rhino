@@ -31,6 +31,8 @@ class Wallet extends Component {
 
 		const { data, loading, err, createSend } = this.props
 
+		const user_data = JSON.parse(localStorage.getItem('user'))
+
 		const x = data && data.balance && new BigNumber(data.balance.balance)
 		const balance = x && x.dividedBy(10000000).toString() + ' ' + data.balance.currency.code
 		
@@ -104,9 +106,10 @@ class Wallet extends Component {
 							onClick={() => {
 								const data = {
 									reference: this.state.recipient,
-									currency: 'SHAPE',
+									currency: user_data && user_data.currency && user_data.currency.code,
 									amount: this.state.amount * 10000000,
-									memo: this.state.memo
+									memo: this.state.memo,
+									company: user_data && user_data.company
 								}
 								createSend(data)
 							}}
