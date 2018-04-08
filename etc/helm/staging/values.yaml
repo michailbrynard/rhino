@@ -19,15 +19,13 @@ service:
 ingress:
   enabled: true
   hosts:
-    - hive.s.shapelaunch.com
-    - s.shapelaunch.com
+    - rhino.s.tokenexplorer.com
   annotations:
     kubernetes.io/ingress.class: "nginx"
     kubernetes.io/tls-acme: "true"
   tls:
     - hosts:
-      - hive.s.shapelaunch.com
-      - s.shapelaunch.com
+      - rhino.s.tokenexplorer.com
       secretName: launcher-dashboard-tls
 management:
   enabled: false

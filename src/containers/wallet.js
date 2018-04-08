@@ -128,8 +128,8 @@ class Wallet extends Component {
 							}} src="qr.jpg" alt='qr' /> : (
 								<div className="center">
 									<p><b>Add a trustline in the receiving wallet before sending:</b><br />
-									Asset: SHAPE<br />
-									Issuer: BPRS63VQIKJP5VNNEV3TQEH6FCVMTZ6ZHK4CJFPLKKPXLBVYFZ62HJP</p>
+									Asset: RHC<br />
+									Issuer: GBIR5GY3XE35Q7BFQ2FUVTB4VMQYD4VRZ36Q4OAVKFBJBK343KNOSNL3</p>
 									<TextField 
 										value={this.state.recipient} 
 										type="text" 

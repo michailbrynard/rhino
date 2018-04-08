@@ -122,7 +122,7 @@ class Landing extends Component {
 										<div className='container'>
 											<h1 className='title'>{this.state.data && this.state.data.display_name}</h1>
 											<p className='subtitle'>{this.state.data && this.state.data.subtitle}</p>
-											<p>Sign up to help shape the future of loyalty and support! </p>
+											<p>{this.state.data && this.state.data.description}</p>
 											{
 												signupErr ?
 													<p>Error: {signupErr}</p> : 
