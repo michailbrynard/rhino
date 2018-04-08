@@ -8,7 +8,7 @@ deployment:
       memory: 450M
       cpu: 500m
 image:
-  repository: gcr.io/rehive-services/launcher-dashboard
+  repository: gcr.io/rehive-services/rhino
   tag: latest
   pullPolicy: Always
 service:
@@ -26,7 +26,7 @@ ingress:
   tls:
     - hosts:
       - rhino.shapelaunch.com
-      secretName: launcher-dashboard-tls
+      secretName: rhino-tls
 management:
   enabled: false
 postgres:
