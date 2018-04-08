@@ -133,7 +133,7 @@ class Landing extends Component {
 												signup(this.state.email)
 											}}>
 												<TextField
-													inputStyle={{ color: "black" }}
+													inputStyle={{ color: "white" }}
 													hintStyle={{ color: "#999" }}
 													value={this.state.email}
 													onChange={e => this.setState({ email: e.target.value })}
