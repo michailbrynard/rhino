@@ -106,8 +106,8 @@ class Home extends Component {
 											</div>
 											<div style={style.card_right} className='right'>
 												<h3>{ company_data && company_data.card_display_name }</h3>
-												<p className='cardtext'>{ company_data && company_data.description }</p>
-												<a href="https://rehive.com" rel="noopener noreferrer" target="_blank"><RaisedButton label="Visit Site" secondary={true} /></a>
+												<p className='cardtext'>Thanks for attending! You've received rhino coins.</p>
+												<a href="https://www.draperuniversity.com/" rel="noopener noreferrer" target="_blank"><RaisedButton label="Visit Site" secondary={true} /></a>
 											</div>
 										</Paper>
 										<br />
@@ -131,6 +131,7 @@ class Home extends Component {
 										</Paper>
 										<br />
 									</div>
+<<<<<<< HEAD
 									{/* <div className='col-12'>
 										<Paper style={style.card} zDepth={3}>
 											<div style={style.card_left}>
@@ -145,6 +146,8 @@ class Home extends Component {
 										</Paper>
 										<br />
 									</div> */}
+=======
+>>>>>>> 867c9d8cbb5f3da6fd8b79f24e6bfedb5c09cfbd
 									{/* <div className='col-12'>
 										<Paper style={style.card} zDepth={3}>
 											<div style={style.card_left}>

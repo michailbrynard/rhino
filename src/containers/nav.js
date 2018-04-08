@@ -92,11 +92,6 @@ class Nav extends Component {
 					secondaryText="Powered by Rehive"
 				/>
 				<ListItem
-					className='center'
-					onClick={() => window.open('https://shapelaunch.com', '_blank')}
-					secondaryText="Built using Shape Launch"
-				/>
-				<ListItem
 					disabled
 					className='center'
 					onClick={() => history.push('/')}
