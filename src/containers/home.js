@@ -131,7 +131,7 @@ class Home extends Component {
 										</Paper>
 										<br />
 									</div>
-									<div className='col-12'>
+									{/* <div className='col-12'>
 										<Paper style={style.card} zDepth={3}>
 											<div style={style.card_left}>
 												<img style={style.card_left_img} src='coins1.svg' alt='coins' />
@@ -144,7 +144,7 @@ class Home extends Component {
 											</div>
 										</Paper>
 										<br />
-									</div>
+									</div> */}
 									{/* <div className='col-12'>
 										<Paper style={style.card} zDepth={3}>
 											<div style={style.card_left}>
