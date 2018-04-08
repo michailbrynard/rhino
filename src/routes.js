@@ -21,17 +21,17 @@ import RewardRequests from './containers/reward_requests'
 import { callApi } from './utils'
 
 import { configureStore } from './store'
-import { purpleA700, blue800, grey600, white } from 'material-ui/styles/colors';
+import { pink700, cyan300, grey600, black } from 'material-ui/styles/colors';
 
 const muiTheme = getMuiTheme({
 	palette: {
-		primary1Color: purpleA700,
+		primary1Color: pink700,
 		primary2Color: grey600,
-		primary3Color: blue800,
-		canvasColor: white,
-		accent1Color: purpleA700,
+		primary3Color: cyan300,
+		canvasColor: cyan300,
+		accent1Color: pink700,
 		accent2Color: grey600,
-		accent3Color: blue800,
+		accent3Color: cyan300,
 	},
 	appBar: {
 	},

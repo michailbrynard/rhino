@@ -16,7 +16,7 @@
     "superagent": "^3.8.2"
   },
   "scripts": {
-    "start": "REACT_APP_STELLAR_SERVICE_URL=https://stellar.services.rehive.io/api/1 REACT_APP_API_URL=https://launcher.services.rehive.io/api REACT_APP_REHIVE_API_URL=http://api.rehive.com/3 REACT_APP_COMPANY_IDENTIFIER=rhino react-scripts start",
+    "start": "REACT_APP_STELLAR_SERVICE_URL=https://stellar.services.rehive.io/api/1 REACT_APP_API_URL=https://launcher.services.rehive.io/api REACT_APP_REHIVE_API_URL=https://api.rehive.com/3 REACT_APP_COMPANY_IDENTIFIER=rhino react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"

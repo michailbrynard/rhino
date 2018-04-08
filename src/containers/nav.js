@@ -26,7 +26,9 @@ class Nav extends Component {
 		const isAdmin = user_data && user_data.groups.filter(i => i.name === 'admin').length > 0;
 
 		const drawer_contents = [
-			<img style={style.drawer_logo} key={0} alt='logo' className='nav-img' src='./logo.1.png' />,
+			<MenuItem>
+			</MenuItem>,
+
 			<MenuItem
 				key={1}
 				style={style.drawer_link_highlight(path, '/')}
@@ -51,13 +53,13 @@ class Nav extends Component {
 				<span style={style.drawer_link}>Rewards</span>
 			</MenuItem>,
 
-			<MenuItem
-				key={4}
-				style={style.drawer_link_highlight(path, '/perks')}
-				leftIcon={<FontIcon style={style.drawer_link_icon(path, '/perks')} className="material-icons">crop_7_5</FontIcon>}
-				onClick={() => history.push('/perks')}>
-				<span style={style.drawer_link}>Perks</span>
-			</MenuItem>
+			// <MenuItem
+			// 	key={4}
+			// 	style={style.drawer_link_highlight(path, '/perks')}
+			// 	leftIcon={<FontIcon style={style.drawer_link_icon(path, '/perks')} className="material-icons">crop_7_5</FontIcon>}
+			// 	onClick={() => history.push('/perks')}>
+			// 	<span style={style.drawer_link}>Perks</span>
+			// </MenuItem>
 		]
 
 		if (isAdmin) {
@@ -88,6 +90,11 @@ class Nav extends Component {
 					className='center'
 					onClick={() => window.open('https://rehive.com', '_blank')}
 					secondaryText="Powered by Rehive"
+				/>
+				<ListItem
+					className='center'
+					onClick={() => window.open('https://shapelaunch.com', '_blank')}
+					secondaryText="Built using Shape Launch"
 				/>
 				<ListItem
 					disabled

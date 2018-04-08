@@ -12,6 +12,7 @@ body {
 	max-width: 600px;
 	display: block;
 	margin: auto;
+	color: #ffffff;
 }
 
 .spacer {
@@ -20,12 +21,12 @@ body {
 
 .title {
 	font-size: 60px;
-	color: black;
+	color: white;
 }
 
 .subtitle {
 	font-size: 20px;
-	color: black;
+	color: white;
 
 }
 
