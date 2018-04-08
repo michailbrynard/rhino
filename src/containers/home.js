@@ -106,8 +106,8 @@ class Home extends Component {
 											</div>
 											<div style={style.card_right} className='right'>
 												<h3>{ company_data && company_data.card_display_name }</h3>
-												<p className='cardtext'>{ company_data && company_data.description }</p>
-												<a href="https://rehive.com" rel="noopener noreferrer" target="_blank"><RaisedButton label="Visit Site" secondary={true} /></a>
+												<p className='cardtext'>Thanks for attending! You've received rhino coins.</p>
+												<a href="https://www.draperuniversity.com/" rel="noopener noreferrer" target="_blank"><RaisedButton label="Visit Site" secondary={true} /></a>
 											</div>
 										</Paper>
 										<br />
@@ -127,20 +127,6 @@ class Home extends Component {
 												<p className='cardtext'> View your token balance and transaction history in your wallet. </p>
 												<br /><br />
 												<RaisedButton onClick={() => history.push('/wallet')} label="Wallet" secondary={true} />
-											</div>
-										</Paper>
-										<br />
-									</div>
-									<div className='col-12'>
-										<Paper style={style.card} zDepth={3}>
-											<div style={style.card_left}>
-												<img style={style.card_left_img} src='coins1.svg' alt='coins' />
-											</div>
-											<div style={style.card_right} className='right'>
-												<h3 className='card-heading'>Earn Tokens</h3>
-												<p className='cardtext'> Earn tokens by completing rewards! </p>
-												<br /><br />
-												<RaisedButton onClick={() => history.push('/earn')} label="Rewards" secondary={true} />
 											</div>
 										</Paper>
 										<br />

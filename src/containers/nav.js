@@ -45,14 +45,6 @@ class Nav extends Component {
 				<span style={style.drawer_link}>Wallet</span>
 			</MenuItem>,
 
-			<MenuItem
-				key={3}
-				style={style.drawer_link_highlight(path, '/earn')}
-				leftIcon={<FontIcon style={style.drawer_link_icon(path, '/earn')} className="material-icons">star_border</FontIcon>}
-				onClick={() => history.push('/earn')}>
-				<span style={style.drawer_link}>Rewards</span>
-			</MenuItem>,
-
 			// <MenuItem
 			// 	key={4}
 			// 	style={style.drawer_link_highlight(path, '/perks')}
@@ -90,11 +82,6 @@ class Nav extends Component {
 					className='center'
 					onClick={() => window.open('https://rehive.com', '_blank')}
 					secondaryText="Powered by Rehive"
-				/>
-				<ListItem
-					className='center'
-					onClick={() => window.open('https://shapelaunch.com', '_blank')}
-					secondaryText="Built using Shape Launch"
 				/>
 				<ListItem
 					disabled
