@@ -49,6 +49,7 @@ class Landing extends Component {
 							setPassword(password, passwordConf, uid, paramtoken, email)
 						}}>
 							<TextField
+								inputStyle={{ color: "white" }}
 								hintStyle={{ color: "#999" }}
 								value={this.state.password}
 								type="password"
@@ -56,6 +57,7 @@ class Landing extends Component {
 								hintText="Password"
 							/><br />
 							<TextField
+								inputStyle={{ color: "white" }}
 								hintStyle={{ color: "#999" }}
 								value={this.state.passwordConf}
 								type="password"
