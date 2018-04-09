@@ -104,6 +104,7 @@ class Nav extends Component {
 				<br />
 				<FontIcon onClick={() => { this.setState({ open: !this.state.open }) }} style={style.nav_menu_icon} className="material-icons">menu</FontIcon>
 				<FlatButton onClick={() => logout()} style={style.logout_btn} label="Logout" />
+				<FlatButton onClick={() => window.location.reload()} style={style.logout_btn} label="Refresh" />
 				<br/>
 				<Drawer onClick={() => this.setState({ open: false })} className="drawer">
 					{ drawer_contents.map(i => i) }
