@@ -10,9 +10,11 @@ import Toggle from 'material-ui/Toggle';
 import { getPerkData } from '../actions/perk'
 import { addPerkData, addRewardData, deletePerkData, deleteRewardData } from '../actions/admin'
 import Dialog from 'material-ui/Dialog'
+import DatePicker from 'material-ui/DatePicker';
 import { BigNumber } from 'bignumber.js'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import moment from 'moment'
 
 import company_data from './config.json'
 
@@ -66,7 +68,9 @@ class PerksRewards extends Component {
 			amount: '',
 			enabled: false,
 			user_limit: '',
-			volume_limit: ''
+			volume_limit: '',
+			start_date: moment(),
+			end_date: moment()
 		}
 	}
 	render() {
@@ -91,11 +95,12 @@ class PerksRewards extends Component {
 							let data
 							const token = localStorage.getItem('token')
 
+							
 							if (this.state.addtype === "Reward") {
 								data = {
 									company: process.env.REACT_APP_COMPANY_IDENTIFIER,
-									start_date: '2018-03-01',
-									end_date: '2018-04-01',
+									start_date: moment(this.state.start_date).format('YYYY-MM-DD'),
+									end_date: moment(this.state.end_date).format('YYYY-MM-DD'),
 									reward_type: this.state.name,
 									description: this.state.description,
 									reward_amount: this.state.amount,
@@ -103,6 +108,7 @@ class PerksRewards extends Component {
 									volume_limit: this.state.volume_limit,
 									user_limit: this.state.user_limit
 								}
+								console.log('STATE', data);
 								addRewardData(data, token)
 							} else if (this.state.addtype === "Perk") {
 								data = { 
@@ -156,6 +162,10 @@ class PerksRewards extends Component {
 														hintText="User Limit"
 														type='number'
 													/><br />
+													<DatePicker value={this.state.start_date} onChange={(e, date) => this.setState({ start_date: date })} hintText="Start Date" />
+													<br/>
+													<DatePicker value={this.state.end_date} onChange={(e, date) => this.setState({ end_date: date })} hintText="End Date" />
+													<br/>
 													<Toggle
 														label="Enabled"
 														value={this.state.enabled}
