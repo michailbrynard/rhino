@@ -163,7 +163,6 @@ class PerksRewards extends Component {
 														type='number'
 													/><br />
 													<DatePicker value={this.state.start_date} onChange={(e, date) => this.setState({ start_date: date })} hintText="Start Date" />
-													<br/>
 													<DatePicker value={this.state.end_date} onChange={(e, date) => this.setState({ end_date: date })} hintText="End Date" />
 													<br/>
 													<Toggle
