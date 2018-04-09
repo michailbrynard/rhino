@@ -18,7 +18,6 @@ class Landing extends Component {
 
 	render() {
 		const { history, resetPassword, resetPasswordErr, resetPasswordLoading, data } = this.props
-		if (data === 'success') history.push('/') 
 
 		return (
 			<div>
@@ -27,35 +26,44 @@ class Landing extends Component {
 				<div className='spacer'></div>
 				<div style={{ color: 'white' }} className='row'>
 					<div className='col-12 center landing-row'>
-						<h1 className='title'>Reset Password</h1>
-						<p className='subtitle'>Enter your email to receive a link to set your password</p>
 						{
-							resetPasswordErr ?
-								<p>Error: {resetPasswordErr}</p> : 
-								null
+							data === 'success' ?
+							<div>
+								<h1 className='title'>Success</h1>
+								<p className='subtitle'>Please check your email for the reset password link</p>
+							</div> :
+							data === 'error' ?
+							<div>
+								<h1 className='title'>Error</h1>
+								<p className='subtitle'>Error sending reset password link</p>
+							</div> :
+							<div>
+								<h1 className='title'>Reset Password</h1>
+								<p className='subtitle'>Enter your email to receive a link to set your password</p>
+								{
+									resetPasswordErr ?
+										<p>Error: {resetPasswordErr}</p> : 
+										null
+								}
+								<form onSubmit={(e) => {
+									e.preventDefault()
+									resetPassword(this.state.email)
+								}}>
+									<TextField
+										hintStyle={{ color: "#999" }}
+										value={this.state.email}
+										type="email"
+										onChange={e => this.setState({ email: e.target.value })}
+										hintText="Email"
+									/><br />
+									{
+										resetPasswordLoading ?
+											<SmallLoader /> :
+											<RaisedButton type='submit' label="Submit" secondary={true} />
+									}
+								</form>
+							</div>
 						}
-						<form onSubmit={(e) => {
-							e.preventDefault()
-							const params = new URLSearchParams(this.props.location.search);
-							const uid = params.get('uid');
-							const paramtoken = params.get('token');
-							const email = params.get('email');
-							const { password, passwordConf } = this.state
-							resetPassword(password, passwordConf, uid, paramtoken, email)
-						}}>
-							<TextField
-								hintStyle={{ color: "#999" }}
-								value={this.state.email}
-								type="email"
-								onChange={e => this.setState({ email: e.target.value })}
-								hintText="Email"
-							/><br />
-							{
-								resetPasswordLoading ?
-									<SmallLoader /> :
-									<RaisedButton type='submit' label="Submit" secondary={true} />
-							}
-						</form>
 						<br /><br />
 					</div>
 				</div>
@@ -65,7 +73,7 @@ class Landing extends Component {
 }
 
 function mapStateToProps(state) {
-	const { err, data, loading } = state.set_password
+	const { err, data, loading } = state.reset_password
 	return {
 		resetPasswordErr: err,
 		resetPasswordLoading: loading,

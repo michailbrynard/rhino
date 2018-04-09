@@ -113,6 +113,7 @@ render() {
 										<Route exact path='/setpassword' component={SetPassword} />
 									</div>
 							}
+							<Route exact path='/resetpassword' component={ResetPassword} />
 							<Route exact path='/count' component={Count} />
 						</div>
 					</Router>
