@@ -10,6 +10,7 @@ import Loader, { SmallLoader } from '../components/loader'
 import { signup, login } from '../actions/auth'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { Link } from 'react-router-dom'
 
 
 class Landing extends Component {
@@ -101,6 +102,11 @@ class Landing extends Component {
 									keyboardFocused={true}
 									type='submit'
 								/>
+								<div className='row'>
+									<br/>
+									<Link to='/resetpassword'>Reset Password</Link>
+									<br/><br/>
+								</div>
 							</form>
 					}
 				</Dialog>
