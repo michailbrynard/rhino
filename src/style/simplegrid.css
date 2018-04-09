@@ -103,7 +103,7 @@ p {
 }
 
 .row [class^=col] {
-	float: left;
+	float: right;
 	margin: .5rem 2%;
 	min-height: .125rem
 }

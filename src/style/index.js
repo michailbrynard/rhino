@@ -32,7 +32,27 @@ export const style = {
 		paddingRight: '20px'
 	},
 	card_left_img: {
-		width: '100%'
+		width: '80%'
+	},
+	card_transactions_img: {
+		width: '10%',
+		float: 'left',
+		paddingTop: '20px',
+		paddingRight: '15px'
+
+	},
+	card_navigation_img: {
+		width: '10%',
+		float: 'left',
+		paddingTop: '15px',
+		paddingRight: '15px'
+
+	},
+	card_navigation_img2: {
+		width: '10%',
+		float: 'left',
+		paddingRight: '15px'
+
 	},
 	balance_card: {
 		textAlign: 'center',
@@ -40,14 +60,17 @@ export const style = {
 		alignItems: 'center',
 		padding: '30px 15px 25px',
 		position: 'relative',
-		maxWidth: '500px'
+		maxWidth: '500px',
+		backgroundColor: white
+
 	},
 	transaction_card: {
 		borderRadius: '0px',
-	  maxWidth: '500px',
-	  alignItems: 'center',
+		maxWidth: '500px',
+		alignItems: 'center',
 		padding: '30px 40px',
 		position: 'relative',
+		backgroundColor: white
 
 	},
 	user_nav_view: {
@@ -62,7 +85,7 @@ export const style = {
 	},
 	drawer_link: {
 		position: 'absolute',
-		left: '60%'
+		left: '20%'
 	},
 	drawer_link_highlight: (path, route) => ({
 		backgroundColor: path === route ? pink700 : null,

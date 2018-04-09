@@ -27,12 +27,14 @@ class Nav extends Component {
 
 		const drawer_contents = [
 			<MenuItem>
+			<img style={style.card_navigation_img} src='coins1.svg' alt='logo' />
+			<h3 >RHINO</h3>
 			</MenuItem>,
 
 			<MenuItem
 				key={1}
 				style={style.drawer_link_highlight(path, '/')}
-				leftIcon={<FontIcon style={style.drawer_link_icon(path, '/')} className="material-icons">change_history</FontIcon>}
+				leftIcon={<img style={style.card_navigation_img2} src='trading1.svg' alt='logo' />}
 				onClick={() => history.push('/')}>
 				<span style={style.drawer_link}>Home</span>
 			</MenuItem>,
@@ -40,7 +42,7 @@ class Nav extends Component {
 			<MenuItem
 				key={2}
 				style={style.drawer_link_highlight(path, '/wallet')}
-				leftIcon={<FontIcon style={style.drawer_link_icon(path, '/wallet')} className="material-icons">crop_square</FontIcon>}
+				leftIcon={<img style={style.card_navigation_img2} src='logo1.svg' alt='logo' />}
 				onClick={() => history.push('/wallet')}>
 				<span style={style.drawer_link}>Wallet</span>
 			</MenuItem>,
@@ -82,6 +84,11 @@ class Nav extends Component {
 					className='center'
 					onClick={() => window.open('https://rehive.com', '_blank')}
 					secondaryText="Powered by Rehive"
+				/>
+				<ListItem
+					className='center'
+					onClick={() => window.open('https://shapelaunch.com', '_blank')}
+					secondaryText="Built using Shape"
 				/>
 				<ListItem
 					disabled

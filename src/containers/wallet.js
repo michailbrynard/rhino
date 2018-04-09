@@ -47,28 +47,28 @@ class Wallet extends Component {
 								<div className='row'>
 									<br />
 									<div className='col-12'>
-										<Paper style={style.balance_card} zDepth={3}>
-											<div className='container'>
-												<p>Balance</p>
-												<h1>{ balance } </h1>
+										<Paper style={style.card} zDepth={3}>
+											<div style={style.card_left}>
+												<img style={style.card_left_img} src='trading1.svg' alt='logo' />
 											</div>
-											<div className='row'>
-												<div className='col-6-sm'>
-													<RaisedButton onClick={() => this.handleToken_dialog_msg("Receive Tokens")} primary={true} label="Receive" />
-												</div>
-												<div className='col-6-sm'>
-													<RaisedButton onClick={() => this.handleToken_dialog_msg("Send Tokens")} primary={true} label="Send" />
-												</div>
+											<div style={{ width: '200px' }} className='right'>
+												<h3 className='card-heading'>Balance</h3>
+												
+												<h2> {balance}</h2>
+												
+												<br />
+												<RaisedButton onClick={() => this.handleToken_dialog_msg("Send Tokens")} primary={true} label="Withdraw" />
 											</div>
-											<br />
 										</Paper>
+										<br />
 									</div>
+
 									<div className='col-12'>
 										<Paper style={style.transaction_card} zDepth={3}>
 											<div className='container'>
 												<div className='row'>
 													<br />
-													<h3>Transactions</h3>
+													<h3 className='transaction-heading' >Transactions</h3>
 												</div>
 												{
 													data && data.transactions && data.transactions.length > 0 ?
@@ -76,7 +76,9 @@ class Wallet extends Component {
 															const x = new BigNumber(t.amount)
 															const amount = x.dividedBy(10000000).toString()
 															return (
+																
 																<div key={index} className='row'>
+																	<img style={style.card_transactions_img} src='coins1.svg' alt='logo' />
 																	<h5 className='f-right'>{amount}</h5>
 																	<h5 className='f-left'>{moment(t.created).fromNow()} ({t.status})</h5>
 																</div>

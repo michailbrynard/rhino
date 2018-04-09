@@ -113,8 +113,8 @@ class Landing extends Component {
 
 							{
 								signupData ?
-									<div className='col-6 center row'>
-										<h1 className='title'>Thank you for signing up to {signupData.company}</h1>
+									<div className='col-10 center row'>
+										<h1 className='title landing-msg'>Thank you for signing up to {signupData.company}</h1>
 										<p className='subtitle'>Check your email for the link to create your password and login</p>
 
 									</div> :
