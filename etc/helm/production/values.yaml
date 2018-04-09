@@ -20,12 +20,14 @@ ingress:
   enabled: true
   hosts:
     - rhino.shapelaunch.com
+    - rhino.draperuniversity.com
   annotations:
     kubernetes.io/ingress.class: "nginx"
     kubernetes.io/tls-acme: "true"
   tls:
     - hosts:
       - rhino.shapelaunch.com
+      - rhino.draperuniversity.com
       secretName: rhino-tls
 management:
   enabled: false
