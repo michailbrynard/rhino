@@ -27,7 +27,7 @@ class Landing extends Component {
 
 				<div className='spacer'></div>
 				<div style={{ color: 'white' }} className='row'>
-					<div className='col-12 center landing-row'>
+					<div className='col-8 center row'>
 						<h1 className='title'>Set Password</h1>
 						<p className='subtitle'>Set your password to continue</p>
 						{
