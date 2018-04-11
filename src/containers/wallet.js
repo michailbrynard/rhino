@@ -57,7 +57,7 @@ class Wallet extends Component {
 												<h2> {balance}</h2>
 												
 												<br />
-												<RaisedButton onClick={() => this.handleToken_dialog_msg("Send Tokens")} primary={true} label="Withdraw" />
+												<RaisedButton onClick={() => this.handleToken_dialog_msg("Send Tokens")} primary={true} label="Send" />
 											</div>
 										</Paper>
 										<br />
