@@ -137,7 +137,8 @@ class Market extends Component {
 							const data = {
 								reference: company_data.admin_email,
 								currency: user_data && user_data.currency && user_data.currency.code,
-								amount: this.state.perk_amount
+								amount: this.state.perk_amount,
+								company: process.env.REACT_APP_COMPANY_IDENTIFIER
 							}
 
 							createSend(data)
@@ -191,7 +192,6 @@ class Market extends Component {
 											{
 												data && data.length > 0 ?
 													data.map((item, index) => {
-														console.log("ITEM", item);
 														
 														const x = new BigNumber(item.perk_amount)
 														const perk_amount = x.dividedBy(10000000).toString()
