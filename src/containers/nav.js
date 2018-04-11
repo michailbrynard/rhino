@@ -50,7 +50,7 @@ class Nav extends Component {
 			<MenuItem
 				key={3}
 				style={style.drawer_link_highlight(path, '/perks')}
-				leftIcon={<img style={style.card_navigation_img2} src='coins1.svg' alt='logo' />}
+				leftIcon={<img style={style.card_navigation_img2} src='logo2.svg' alt='logo' />}
 				onClick={() => history.push('/perks')}>
 				<span style={style.drawer_link}>Perks</span>
 			</MenuItem>
