@@ -19,7 +19,7 @@ export const style = {
 		borderRadius: '0px',
 		maxWidth: '500px',
 		alignItems: 'center',
-		backgroundColor: purple50
+		backgroundColor: white
 	},
 	card_right: {
 		width: '200px',

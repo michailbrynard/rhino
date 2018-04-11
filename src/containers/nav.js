@@ -46,14 +46,14 @@ class Nav extends Component {
 				onClick={() => history.push('/wallet')}>
 				<span style={style.drawer_link}>Wallet</span>
 			</MenuItem>,
-
-			// <MenuItem
-			// 	key={4}
-			// 	style={style.drawer_link_highlight(path, '/perks')}
-			// 	leftIcon={<FontIcon style={style.drawer_link_icon(path, '/perks')} className="material-icons">crop_7_5</FontIcon>}
-			// 	onClick={() => history.push('/perks')}>
-			// 	<span style={style.drawer_link}>Perks</span>
-			// </MenuItem>
+			
+			<MenuItem
+				key={3}
+				style={style.drawer_link_highlight(path, '/perks')}
+				leftIcon={<img style={style.card_navigation_img2} src='coins1.svg' alt='logo' />}
+				onClick={() => history.push('/perks')}>
+				<span style={style.drawer_link}>Perks</span>
+			</MenuItem>
 		]
 
 		if (isAdmin) {

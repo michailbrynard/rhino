@@ -102,6 +102,18 @@ class Home extends Component {
 									<div className='col-12'>
 										<Paper style={style.card} zDepth={3}>
 											<div style={style.card_left}>
+												<img style={style.card_left_img} src='logo1.svg' alt='logo' />
+											</div>
+											<div style={style.card_right} className='right'>
+												<h3>{ company_data && company_data.card_display_name }</h3>
+												<p className='cardtext'>As a momento for the event, you’ve received some rhino coin.</p><p className='cardtext'>Rhino coin was created using the Stellar blockchain for the purpose of novelty and education. You can use rhino coin to redeem perks on this site, you can hold it as a keepsake, you can send it to- and receive it from- others, and you can transfer it to an external stellar compatible wallet.</p><p className='cardtext'> Please note that rhino coin has no monetary value.</p>
+											</div>
+										</Paper>
+										<br />
+									</div>
+									<div className='col-12'>
+										<Paper style={style.card} zDepth={3}>
+											<div style={style.card_left}>
 												<br />
 												<h1 className='card-heading'>
 													{balance}
@@ -121,18 +133,6 @@ class Home extends Component {
 									<div className='col-12'>
 										<Paper style={style.card} zDepth={3}>
 											<div style={style.card_left}>
-												<img style={style.card_left_img} src='logo1.svg' alt='logo' />
-											</div>
-											<div style={style.card_right} className='right'>
-												<h3>{ company_data && company_data.card_display_name }</h3>
-												<p className='cardtext'>Thank you for attending the Draper Block(chain) Party! </p><p className='cardtext'>As a momento for the event, you’ve received some rhino coin. Rhino coin was created using the Stellar blockchain for the purpose of novelty and education. You can use rhino coin to redeem perks on this site, you can hold it as a keepsake, you can send it to- and receive it from- others, and you can transfer it to an external stellar compatible wallet. Please note that rhino coin has no monetary value.</p>
-											</div>
-										</Paper>
-										<br />
-									</div>
-									{/* <div className='col-12'>
-										<Paper style={style.card} zDepth={3}>
-											<div style={style.card_left}>
 												<img style={style.card_left_img} src='trading1.svg' alt='market' />
 											</div>
 											<div style={style.card_right} className='right'>
@@ -143,7 +143,7 @@ class Home extends Component {
 											</div>
 										</Paper>
 										<br />
-									</div> */}
+									</div> 
 								</div>
 						)
 				}
