@@ -13,12 +13,16 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { getPerkData } from '../actions/perk'
 import { createSend } from '../actions/transaction'
+
+import { callApi } from '../utils'
+
 import { style } from '../style/'
 
 class Market extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
+			perk_name: '',
 			perk_amount: false,
 			modal_type: false,
 			
@@ -41,7 +45,9 @@ class Market extends Component {
 
 		return (
 			<div className='container'>
-				<Dialog
+				{
+					isAdmin ?
+					<Dialog
 					contentStyle={{ maxWidth: "360px" }}
 					autoDetectWindowHeight={true}
 					modal={false}
@@ -115,7 +121,8 @@ class Market extends Component {
 							/>
 						</form>
 					</div>
-				</Dialog>
+				</Dialog> : null
+				}
 				<Dialog
 					contentStyle={{ maxWidth: "360px" }}
 					autoDetectWindowHeight={true}
@@ -141,7 +148,19 @@ class Market extends Component {
 								company: process.env.REACT_APP_COMPANY_IDENTIFIER
 							}
 
-							createSend(data)
+							const route = process.env.REACT_APP_API_URL + '/user/perk/'
+							const token = localStorage.getItem('token')
+
+							callApi('POST', route, token, {"company": process.env.REACT_APP_COMPANY_IDENTIFIER, "perk_name": this.state.perk_name })
+								.then(json => {
+									if (json.status === 'success') {
+										createSend(data)
+									}
+								})
+								.catch(err => {
+									console
+									.log("ERROR ", err)
+								})
 						}}>
 							<FlatButton
 								label="Cancel"
@@ -210,7 +229,7 @@ class Market extends Component {
 																		<h3>{item.perk_name}</h3>
 																		<p>{item.description}</p>
 																		<h1>{perk_amount} {user_data && user_data.currency && user_data.currency.code}</h1>
-																		<RaisedButton onClick={() => this.setState({ perk_amount: item.perk_amount })} className="f-right" primary={true} label="Buy"/>
+																		<RaisedButton onClick={() => this.setState({ perk_amount: item.perk_amount, perk_name: item.perk_name })} className="f-right" primary={true} label="Buy"/>
 																	</div>
 																</Paper>
 																<br />
