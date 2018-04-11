@@ -10,6 +10,7 @@ import Loader, { SmallLoader } from '../components/loader'
 import { signup, login } from '../actions/auth'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { Link } from 'react-router-dom'
 
 
 class Landing extends Component {
@@ -57,9 +58,24 @@ class Landing extends Component {
 				/>
 
 				<Dialog
-					contentStyle={{ maxWidth: "360px" }}
-					autoDetectWindowHeight={true}
-					modal={false}
+					repositionOnUpdate={false}
+					autoDetectWindowHeight={false}
+					autoScrollBodyContent={false}
+					contentStyle={{
+					  width: '100%',
+					  maxWidth: '450px',
+					  maxHeight: '100% !important'
+					}}
+					bodyStyle={{
+					   maxHeight: '100% !important'
+					}}
+					style={{
+					   paddingTop:'0 !important',
+					   marginTop:'-65px !important',
+					   bottom: '0 !important',
+					   overflow: 'scroll !important',
+					   height: 'auto !important'
+					}}
 					open={this.state.open}
 					onRequestClose={this.handleClose}
 				>
@@ -101,6 +117,11 @@ class Landing extends Component {
 									keyboardFocused={true}
 									type='submit'
 								/>
+								<div className='row'>
+									<br/>
+									<Link to='/resetpassword'>Reset Password</Link>
+									<br/><br/>
+								</div>
 							</form>
 					}
 				</Dialog>

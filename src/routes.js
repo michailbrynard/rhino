@@ -14,7 +14,7 @@ import Market from './containers/market'
 import Earn from './containers/earn'
 import Landing from './containers/landing'
 import SetPassword from './containers/set_password'
-import Settings from './containers/settings'
+import ResetPassword from './containers/reset_password'
 import Count from './containers/count'
 import RewardRequests from './containers/reward_requests'
 
@@ -74,7 +74,6 @@ render() {
 
 		if (isAdmin) {
 			nav_routes.push('/reward_requests')
-			nav_routes.push('/settings')
 		}
 
 
@@ -101,17 +100,13 @@ render() {
 												<Route exact path='/reward_requests' component={RewardRequests} /> :
 												null
 										}
-										{
-											isAdmin ?
-												<Route exact path='/settings' component={Settings} /> :
-												null
-										}
 									</div> :
 									<div>
 										<Route exact path='/' component={Landing} />
 										<Route exact path='/setpassword' component={SetPassword} />
 									</div>
 							}
+							<Route exact path='/resetpassword' component={ResetPassword} />
 							<Route exact path='/count' component={Count} />
 						</div>
 					</Router>

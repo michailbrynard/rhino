@@ -111,7 +111,7 @@ export const style = {
 	},
 	settings_close: {
 		position: 'absolute',
-		right: '12%', 
+		right: '5%', 
 		top: 15
 	},
 	logout_btn: {

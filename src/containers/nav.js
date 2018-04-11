@@ -66,16 +66,6 @@ class Nav extends Component {
 					<span style={style.drawer_link}>Requests</span>
 				</MenuItem>,
 			)
-
-			drawer_contents.push(
-				<MenuItem
-					key={drawer_contents.length + 1}
-					style={style.drawer_link_highlight(path, '/settings')}
-					leftIcon={<FontIcon style={style.drawer_link_icon(path, '/settings')} className="material-icons">details</FontIcon>}
-					onClick={() => history.push('/settings')}>
-					<span style={style.drawer_link}>Settings</span>
-				</MenuItem>
-			)
 		}
 
 		drawer_contents.push(
@@ -105,6 +95,7 @@ class Nav extends Component {
 				<br />
 				<FontIcon onClick={() => { this.setState({ open: !this.state.open }) }} style={style.nav_menu_icon} className="material-icons">menu</FontIcon>
 				<FlatButton onClick={() => logout()} style={style.logout_btn} label="Logout" />
+				<FlatButton onClick={() => window.location.reload()} style={style.logout_btn} label="Refresh" />
 				<br/>
 				<Drawer onClick={() => this.setState({ open: false })} className="drawer">
 					{ drawer_contents.map(i => i) }

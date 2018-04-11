@@ -57,6 +57,28 @@ export const setPassword = (new_password1, new_password2, uid, token, email) => 
 	}
 )
 
+export const RESET_PASSWORD = "RESET_PASSWORD"
+export const RESET_PASSWORD_SUCCESS = "RESET_PASSWORD_SUCCESS"
+export const RESET_PASSWORD_ERROR = "RESET_PASSWORD_ERROR"
+
+export const resetPassword = (user) => (
+	dispatch => {
+		dispatch({ type: RESET_PASSWORD })
+		const route = process.env.REACT_APP_REHIVE_API_URL + '/auth/password/reset/'
+		callApi('POST', route, null, { user, company: process.env.REACT_APP_COMPANY_IDENTIFIER })
+			.then(json => {
+				if (json.status === 'success') {
+					dispatch({ type: RESET_PASSWORD_SUCCESS, data: json.status })
+				} else {
+					dispatch({ type: RESET_PASSWORD_ERROR, err: json.status })
+				}
+			})
+			.catch(err => {
+				dispatch({ type: RESET_PASSWORD_ERROR })
+			})
+	}
+)
+
 export const LOGIN = "LOGIN"
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS"
 export const LOGIN_ERROR = "LOGIN_ERROR"

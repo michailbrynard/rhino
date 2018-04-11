@@ -117,10 +117,26 @@ class Wallet extends Component {
 							}}
 						/>
 					]}
-					modal={false}
+					repositionOnUpdate={false}
+					autoDetectWindowHeight={false}
+					autoScrollBodyContent={false}
+					contentStyle={{
+					  width: '100%',
+					  maxWidth: '450px',
+					  maxHeight: '100% !important'
+					}}
+					bodyStyle={{
+					   maxHeight: '100% !important'
+					}}
+					style={{
+					   paddingTop:'0 !important',
+					   marginTop:'-65px !important',
+					   bottom: '0 !important',
+					   overflow: 'scroll !important',
+					   height: 'auto !important'
+					}}
 					open={this.state.token_dialog_msg ? true : false}
 					onRequestClose={this.handleClose}
-					style={{ textAlign: 'center' }}
 				>
 					{
 						this.state.token_dialog_msg === "Receive Tokens" ?

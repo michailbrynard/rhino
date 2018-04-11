@@ -9,6 +9,7 @@ import wallet from './wallet'
 import transaction from './transaction'
 import admin from './admin'
 import reward_requests from './reward_requests'
+import reset_password from './reset_password'
 
 export default combineReducers({
 	signup,
@@ -20,5 +21,6 @@ export default combineReducers({
 	wallet,
 	transaction,
 	admin,
-	reward_requests
+	reward_requests,
+	reset_password
 })
