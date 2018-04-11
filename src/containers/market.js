@@ -26,6 +26,7 @@ class Market extends Component {
 			name: "",
 			description: "",
 			amount: '',
+			user_limit: '',
 
 			// For delete
 			delete_name: null
@@ -63,7 +64,8 @@ class Market extends Component {
 									company: process.env.REACT_APP_COMPANY_IDENTIFIER,
 									perk_name: this.state.name, 
 									description: this.state.description,
-									perk_amount: this.state.amount
+									perk_amount: this.state.amount,
+									user_limit: this.state.user_limit
 								}
 								addPerkData(data, token)
 							} else {
@@ -89,6 +91,12 @@ class Market extends Component {
 											value={this.state.amount}
 											onChange={e => this.setState({ amount: e.target.value })}
 											hintText="Amount"
+											type='number'
+										/><br />
+										<TextField
+											value={this.state.user_limit}
+											onChange={e => this.setState({ user_limit: e.target.value })}
+											hintText={this.state.modal_type + " User Limit"}
 											type='number'
 										/><br />
 								</div> :
@@ -183,6 +191,8 @@ class Market extends Component {
 											{
 												data && data.length > 0 ?
 													data.map((item, index) => {
+														console.log("ITEM", item);
+														
 														const x = new BigNumber(item.perk_amount)
 														const perk_amount = x.dividedBy(10000000).toString()
 														return (
