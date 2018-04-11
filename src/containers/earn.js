@@ -92,7 +92,6 @@ class Earn extends Component {
 										volume_limit: this.state.volume_limit,
 										user_limit: this.state.user_limit
 									}
-									console.log('STATE', data);
 									addRewardData(data, token)
 								}  else {
 									deleteRewardData(this.state.delete_name, token)

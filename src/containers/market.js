@@ -217,7 +217,7 @@ class Market extends Component {
 											<Paper style={style.transaction_card} zDepth={3}>
 												<div className='container center'>
 													<br />
-													<h3>Successfully Bought</h3>
+													<h3>Successfully Redeemed</h3>
 													<br />
 												</div>
 											</Paper>
@@ -231,7 +231,7 @@ class Market extends Component {
 													</div>
 													<div style={style.card_right} className='right'>
 														<h3>Purchase Perks</h3>
-														<p>Use your tokens to buy Supporter perks!</p>
+														<p>Use your tokens to redeem Supporter perks!</p>
 														{ isAdmin ? <RaisedButton fullWidth={true} onClick={() => this.setState({ modal_type: "Add" })} className="f-right" primary={true} label="Add Perk" /> : null}
 													</div>
 												</Paper>
@@ -258,7 +258,7 @@ class Market extends Component {
 																		<h3>{item.perk_name}</h3>
 																		<p>{item.description}</p>
 																		<h1>{perk_amount} {user_data && user_data.currency && user_data.currency.code}</h1>
-																		<RaisedButton onClick={() => this.setState({ perk_amount: item.perk_amount, perk_name: item.perk_name })} className="f-right" primary={true} label="Buy"/>
+																		<RaisedButton onClick={() => this.setState({ perk_amount: item.perk_amount, perk_name: item.perk_name })} className="f-right" primary={true} label="Redeem"/>
 																	</div>
 																</Paper>
 																<br />

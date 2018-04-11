@@ -26,7 +26,7 @@ class Nav extends Component {
 		const isAdmin = user_data && user_data.groups.filter(i => i.name === 'admin').length > 0;
 
 		const drawer_contents = [
-			<MenuItem>
+			<MenuItem key={0}>
 			<img style={style.card_navigation_img} src='coins1.svg' alt='logo' />
 			<h3 >RHINO</h3>
 			</MenuItem>,
@@ -61,7 +61,7 @@ class Nav extends Component {
 				<MenuItem
 					key={5}
 					style={style.drawer_link_highlight(path, '/reward_requests')}
-					leftIcon={<FontIcon style={style.drawer_link_icon(path, '/reward_requests')} className="material-icons">chat_bubble_outline</FontIcon>}
+					leftIcon={<img style={style.card_navigation_img2} src='logo1.svg' alt='logo' />}
 					onClick={() => history.push('/reward_requests')}>
 					<span style={style.drawer_link}>Requests</span>
 				</MenuItem>,
