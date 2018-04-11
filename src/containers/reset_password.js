@@ -17,7 +17,7 @@ class Landing extends Component {
 	};
 
 	render() {
-		const { history, resetPassword, resetPasswordErr, resetPasswordLoading, data } = this.props
+		const { resetPassword, resetPasswordErr, resetPasswordLoading, data } = this.props
 
 		return (
 			<div>

@@ -3,7 +3,6 @@ import Paper from 'material-ui/Paper';
 import Dialog from 'material-ui/Dialog'
 import TextField from 'material-ui/TextField/TextField';
 import { RaisedButton, FlatButton } from 'material-ui';
-import moment from 'moment'
 import Loader from '../components/loader'
 import { BigNumber } from 'bignumber.js' 
 import company_data from './config.json'
@@ -48,12 +47,27 @@ class Market extends Component {
 				{
 					isAdmin ?
 					<Dialog
-					contentStyle={{ maxWidth: "360px" }}
-					autoDetectWindowHeight={true}
-					modal={false}
-					open={this.state.modal_type ? true : false}
-					onRequestClose={() => this.setState({ modal_type: null })}
-				>
+						repositionOnUpdate={false}
+						autoDetectWindowHeight={false}
+						autoScrollBodyContent={false}
+						contentStyle={{
+							width: '100%',
+							maxWidth: '450px',
+							maxHeight: '100% !important'
+						}}
+						bodyStyle={{
+						maxHeight: '100% !important'
+						}}
+						style={{
+							paddingTop:'0 !important',
+							marginTop:'-65px !important',
+							bottom: '0 !important',
+							overflow: 'scroll !important',
+							height: 'auto !important'
+						}}
+						open={this.state.modal_type ? true : false}
+						onRequestClose={() => this.setState({ modal_type: null })}
+					>
 					<div style={{
 						alignContent: 'center',
 						textAlign: 'center',
@@ -124,9 +138,24 @@ class Market extends Component {
 				</Dialog> : null
 				}
 				<Dialog
-					contentStyle={{ maxWidth: "360px" }}
-					autoDetectWindowHeight={true}
-					modal={false}
+					repositionOnUpdate={false}
+					autoDetectWindowHeight={false}
+					autoScrollBodyContent={false}
+					contentStyle={{
+					  width: '100%',
+					  maxWidth: '450px',
+					  maxHeight: '100% !important'
+					}}
+					bodyStyle={{
+					   maxHeight: '100% !important'
+					}}
+					style={{
+					   paddingTop:'0 !important',
+					   marginTop:'-65px !important',
+					   bottom: '0 !important',
+					   overflow: 'scroll !important',
+					   height: 'auto !important'
+					}}
 					open={this.state.perk_amount ? true : false}
 					onRequestClose={() => this.setState({ perk_amount: ''})}
 				>

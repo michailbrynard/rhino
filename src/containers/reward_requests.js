@@ -25,9 +25,24 @@ class RewardRequests extends Component {
 		return (
 			<div className='container'>
 				<Dialog
-					contentStyle={{ maxWidth: "360px" }}
-					autoDetectWindowHeight={true}
-					modal={false}
+					repositionOnUpdate={false}
+					autoDetectWindowHeight={false}
+					autoScrollBodyContent={false}
+					contentStyle={{
+					  width: '100%',
+					  maxWidth: '450px',
+					  maxHeight: '100% !important'
+					}}
+					bodyStyle={{
+					   maxHeight: '100% !important'
+					}}
+					style={{
+					   paddingTop:'0 !important',
+					   marginTop:'-65px !important',
+					   bottom: '0 !important',
+					   overflow: 'scroll !important',
+					   height: 'auto !important'
+					}}
 					open={this.state.reward_identifier ? true : false}
 					onRequestClose={() => this.setState({ reward_identifier: '' })}
 				>
