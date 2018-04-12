@@ -163,7 +163,7 @@ class Market extends Component {
 						alignContent: 'center',
 						textAlign: 'center',
 					}}>
-						<h3>Are you sure you want to purchase this perk?</h3>
+						<h3>Are you sure you want to redeem this perk?</h3>
 						{
 							debit_error ?
 								<h3>{debit_error}</h3> : null
@@ -230,8 +230,8 @@ class Market extends Component {
 														<img style={style.card_left_img} src='trading1.svg' alt='earn' />
 													</div>
 													<div style={style.card_right} className='right'>
-														<h3>Purchase Perks</h3>
-														<p>Use your tokens to redeem Supporter perks!</p>
+														<h3>Redeem Perks</h3>
+														<p>Use your tokens to redeem perks!</p>
 														{ isAdmin ? <RaisedButton fullWidth={true} onClick={() => this.setState({ modal_type: "Add" })} className="f-right" primary={true} label="Add Perk" /> : null}
 													</div>
 												</Paper>
