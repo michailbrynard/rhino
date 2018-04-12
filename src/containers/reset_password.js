@@ -8,7 +8,6 @@ import { style } from '../style'
 import { resetPassword } from '../actions/auth'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { Link } from 'react-router-dom'
 
 class Landing extends Component {
 
@@ -32,7 +31,7 @@ class Landing extends Component {
 								<h1 className='title'>Success</h1>
 								<p className='subtitle'>Please check your email for the reset password link</p>
 								<br/>
-								<a href='#' onClick={() => { window.location.reload() }}>Didn't receive an email? Click here to try again</a>
+								<a href='/resetpassword' onClick={() => { window.location.reload() }}>Didn't receive an email? Click here to try again</a>
 							</div> :
 							data === 'error' ?
 							<div>

@@ -82,8 +82,12 @@ class Wallet extends Component {
 																
 																<div key={index} className='row'>
 																	<img style={style.card_transactions_img} src='coins1.svg' alt='logo' />
-																	<h5 className='f-right'>{amount}</h5>
-																	<h5 className='f-left'>{moment(t.created).fromNow()} ({t.status})</h5>
+																	<h5 style={{
+																		paddingTop: '14px'
+																	}}>
+																		{amount}<br/>
+																		<small>{moment(t.created).fromNow()} ({t.status})</small>
+																	</h5>
 																</div>
 															)
 														}) :
@@ -130,13 +134,13 @@ class Wallet extends Component {
 										textAlign: 'center',
 									}} className="center">
 									<h3>{this.state.token_dialog_msg}</h3>
-									<p><b>Add a trustline in the receiving wallet before sending:</b><br />
-										Asset: RHC
+									<p><b>Add a trustline in the receiving wallet before sending:</b>
 									</p>
-									<p style={{ display: 'inline' }}>Issuer:</p> <TextField name="issuer" ref="issuer" value={issuer} disabled />
+									<p style={{ display: 'inline' }}>Asset: RHC <br/>Issuer:</p> <TextField style={{ width: '60%'}} name="issuer" ref="issuer" value={issuer} disabled />
 									<CopyToClipboard style={{paddingLeft: '5px'}} text={issuer} onCopy={() => alert("Copied")}>
 										<FontIcon className="material-icons">content_copy</FontIcon>
 									</CopyToClipboard>
+									<br/>
 									<TextField 
 										value={this.state.recipient} 
 										type="text" 

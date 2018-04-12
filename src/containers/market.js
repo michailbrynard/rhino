@@ -5,7 +5,6 @@ import TextField from 'material-ui/TextField/TextField';
 import { RaisedButton, FlatButton } from 'material-ui';
 import Loader, { SmallLoader } from '../components/loader'
 import { BigNumber } from 'bignumber.js' 
-import company_data from './config.json'
 import { addPerkData, deletePerkData } from '../actions/admin'
 
 import { connect } from 'react-redux'
@@ -19,7 +18,6 @@ class Market extends Component {
 		super(props)
 		this.state = {
 			perk_name: '',
-			description: '', 
 			perk_amount: false,
 			modal_type: false,
 
@@ -203,13 +201,8 @@ class Market extends Component {
 						}
 						<form onSubmit={(e) => {
 							e.preventDefault()
-
-							const route = process.env.REACT_APP_API_URL + '/user/perk/'
-							const token = localStorage.getItem('token')
-
 							const currency = user_data.currency.code
 							const email = user_data.email
-							const identifier = user_data.identifier
 							redeemPerk({
 								currency,
 								email,
