@@ -5,10 +5,11 @@ import moment from 'moment'
 import { BigNumber } from 'bignumber.js'
 import { getWalletData } from '../actions/wallet'
 import { createSend } from '../actions/transaction'
-
+import FontIcon from "material-ui/FontIcon";
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import Loader from '../components/loader'
+import CopyToClipboard from 'react-copy-to-clipboard'
 import { style } from '../style/'
 
 class Wallet extends Component {
@@ -35,6 +36,8 @@ class Wallet extends Component {
 
 		const x = data && data.balance && new BigNumber(data.balance.balance)
 		const balance = x && x.dividedBy(10000000).toString() + ' ' + data.balance.currency.code
+
+		const issuer = 'GBIR5GY3XE35Q7BFQ2FUVTB4VMQYD4VRZ36Q4OAVKFBJBK343KNOSNL3';
 		
 		return (
 			<div className='container'>
@@ -54,10 +57,11 @@ class Wallet extends Component {
 											<div style={{ width: '200px' }} className='right'>
 												<h3 className='card-heading'>Balance</h3>
 												
-												<h2> {balance}</h2>
+												<h2>{balance}</h2>
 												
 												<br />
-												<RaisedButton onClick={() => this.handleToken_dialog_msg("Send Tokens")} primary={true} label="Send" />
+												<RaisedButton style={{ width: '100%', marginBottom: '5px' }} onClick={() => this.handleToken_dialog_msg("Send")} primary={true} label="Send" />
+												<RaisedButton style={{ width: '100%' }} onClick={() => this.handleToken_dialog_msg("Withdraw")} primary={true} label="Withdraw" />
 											</div>
 										</Paper>
 										<br />
@@ -79,8 +83,12 @@ class Wallet extends Component {
 																
 																<div key={index} className='row'>
 																	<img style={style.card_transactions_img} src='coins1.svg' alt='logo' />
-																	<h5 className='f-right'>{amount}</h5>
-																	<h5 className='f-left'>{moment(t.created).fromNow()} ({t.status})</h5>
+																	<h5 style={{
+																		paddingTop: '14px'
+																	}}>
+																		{amount}<br/>
+																		<small>{moment(t.created).fromNow()} ({t.status})</small>
+																	</h5>
 																</div>
 															)
 														}) :
@@ -95,28 +103,6 @@ class Wallet extends Component {
 						)
 				}
 				<Dialog
-					title={this.state.token_dialog_msg}
-					actions={[
-						<FlatButton
-							label="Close"
-							primary={true}
-							onClick={this.handleClose}
-						/>,
-						<FlatButton
-							label="Submit"
-							primary={true}
-							onClick={() => {
-								const data = {
-									reference: this.state.recipient,
-									currency: user_data && user_data.currency && user_data.currency.code,
-									amount: this.state.amount * 10000000,
-									memo: this.state.memo,
-									company: user_data && user_data.company
-								}
-								createSend(data)
-							}}
-						/>
-					]}
 					repositionOnUpdate={false}
 					autoDetectWindowHeight={false}
 					autoScrollBodyContent={false}
@@ -138,39 +124,69 @@ class Wallet extends Component {
 					open={this.state.token_dialog_msg ? true : false}
 					onRequestClose={this.handleClose}
 				>
-					{
-						this.state.token_dialog_msg === "Receive Tokens" ?
-							<img style={{
-								height: 300,
-								width: 300
-							}} src="qr.jpg" alt='qr' /> : (
-								<div className="center">
-									<p><b>Add a trustline in the receiving wallet before sending:</b><br />
-									Asset: RHC<br />
-									Issuer: GBIR5GY3XE35Q7BFQ2FUVTB4VMQYD4VRZ36Q4OAVKFBJBK343KNOSNL3</p>
-									<TextField 
-										value={this.state.recipient} 
-										type="text" 
-										hintText="Email or stellar address" 
-										onChange={e => this.setState({ recipient: e.target.value })}
-									/>
-									<br/>
-									<TextField 
-										value={this.state.amount} 
-										type="number"
-										onChange={e => this.setState({ amount: e.target.value })}
-										hintText="Amount" 
-									/>
-									<br/>
-									<TextField 
-										value={this.state.memo} 
-										type="text" 
-										onChange={e => this.setState({ memo: e.target.value })}
-										hintText="Memo" 
-									/>
-								</div>
-							)
-					}
+					<div style={{
+							alignContent: 'center',
+							textAlign: 'center',
+						}} className="center">
+						{
+							this.state.token_dialog_msg === "Withdraw" ?
+							<div>
+								<h3>{this.state.token_dialog_msg} Tokens</h3>
+								<b>Add a trustline in the receiving wallet before withdrawing:</b><br/>
+								<p style={{ display: 'inline' }}>Asset: RHC <br/>Issuer:</p> <TextField style={{ width: '60%'}} name="issuer" ref="issuer" value={issuer} disabled />
+								<CopyToClipboard style={{paddingLeft: '5px'}} text={issuer} onCopy={() => alert("Copied")}>
+									<FontIcon className="material-icons">content_copy</FontIcon>
+								</CopyToClipboard>
+								<br/>
+							</div> : <h3>{this.state.token_dialog_msg} Tokens</h3>
+						}
+						<TextField 
+							value={this.state.recipient} 
+							type="text" 
+							hintText={ this.state.token_dialog_msg === 'Withdraw' ? "Stellar Address" : "Email"}
+							onChange={e => this.setState({ recipient: e.target.value })}
+						/>
+						<br/>
+						<TextField 
+							value={this.state.amount} 
+							type="number"
+							onChange={e => this.setState({ amount: e.target.value })}
+							hintText="Amount" 
+						/>
+						<br/>
+						{
+							this.state.token_dialog_msg === 'Withdraw' ?
+							<TextField 
+								value={this.state.memo} 
+								type="text" 
+								onChange={e => this.setState({ memo: e.target.value })}
+								hintText="Memo" 
+							/> : null
+						}
+						<br/>
+						<FlatButton
+							label="Close"
+							primary={true}
+							onClick={this.handleClose}
+						/>
+						<FlatButton
+							label="Submit"
+							primary={true}
+							onClick={() => {
+								const data = {
+									reference: this.state.recipient,
+									currency: user_data && user_data.currency && user_data.currency.code,
+									amount: this.state.amount * 10000000,
+									company: user_data && user_data.company
+								}
+
+								if (this.state.memo) {
+									data['memo'] = this.state.memo
+								}
+								createSend(data)
+							}}
+						/>
+					</div>
 				</Dialog>
 			</div>
 		)

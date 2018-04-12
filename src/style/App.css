@@ -7,6 +7,11 @@ body {
 	background-size:  cover;
 }
 
+.tx-text {
+	padding: 0;
+	margin: 0;
+}
+
 .landing-row {
 	width: 100%;
 	max-width: 600px;

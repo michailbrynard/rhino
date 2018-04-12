@@ -1,4 +1,4 @@
-import { cyan300, yellow600, pink700, black, white, purple50 } from 'material-ui/styles/colors';
+import { cyan300, yellow600, pink700, white } from 'material-ui/styles/colors';
 
 export const style = {
 	card: {

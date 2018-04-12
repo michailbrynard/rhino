@@ -2,13 +2,12 @@ import React, { Component } from 'react'
 import AppBar from 'material-ui/AppBar';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
-
+import FlatButton from 'material-ui/FlatButton'
 import { SmallLoader } from '../components/loader'
-
+import { style } from '../style'
 import { resetPassword } from '../actions/auth'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-
 
 class Landing extends Component {
 
@@ -17,11 +16,11 @@ class Landing extends Component {
 	};
 
 	render() {
-		const { resetPassword, resetPasswordErr, resetPasswordLoading, data } = this.props
+		const { resetPassword, resetPasswordErr, resetPasswordLoading, data, history } = this.props
 
 		return (
 			<div>
-				<AppBar title="Launcher" showMenuIconButton={false} />
+				<AppBar iconElementRight={<FlatButton onClick={() =>  history.push('/')} style={style.logout_btn} label="Home" />} showMenuIconButton={false} />
 
 				<div className='spacer'></div>
 				<div style={{ color: 'white' }} className='row'>
@@ -31,6 +30,8 @@ class Landing extends Component {
 							<div>
 								<h1 className='title'>Success</h1>
 								<p className='subtitle'>Please check your email for the reset password link</p>
+								<br/>
+								<a href='/resetpassword' onClick={() => { window.location.reload() }}>Didn't receive an email? Click here to try again</a>
 							</div> :
 							data === 'error' ?
 							<div>

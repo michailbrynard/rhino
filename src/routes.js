@@ -21,7 +21,7 @@ import RewardRequests from './containers/reward_requests'
 import { callApi } from './utils'
 
 import { configureStore } from './store'
-import { pink700, cyan300, grey600, black } from 'material-ui/styles/colors';
+import { pink700, cyan300, grey600 } from 'material-ui/styles/colors';
 
 const muiTheme = getMuiTheme({
 	palette: {
