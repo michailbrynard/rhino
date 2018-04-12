@@ -29,6 +29,7 @@ class Market extends Component {
 			description: "",
 			amount: '',
 			user_limit: '',
+			subtype: '',
 
 			// For delete
 			delete_name: null
@@ -99,7 +100,7 @@ class Market extends Component {
 										description: this.state.description,
 										perk_amount: this.state.amount,
 										user_limit: this.state.user_limit,
-										subtype: 'tim_perk'
+										subtype: this.state.subtype
 									}
 									addPerkData(data, token)
 								} else {
@@ -119,6 +120,12 @@ class Market extends Component {
 												value={this.state.description}
 												onChange={e => this.setState({ description: e.target.value })}
 												hintText={this.state.modal_type + " Description"}
+												type='text'
+											/><br />
+											<TextField
+												value={this.state.subtype}
+												onChange={e => this.setState({ subtype: e.target.value })}
+												hintText={this.state.modal_type + " Subtype"}
 												type='text'
 											/><br />
 											<TextField
