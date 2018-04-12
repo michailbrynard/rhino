@@ -138,7 +138,7 @@ class Home extends Component {
 											</div>
 											<div style={style.card_right} className='right'>
 												<h3 className='card-heading'>Redeem Perks</h3>
-												<p className='cardtext'> Use tokens to purchase exclusive perks on the Marketplace.  </p>
+												<p className='cardtext'> Use your rhino coin to redeem perks! Currently, there is one perk available in a limited quantity. More perks may be offered in the future.  </p>
 												<br /><br />
 												<RaisedButton onClick={() => history.push('/perks')} label="Perks" secondary={true} />
 											</div>
