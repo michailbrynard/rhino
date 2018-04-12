@@ -21,6 +21,7 @@ class Market extends Component {
 		super(props)
 		this.state = {
 			perk_name: '',
+			description: '', 
 			perk_amount: false,
 			modal_type: false,
 
@@ -43,7 +44,8 @@ class Market extends Component {
 		const { data, redeemPerk, debit_data, debit_loading, debit_error, addPerkData, deletePerkData } = this.props
 		const user_data = JSON.parse(localStorage.getItem('user'))
 		const isAdmin = user_data && user_data.groups.filter(i => i.name ===  'admin').length > 0;
-
+		
+		console.log("USER ", user_data)
 		return (
 			<div className='container'>
 				{
@@ -165,7 +167,7 @@ class Market extends Component {
 						alignContent: 'center',
 						textAlign: 'center',
 					}}>
-						<h3>Are you sure you want to purchase this perk?</h3>
+						<h3>Are you sure you want to redeem {this.state.perk_amount/10000000} tokens for this perk?</h3>
 						{
 							debit_error ?
 								<h3>{debit_error}</h3> : null
@@ -176,16 +178,13 @@ class Market extends Component {
 							const route = process.env.REACT_APP_API_URL + '/user/perk/'
 							const token = localStorage.getItem('token')
 
-							callApi('POST', route, token, {"company": process.env.REACT_APP_COMPANY_IDENTIFIER, "perk_name": this.state.perk_name })
-								.then(json => {
-									if (json.status === 'success') {
-										redeemPerk(this.state.perk_id)
-									}
-								})
-								.catch(err => {
-									console
-									.log("ERROR ", err)
-								})
+							const currency = user_data.currency.code
+							const email = user_data.email
+							redeemPerk({
+								perk_id: this.state.perk_id,
+								currency,
+								email
+							})
 						}}>
 							<FlatButton
 								label="Cancel"
