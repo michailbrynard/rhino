@@ -190,7 +190,7 @@ class Market extends Component {
 					}}>
 						{
 							!debit_error && !redeemErr ?
-							<h3>Are you sure you want to redeem {this.state.perk_amount/10000000} tokens for this perk?</h3> : null
+							<h3>Are you sure you want to redeem this perk for {this.state.perk_amount/10000000} tokens?</h3> : null
 						}
 						{
 							debit_error ?
@@ -264,8 +264,8 @@ class Market extends Component {
 														<img style={style.card_left_img} src='trading1.svg' alt='earn' />
 													</div>
 													<div style={style.card_right} className='right'>
-														<h3>Purchase Perks</h3>
-														<p>Use your tokens to redeem Supporter perks!</p>
+														<h3>Redeem Perks</h3>
+														<p>Use your tokens to redeem perks!</p>
 														{ isAdmin ? <RaisedButton fullWidth={true} onClick={() => this.setState({ modal_type: "Add" })} className="f-right" primary={true} label="Add Perk" /> : null}
 													</div>
 												</Paper>
