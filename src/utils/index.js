@@ -11,6 +11,7 @@ export const callApi = (method, route, token, data) => {
 			route.search('transactions/') > -1 ||
 			route.search('admin/') > -1 ||
 			route.search('request/') > -1 ||
+			route.search('perk/buy') > -1 ||
 			route.search(process.env.REACT_APP_REHIVE_API_URL + '/user/') > -1
 		) {
 			headers['Authorization'] = `Token ${token}`

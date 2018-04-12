@@ -3,17 +3,14 @@ import Paper from 'material-ui/Paper';
 import Dialog from 'material-ui/Dialog'
 import TextField from 'material-ui/TextField/TextField';
 import { RaisedButton, FlatButton } from 'material-ui';
-import Loader from '../components/loader'
+import Loader, { SmallLoader } from '../components/loader'
 import { BigNumber } from 'bignumber.js' 
 import company_data from './config.json'
 import { addPerkData, deletePerkData } from '../actions/admin'
 
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { getPerkData } from '../actions/perk'
-import { createSend } from '../actions/transaction'
-
-import { callApi } from '../utils'
+import { getPerkData, redeemPerk } from '../actions/perk'
 
 import { style } from '../style/'
 
@@ -22,8 +19,12 @@ class Market extends Component {
 		super(props)
 		this.state = {
 			perk_name: '',
+			description: '', 
 			perk_amount: false,
 			modal_type: false,
+
+			// For buy
+			perk_id: null,
 			
 			// For add
 			name: "",
@@ -38,10 +39,10 @@ class Market extends Component {
 
 
 	render() {
-		const { data, createSend, debit_data, debit_loading, debit_error, addPerkData, deletePerkData } = this.props
+		const { data, redeemPerk, debit_data, debit_loading, debit_error, redeemErr, addPerkData, deletePerkData , loadingRedeem, add_result, loading } = this.props
 		const user_data = JSON.parse(localStorage.getItem('user'))
 		const isAdmin = user_data && user_data.groups.filter(i => i.name ===  'admin').length > 0;
-
+		
 		return (
 			<div className='container'>
 				{
@@ -68,73 +69,97 @@ class Market extends Component {
 						open={this.state.modal_type ? true : false}
 						onRequestClose={() => this.setState({ modal_type: null })}
 					>
-					<div style={{
-						alignContent: 'center',
-						textAlign: 'center',
-					}}>
-						<h3>{this.state.modal_type === "Delete" ? "Delete Perk" : "Add Perk" }</h3>
-						<form onSubmit={(e) => {
-							e.preventDefault()
-							let data
-							const token = localStorage.getItem('token')
-
-							
-							 if (this.state.modal_type === "Add") {
-								data = { 
-									company: process.env.REACT_APP_COMPANY_IDENTIFIER,
-									perk_name: this.state.name, 
-									description: this.state.description,
-									perk_amount: this.state.amount,
-									user_limit: this.state.user_limit
-								}
-								addPerkData(data, token)
-							} else {
-								deletePerkData(this.state.delete_name, token)
-							}
+					{
+						add_result ?
+						<div style={{
+							alignContent: 'center',
+							textAlign: 'center',
 						}}>
-							{
-								this.state.modal_type !== "Delete" ?
-								<div>
-										<TextField
-											value={this.state.name}
-											onChange={e => this.setState({ name: e.target.value })}
-											hintText={this.state.modal_type + " Name"}
-											type='text'
-										/><br />
-										<TextField
-											value={this.state.description}
-											onChange={e => this.setState({ description: e.target.value })}
-											hintText={this.state.modal_type + " Description"}
-											type='text'
-										/><br />
-										<TextField
-											value={this.state.amount}
-											onChange={e => this.setState({ amount: e.target.value })}
-											hintText="Amount"
-											type='number'
-										/><br />
-										<TextField
-											value={this.state.user_limit}
-											onChange={e => this.setState({ user_limit: e.target.value })}
-											hintText={this.state.modal_type + " User Limit"}
-											type='number'
-										/><br />
-								</div> :
-								<h5>Are you sure you want to delete this perk?</h5>
-							}
+							
+							<h3>{add_result}</h3>
 							<FlatButton
-								label="Cancel"
+								label="OK"
 								primary={true}
-								onClick={() => this.setState({ modal_type: null, delete_name: null })}
+								onClick={() => window.location.reload()}
 							/>
-							<FlatButton
-								label={this.state.modal_type === "Delete" ? "Delete" : "Add"}
-								primary={true}
-								keyboardFocused={true}
-								type='submit'
-							/>
-						</form>
-					</div>
+						</div> :
+						<div style={{
+							alignContent: 'center',
+							textAlign: 'center',
+						}}>
+							<h3>{this.state.modal_type === "Delete" ? "Delete Perk" : "Add Perk" }</h3>
+							<form onSubmit={(e) => {
+								e.preventDefault()
+								let data
+								const token = localStorage.getItem('token')
+	
+								
+								 if (this.state.modal_type === "Add") {
+									data = { 
+										company: process.env.REACT_APP_COMPANY_IDENTIFIER,
+										perk_name: this.state.name, 
+										description: this.state.description,
+										perk_amount: this.state.amount,
+										user_limit: this.state.user_limit,
+										subtype: 'tim_perk'
+									}
+									addPerkData(data, token)
+								} else {
+									deletePerkData(this.state.delete_name, token)
+								}
+							}}>
+								{
+									this.state.modal_type !== "Delete" ?
+									<div>
+											<TextField
+												value={this.state.name}
+												onChange={e => this.setState({ name: e.target.value })}
+												hintText={this.state.modal_type + " Name"}
+												type='text'
+											/><br />
+											<TextField
+												value={this.state.description}
+												onChange={e => this.setState({ description: e.target.value })}
+												hintText={this.state.modal_type + " Description"}
+												type='text'
+											/><br />
+											<TextField
+												value={this.state.amount}
+												onChange={e => this.setState({ amount: e.target.value })}
+												hintText="Amount"
+												type='number'
+											/><br />
+											<TextField
+												value={this.state.user_limit}
+												onChange={e => this.setState({ user_limit: e.target.value })}
+												hintText={this.state.modal_type + " User Limit"}
+												type='number'
+											/><br />
+									</div> :
+									<h5>Are you sure you want to delete this perk?</h5>
+								}
+								{
+									loading ?
+									<SmallLoader/> :
+									<div>
+										<FlatButton
+											label="Cancel"
+											primary={true}
+											onClick={() => this.setState({ modal_type: null, delete_name: null })}
+											disabled={loading}
+										/>
+										<FlatButton
+											label={this.state.modal_type === "Delete" ? "Delete" : "Add"}
+											primary={true}
+											keyboardFocused={true}
+											disabled={loading}
+											type='submit'
+										/>
+									</div>
+								}
+							</form>
+						</div>
+					}
 				</Dialog> : null
 				}
 				<Dialog
@@ -163,45 +188,54 @@ class Market extends Component {
 						alignContent: 'center',
 						textAlign: 'center',
 					}}>
-						<h3>Are you sure you want to redeem this perk?</h3>
+						{
+							!debit_error && !redeemErr ?
+							<h3>Are you sure you want to redeem this perk for {this.state.perk_amount/10000000} tokens?</h3> : null
+						}
 						{
 							debit_error ?
-								<h3>{debit_error}</h3> : null
+								<h3>{debit_error}</h3> : 
+								loadingRedeem ?
+								<span>Redeeming....</span> :
+								redeemErr ?
+								<h3>{redeemErr}</h3> :
+									null
 						}
 						<form onSubmit={(e) => {
 							e.preventDefault()
-							const data = {
-								reference: company_data.admin_email,
-								currency: user_data && user_data.currency && user_data.currency.code,
-								amount: this.state.perk_amount,
-								company: process.env.REACT_APP_COMPANY_IDENTIFIER
-							}
 
 							const route = process.env.REACT_APP_API_URL + '/user/perk/'
 							const token = localStorage.getItem('token')
 
-							callApi('POST', route, token, {"company": process.env.REACT_APP_COMPANY_IDENTIFIER, "perk_name": this.state.perk_name })
-								.then(json => {
-									if (json.status === 'success') {
-										createSend(data)
-									}
-								})
-								.catch(err => {
-									console
-									.log("ERROR ", err)
-								})
+							const currency = user_data.currency.code
+							const email = user_data.email
+							const identifier = user_data.identifier
+							redeemPerk({
+								currency,
+								email,
+								subtype: 'tim_perk',
+								identifier: this.state.perk_id
+							})
 						}}>
 							<FlatButton
-								label="Cancel"
+								label={
+									!redeemErr && !debit_error ?
+									"Cancel" : "OK"
+								}
 								primary={true}
 								onClick={() => this.setState({ perk_amount: '' })}
+								disabled={loadingRedeem}
 							/>
-							<FlatButton
-								label="Yes"
-								primary={true}
-								keyboardFocused={true}
-								type='submit'
-							/>
+							{
+								!redeemErr && !debit_error ?
+								<FlatButton
+									label="Yes"
+									primary={true}
+									keyboardFocused={true}
+									type='submit'
+									disabled={loadingRedeem}
+								/> : null
+							}
 						</form>
 					</div>
 				</Dialog>
@@ -258,7 +292,8 @@ class Market extends Component {
 																		<h3>{item.perk_name}</h3>
 																		<p>{item.description}</p>
 																		<h1>{perk_amount} {user_data && user_data.currency && user_data.currency.code}</h1>
-																		<RaisedButton onClick={() => this.setState({ perk_amount: item.perk_amount, perk_name: item.perk_name })} className="f-right" primary={true} label="Redeem"/>
+																		<p>{item.user_limit - item.user_count} perks left </p>
+																		<RaisedButton onClick={() => this.setState({ perk_amount: item.perk_amount, perk_name: item.perk_name, perk_id: item.identifier })} className="f-right" primary={true} label="Redeem"/>
 																	</div>
 																</Paper>
 																<br />
@@ -289,15 +324,13 @@ class Market extends Component {
 class MarketContainer extends Component {
 	componentDidMount() {
 		const user_data = JSON.parse(localStorage.getItem('user'))
-		this.props.getPerkData(user_data.company)
+		if (!this.props.add_result)  {
+			this.props.getPerkData(user_data.company)
+		}
 	}
 
 	render() {
-		const { loading, data, createSend, debit_data, debit_loading, debit_error, addPerkData, deletePerkData, add_result } = this.props
-
-		if (add_result) {
-			window.location.reload()
-		}
+		const { loading, loadingRedeem, data, redeemPerk, debit_data, debit_loading, debit_error, addPerkData, deletePerkData, add_result, redeemErr, admin_loading } = this.props
 
 		return (
 			<div>
@@ -308,10 +341,14 @@ class MarketContainer extends Component {
 						debit_data={debit_data} 
 						debit_loading={debit_loading} 
 						debit_error={debit_error} 
-						createSend={createSend} 
+						redeemPerk={redeemPerk} 
+						loadingRedeem={loadingRedeem}
+						redeemErr={redeemErr}
 						data={data}
 						addPerkData={addPerkData}
 						deletePerkData={deletePerkData}
+						add_result={add_result}
+						loading={admin_loading}
 					/>
 				}
 			</div>
@@ -320,22 +357,24 @@ class MarketContainer extends Component {
 }
 
 function mapStateToProps(state) {
-	const { data, loading } = state.perk
+	const { data, loading, loadingRedeem, redeemErr } = state.perk
 	return {
 		data,
 		loading,
+		loadingRedeem,
+		redeemErr,
 		debit_data: state.transaction.data,
 		debit_loading: state.transaction.loading,
 		debit_error: state.transaction.err,
-
-		add_result: state.admin && state.admin.data
+		add_result: state.admin && state.admin.data,
+		admin_loading: state.admin && state.admin.adminLoading
 	}
 }
 
 function mapDispatchToProps(dispatch) {
 	return {
 		getPerkData: bindActionCreators(getPerkData, dispatch),
-		createSend: bindActionCreators(createSend, dispatch),
+		redeemPerk: bindActionCreators(redeemPerk, dispatch),
 
 		addPerkData: bindActionCreators(addPerkData, dispatch),
 		deletePerkData: bindActionCreators(deletePerkData, dispatch)

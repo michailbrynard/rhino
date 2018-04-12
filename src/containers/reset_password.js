@@ -25,7 +25,7 @@ class Landing extends Component {
 
 				<div className='spacer'></div>
 				<div style={{ color: 'white' }} className='row'>
-					<div className='col-12 center landing-row'>
+					<div className='col-8'>
 						{
 							data === 'success' ?
 							<div>
@@ -51,6 +51,7 @@ class Landing extends Component {
 								}}>
 									<TextField
 										hintStyle={{ color: "#999" }}
+										inputStyle={{ color: "white" }}
 										value={this.state.email}
 										type="email"
 										onChange={e => this.setState({ email: e.target.value })}
