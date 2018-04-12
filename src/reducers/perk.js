@@ -28,18 +28,18 @@ export default (state = { loading: false }, action) => {
 			})
 
 		case REDEEM_PERK:
-			return merge({}, {
-				loading: true
+			return merge({}, state, {
+				loadingRedeem: true
 			})
 		case REDEEM_PERK_ERROR:
-			return merge({}, {
-				loading: false,
-				err: action.err
+			return merge({}, state, {
+				loadingRedeem: false,
+				redeemErr: action.err
 			})
 		case REDEEM_PERK_SUCCESS:
-			return merge({}, {
+			return merge({}, state, {
 				data: action.data,
-				loading: false
+				loadingRedeem: false
 			})
 		default:
 			return state

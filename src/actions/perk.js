@@ -39,7 +39,7 @@ export const redeemPerk = data => (
 					window.location.reload()
 					dispatch({ type: REDEEM_PERK_SUCCESS, data: json.data })
 				} else {
-					dispatch({ type: REDEEM_PERK_ERROR, err: json.message })
+					dispatch({ type: REDEEM_PERK_ERROR, err: json.data[0] || json.message })
 				}
 			})
 			.catch(err => {

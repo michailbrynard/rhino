@@ -25,14 +25,14 @@ export default (state = { loading: false }, action) => {
 		case DELETE_PERK_DATA:
 		case DELETE_REWARD_DATA:
 			return merge({}, {
-				loading: true
+				adminLoading: true
 			})
 		case ADD_PERK_DATA_SUCCESS:
 		case ADD_REWARD_DATA_SUCCESS:
 		case DELETE_PERK_DATA_SUCCESS:
 		case DELETE_REWARD_DATA_SUCCESS:
-			return merge({}, {
-				loading: false,
+			return merge({}, state, {
+				adminLoading: false,
 				data: action.data
 			})
 		case ADD_PERK_DATA_ERROR:
@@ -41,7 +41,7 @@ export default (state = { loading: false }, action) => {
 		case DELETE_REWARD_DATA_ERROR:
 			return merge({}, state, {
 				err: action.err,
-				loading: false
+				adminLoading: false
 			})
 		default:
 			return state
