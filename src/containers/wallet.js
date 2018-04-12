@@ -38,6 +38,8 @@ class Wallet extends Component {
 		const balance = x && x.dividedBy(10000000).toString() + ' ' + data.balance.currency.code
 
 		const issuer = 'GBIR5GY3XE35Q7BFQ2FUVTB4VMQYD4VRZ36Q4OAVKFBJBK343KNOSNL3';
+
+		const amount_is_greater = this.state.amount > x;
 		
 		return (
 			<div className='container'>
@@ -164,6 +166,10 @@ class Wallet extends Component {
 							/> : null
 						}
 						<br/>
+						{
+							amount_is_greater ?
+							<p>Insufficient funds</p> : null
+						}
 						<FlatButton
 							label="Close"
 							primary={true}
@@ -172,6 +178,7 @@ class Wallet extends Component {
 						<FlatButton
 							label="Submit"
 							primary={true}
+							disabled={amount_is_greater}
 							onClick={() => {
 								const data = {
 									reference: this.state.recipient,
