@@ -27,7 +27,7 @@ export const REDEEM_PERK = "REDEEM_PERK"
 export const REDEEM_PERK_SUCCESS = "REDEEM_PERK_SUCCESS"
 export const REDEEM_PERK_ERROR = "REDEEM_PERK_ERROR"
 
-export const  redeemPerk = data => (
+export const redeemPerk = data => (
 	dispatch => {
 		dispatch({ type: REDEEM_PERK })
 		const route = process.env.REACT_APP_API_URL + '/user/perk/buy'

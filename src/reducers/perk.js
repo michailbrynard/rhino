@@ -1,7 +1,11 @@
 import {
 	GET_PERK_DATA_ERROR,
 	GET_PERK_DATA_SUCCESS,
-	GET_PERK_DATA
+	GET_PERK_DATA,
+
+	REDEEM_PERK,
+	REDEEM_PERK_SUCCESS,
+	REDEEM_PERK_ERROR
 } from '../actions/perk'
 
 import { merge } from 'lodash'
@@ -20,6 +24,21 @@ export default (state = { loading: false }, action) => {
 		case GET_PERK_DATA_ERROR:
 			return merge({}, state, {
 				err: action.err,
+				loading: false
+			})
+
+		case REDEEM_PERK:
+			return merge({}, {
+				loading: true
+			})
+		case REDEEM_PERK_ERROR:
+			return merge({}, {
+				loading: false,
+				err: action.err
+			})
+		case REDEEM_PERK_SUCCESS:
+			return merge({}, {
+				data: action.data,
 				loading: false
 			})
 		default:

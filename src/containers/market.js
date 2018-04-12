@@ -10,8 +10,7 @@ import { addPerkData, deletePerkData } from '../actions/admin'
 
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { getPerkData } from '../actions/perk'
-import { createSend } from '../actions/transaction'
+import { getPerkData, redeemPerk } from '../actions/perk'
 
 import { callApi } from '../utils'
 
@@ -24,6 +23,9 @@ class Market extends Component {
 			perk_name: '',
 			perk_amount: false,
 			modal_type: false,
+
+			// For buy
+			perk_id: null,
 			
 			// For add
 			name: "",
@@ -38,7 +40,7 @@ class Market extends Component {
 
 
 	render() {
-		const { data, createSend, debit_data, debit_loading, debit_error, addPerkData, deletePerkData } = this.props
+		const { data, redeemPerk, debit_data, debit_loading, debit_error, addPerkData, deletePerkData } = this.props
 		const user_data = JSON.parse(localStorage.getItem('user'))
 		const isAdmin = user_data && user_data.groups.filter(i => i.name ===  'admin').length > 0;
 
@@ -170,12 +172,6 @@ class Market extends Component {
 						}
 						<form onSubmit={(e) => {
 							e.preventDefault()
-							const data = {
-								reference: company_data.admin_email,
-								currency: user_data && user_data.currency && user_data.currency.code,
-								amount: this.state.perk_amount,
-								company: process.env.REACT_APP_COMPANY_IDENTIFIER
-							}
 
 							const route = process.env.REACT_APP_API_URL + '/user/perk/'
 							const token = localStorage.getItem('token')
@@ -183,7 +179,7 @@ class Market extends Component {
 							callApi('POST', route, token, {"company": process.env.REACT_APP_COMPANY_IDENTIFIER, "perk_name": this.state.perk_name })
 								.then(json => {
 									if (json.status === 'success') {
-										createSend(data)
+										redeemPerk(this.state.perk_id)
 									}
 								})
 								.catch(err => {
@@ -258,7 +254,7 @@ class Market extends Component {
 																		<h3>{item.perk_name}</h3>
 																		<p>{item.description}</p>
 																		<h1>{perk_amount} {user_data && user_data.currency && user_data.currency.code}</h1>
-																		<RaisedButton onClick={() => this.setState({ perk_amount: item.perk_amount, perk_name: item.perk_name })} className="f-right" primary={true} label="Redeem"/>
+																		<RaisedButton onClick={() => this.setState({ perk_amount: item.perk_amount, perk_name: item.perk_name, perk_id: item.identifier })} className="f-right" primary={true} label="Redeem"/>
 																	</div>
 																</Paper>
 																<br />
@@ -293,7 +289,7 @@ class MarketContainer extends Component {
 	}
 
 	render() {
-		const { loading, data, createSend, debit_data, debit_loading, debit_error, addPerkData, deletePerkData, add_result } = this.props
+		const { loading, data, redeemPerk, debit_data, debit_loading, debit_error, addPerkData, deletePerkData, add_result } = this.props
 
 		if (add_result) {
 			window.location.reload()
@@ -308,7 +304,7 @@ class MarketContainer extends Component {
 						debit_data={debit_data} 
 						debit_loading={debit_loading} 
 						debit_error={debit_error} 
-						createSend={createSend} 
+						redeemPerk={redeemPerk} 
 						data={data}
 						addPerkData={addPerkData}
 						deletePerkData={deletePerkData}
@@ -335,7 +331,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
 	return {
 		getPerkData: bindActionCreators(getPerkData, dispatch),
-		createSend: bindActionCreators(createSend, dispatch),
+		redeemPerk: bindActionCreators(redeemPerk, dispatch),
 
 		addPerkData: bindActionCreators(addPerkData, dispatch),
 		deletePerkData: bindActionCreators(deletePerkData, dispatch)
