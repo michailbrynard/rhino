@@ -265,7 +265,7 @@ class Market extends Component {
 													</div>
 													<div style={style.card_right} className='right'>
 														<h3>Redeem Perks</h3>
-														<p>Use your tokens to redeem perks!</p>
+														<p>Use your rhino coin to redeem perks! Currently, there is one perk available in a limited quantity. More perks may be offered in the future.</p>
 														{ isAdmin ? <RaisedButton fullWidth={true} onClick={() => this.setState({ modal_type: "Add" })} className="f-right" primary={true} label="Add Perk" /> : null}
 													</div>
 												</Paper>
