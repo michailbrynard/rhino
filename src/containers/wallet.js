@@ -34,7 +34,7 @@ class Wallet extends Component {
 
 		const user_data = JSON.parse(localStorage.getItem('user'))
 
-		const x = data && data.balance && new BigNumber(data.balance.balance)
+		const x = data && data.balance && new BigNumber(data.balance.available_balance)
 		const balance = x && x.dividedBy(10000000).toString() + ' ' + data.balance.currency.code
 
 		const issuer = 'GBIR5GY3XE35Q7BFQ2FUVTB4VMQYD4VRZ36Q4OAVKFBJBK343KNOSNL3';

@@ -51,7 +51,7 @@ class Home extends Component {
 
 		const { company_data } = this.state
 
-		const x = data && data.balance && new BigNumber(data.balance.balance)
+		const x = data && data.balance && new BigNumber(data.balance.available_balance)
 		const balance = x && x.dividedBy(10000000).toString()
 
 		return (
