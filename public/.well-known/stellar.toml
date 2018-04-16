@@ -1,0 +1,8 @@
+[[CURRENCIES]]
+code = "RHC"
+conditions = "Rhino coin. Managed by Draper University"
+desc = "The official Draper Block(chain) Party coin."
+display_decimals = 7
+image = "https://rhino.draperuniversity.com/logo.png"
+issuer = "GBIR5GY3XE35Q7BFQ2FUVTB4VMQYD4VRZ36Q4OAVKFBJBK343KNOSNL3"
+name = "Rhino"
