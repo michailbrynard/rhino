@@ -1,18 +1,19 @@
-project_name: rhino
-docker_image: gcr.io/rehive-services/rhino
-venv_python: ~/anaconda/envs/zapgo-core/bin/python3.5
-helm_chart: rehive/rehive-service
-helm_chart_version: 0.1.31
 configs:
     staging:
-      project: rehive-services
+      project_name: rhino
+      docker_image: gcr.io/rehive-services/rhino
+      cloud_project: rehive-services
       cluster: staging
       namespace: rhino-staging
       helm_values_path: ./etc/helm/staging/values.yaml
-      env_dir: ./etc/helm/staging/
+      helm_chart: rehive/rehive-service
+      helm_chart_version: 0.1.31
     production:
-      project: rehive-services
+      project_name: rhino
+      docker_image: gcr.io/rehive-services/rhino
+      cloud_project: rehive-services
       cluster: production
       namespace: rhino
       helm_values_path: ./etc/helm/production/values.yaml
-      env_dir: ./etc/helm/production/
+      helm_chart: rehive/rehive-service
+      helm_chart_version: 0.1.31
