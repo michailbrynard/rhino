@@ -54,7 +54,6 @@ class Landing extends Component {
 			<div>
 				<AppBar
 					showMenuIconButton={false}
-					iconElementRight={<FlatButton onClick={this.handleOpen} label="Login" />}
 				/>
 
 				<Dialog
@@ -153,17 +152,10 @@ class Landing extends Component {
 												e.preventDefault()
 												signup(this.state.email)
 											}}>
-												<TextField
-													inputStyle={{ color: "white" }}
-													hintStyle={{ color: "#999" }}
-													value={this.state.email}
-													onChange={e => this.setState({ email: e.target.value })}
-													hintText="Email"
-												/>
 												{
 													signupLoading ?
 														<SmallLoader /> :
-														<RaisedButton disabled={notAllowedEmail} style={{ marginLeft: '8px' }} type='submit' label="Join" secondary={true} />
+														<RaisedButton href="https://wallet.rehive.com/rhino" label="Access your wallet" secondary={true} />
 												}
 											</form>
 											<br /><br />
